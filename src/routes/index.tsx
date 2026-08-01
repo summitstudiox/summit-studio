@@ -124,9 +124,9 @@ function Index() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/20 to-background" />
         <div className="grain-overlay pointer-events-none absolute inset-0 opacity-40" />
 
-        <div className="relative flex h-full flex-col justify-between px-5 pt-32 pb-8 md:px-8">
+        <div className="relative flex h-full flex-col justify-between gap-16 px-5 pt-36 pb-10 md:px-8 md:pt-40 md:pb-12">
           <div className="rise max-w-lg">
-            <h1 className="text-base leading-relaxed tracking-tight md:text-lg">
+            <h1 className="text-base leading-loose tracking-tight md:text-lg">
               Blending in is expensive.
               <br />
               <span className="text-foreground/70">
@@ -136,7 +136,7 @@ function Index() {
             </h1>
             <a
               href="#work"
-              className="label-mono mt-8 flex w-full max-w-sm items-center justify-between border-b border-foreground pb-2 transition-colors hover:border-accent hover:text-accent"
+              className="label-mono mt-10 flex w-full max-w-sm items-center justify-between border-b border-foreground pb-3 transition-colors hover:border-accent hover:text-accent"
             >
               Explore our work
               <span>↗</span>
@@ -144,17 +144,28 @@ function Index() {
           </div>
 
           <div>
-            <ul className="label-mono mb-6 space-y-1.5 text-foreground/80 md:ml-[18%]">
-              {["Strategy", "Identity", "Development"].map((s, i) => (
-                <li key={s}>
-                  <span className="text-muted-foreground">[0{i + 1}]</span> {s}
-                </li>
+            <div className="mb-10 flex flex-wrap gap-3 md:ml-[18%]">
+              {[
+                { label: "Strategy", href: "#process" },
+                { label: "Identity", href: "#studio" },
+                { label: "Development", href: "#work" },
+              ].map((s, i) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  className="label-mono inline-flex items-center gap-2 rounded-full border border-hairline bg-background/40 px-4 py-3 backdrop-blur-sm transition-colors hover:border-accent hover:bg-accent hover:text-accent-foreground"
+                >
+                  <span className="text-muted-foreground">[0{i + 1}]</span>
+                  {s.label}
+                </a>
               ))}
-            </ul>
+            </div>
             <p className="display-tight w-full text-[10.4vw] leading-[0.8] whitespace-nowrap">
               Summit Studio
             </p>
           </div>
+        </div>
+
         </div>
       </section>
 
