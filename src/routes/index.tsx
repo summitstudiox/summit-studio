@@ -165,8 +165,6 @@ function Index() {
             </p>
           </div>
         </div>
-
-        </div>
       </section>
 
       {/* STUDIO */}
