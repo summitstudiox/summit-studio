@@ -80,6 +80,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "author", content: "Summit Studio" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { title: "Summit Studio — Branding, Web Design & Development" },
+      { property: "og:title", content: "Summit Studio — Branding, Web Design & Development" },
+      { name: "twitter:title", content: "Summit Studio — Branding, Web Design & Development" },
+      { name: "description", content: "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery." },
+      { property: "og:description", content: "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery." },
+      { name: "twitter:description", content: "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2591f244-bc00-4f2a-9028-ed18b59efabb/id-preview-f63fae7d--7156a22d-9927-4051-8db9-68c4721f4348.lovable.app-1785559798732.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2591f244-bc00-4f2a-9028-ed18b59efabb/id-preview-f63fae7d--7156a22d-9927-4051-8db9-68c4721f4348.lovable.app-1785559798732.png" },
     ],
     links: [
       {

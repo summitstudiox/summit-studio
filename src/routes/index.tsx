@@ -18,7 +18,7 @@ export const Route = createFileRoute("/")({
       {
         property: "og:description",
         content:
-          "Bold digital experiences for ambitious brands. Strategy, brand identity, high-converting web design and clean development.",
+          "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery.",
       },
     ],
   }),
