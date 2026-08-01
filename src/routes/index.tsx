@@ -74,7 +74,7 @@ const STATS = [
 
 function SectionHead({ n, label }: { n: string; label: string }) {
   return (
-    <div className="rule-top grid grid-cols-3 items-center px-5 py-4 md:px-8">
+    <div className="rule-top grid grid-cols-3 items-center px-5 py-6 md:px-8">
       <span className="label-mono text-muted-foreground">
         <span className="text-accent">◆</span> [ {n} ]
       </span>
@@ -170,13 +170,13 @@ function Index() {
       {/* STUDIO */}
       <section id="studio">
         <SectionHead n="01" label="About us" />
-        <div className="px-5 pt-16 pb-20 md:px-8">
+        <div className="px-5 pt-20 pb-28 md:px-8">
           <h2 className="display-tight max-w-6xl text-[8vw] md:text-[5.4vw]">
             Summit Studio is a brand and web partner for ambitious companies. We build
             positioning, identity and sites that convert attention into revenue.
           </h2>
 
-          <div className="mt-24 grid gap-12 md:grid-cols-12">
+          <div className="mt-24 grid gap-14 md:gap-12 md:grid-cols-12">
             <div className="md:col-span-3">
               <img
                 src={work4}
@@ -187,7 +187,7 @@ function Index() {
                 className="w-full object-cover"
               />
             </div>
-            <div className="space-y-16 md:col-span-9">
+            <div className="space-y-20 md:col-span-9">
               {[
                 {
                   k: "[ Context ]",
@@ -214,7 +214,7 @@ function Index() {
                   ].map(([a, b]) => (
                     <div
                       key={a}
-                      className="label-mono flex items-center justify-between border-b border-hairline py-3"
+                      className="label-mono flex items-center justify-between border-b border-hairline py-4"
                     >
                       <span>{a}</span>
                       <span className="text-muted-foreground">{b}</span>
@@ -260,7 +260,7 @@ function Index() {
         <SectionHead n="02" label="Some of the brands we made money for ↓" />
         <div className="grid gap-px bg-hairline md:grid-cols-2">
           {WORK.map((w) => (
-            <article key={w.n} className="group bg-background p-5 md:p-8">
+            <article key={w.n} className="group bg-background p-6 md:p-8">
               <div className="relative overflow-hidden">
                 <img
                   src={w.img}
@@ -286,7 +286,7 @@ function Index() {
 
         <div className="grid gap-px border-t border-hairline bg-hairline md:grid-cols-3">
           {STATS.map((s) => (
-            <div key={s.k} className="bg-background px-5 py-12 md:px-8">
+            <div key={s.k} className="bg-background px-5 py-20 md:px-8">
               <p className="display-tight text-6xl text-accent">{s.v}</p>
               <p className="label-mono mt-3 text-muted-foreground">{s.k}</p>
             </div>
@@ -297,7 +297,7 @@ function Index() {
       {/* PROCESS */}
       <section id="process">
         <SectionHead n="03" label="How we work" />
-        <div className="px-5 py-16 md:px-8">
+        <div className="px-5 py-20 md:px-8">
           <h2 className="display-tight max-w-4xl text-[7vw] md:text-[4vw]">
             From idea to launch, in four moves.
           </h2>
@@ -305,7 +305,7 @@ function Index() {
             {PROCESS.map((p) => (
               <div
                 key={p.n}
-                className="group grid gap-4 border-t border-hairline py-8 transition-colors hover:bg-secondary/40 md:grid-cols-12"
+                className="group grid gap-4 border-t border-hairline py-10 transition-colors hover:bg-secondary/40 md:grid-cols-12"
               >
                 <span className="label-mono text-muted-foreground md:col-span-1">[{p.n}]</span>
                 <h3 className="display-tight text-3xl md:col-span-3">{p.title}</h3>
@@ -324,7 +324,7 @@ function Index() {
       {/* CONTACT */}
       <section id="contact">
         <SectionHead n="04" label="Let's work together" />
-        <div className="grid gap-12 px-5 py-20 md:grid-cols-2 md:px-8">
+        <div className="grid gap-16 px-5 py-24 md:grid-cols-2 md:px-8">
           <div>
             <h2 className="display-tight text-[9vw] md:text-[5vw]">Contact us.</h2>
             <p className="mt-6 max-w-md text-sm leading-relaxed text-foreground/70">
@@ -359,7 +359,7 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-hairline px-5 pt-10 pb-6 md:px-8">
+      <footer className="border-t border-hairline px-5 pt-14 pb-8 md:px-8">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <p className="label-mono max-w-xs text-muted-foreground">
             Bold digital experiences for ambitious brands that refuse to blend in.
