@@ -86,7 +86,7 @@ function SectionHead({ n, label }: { n: string; label: string }) {
 
 function Index() {
   return (
-    <main id="top" className="min-h-screen bg-background text-foreground">
+    <main id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
       {/* NAV */}
       <header className="fixed inset-x-0 top-0 z-50 flex items-start justify-between px-5 py-5 md:px-8">
         <a href="#top" className="text-lg font-semibold tracking-tight">
@@ -151,7 +151,7 @@ function Index() {
                 </li>
               ))}
             </ul>
-            <p className="display-tight w-full text-[16vw] leading-[0.8] whitespace-nowrap">
+            <p className="display-tight w-full text-[10.4vw] leading-[0.8] whitespace-nowrap">
               Summit Studio
             </p>
           </div>
@@ -382,7 +382,7 @@ function Index() {
             </ul>
           </div>
         </div>
-        <p className="display-tight mt-14 w-full text-[16vw] leading-[0.8] whitespace-nowrap">
+        <p className="display-tight mt-14 w-full text-[10.4vw] leading-[0.8] whitespace-nowrap">
           Summit Studio
         </p>
         <div className="label-mono mt-6 flex justify-between text-muted-foreground">
