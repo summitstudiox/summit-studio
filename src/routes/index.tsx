@@ -1,24 +1,397 @@
 import { createFileRoute } from "@tanstack/react-router";
+import heroImg from "@/assets/hero.jpg";
+import work1 from "@/assets/work-1.jpg";
+import work2 from "@/assets/work-2.jpg";
+import work3 from "@/assets/work-3.jpg";
+import work4 from "@/assets/work-4.jpg";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Summit Studio — Branding, Web Design & Development" },
+      {
+        name: "description",
+        content:
+          "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery.",
+      },
+      { property: "og:title", content: "Summit Studio — Branding, Web Design & Development" },
+      {
+        property: "og:description",
+        content:
+          "Bold digital experiences for ambitious brands. Strategy, brand identity, high-converting web design and clean development.",
+      },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const NAV = [
+  { label: "Home", href: "#top", idx: "01" },
+  { label: "Work", href: "#work", idx: "02" },
+  { label: "Studio", href: "#studio", idx: "03" },
+  { label: "Contact", href: "#contact", idx: "04" },
+];
+
+const WORK = [
+  { n: "01", name: "Vanta Digital", kind: "Web Design · Development", year: "2025", img: work2 },
+  { n: "02", name: "Campus Connect", kind: "Brand Identity · Web", year: "2024", img: work1 },
+  { n: "03", name: "Ascend", kind: "UI Design · Development", year: "2024", img: work3 },
+  { n: "04", name: "Velocity", kind: "Web Design · Development", year: "2023", img: work4 },
+];
+
+const PROCESS = [
+  {
+    n: "01",
+    title: "Strategy",
+    tag: "Find the sharp angle",
+    body: "Clarify your offer, audience, and competitive edge. Map the visitor journey before designing screens.",
+  },
+  {
+    n: "02",
+    title: "Brand",
+    tag: "Shape the language",
+    body: "Logo, type, color — a system that works beyond the homepage and scales with your growth.",
+  },
+  {
+    n: "03",
+    title: "Design",
+    tag: "Experience architecture",
+    body: "High-converting page layouts for mobile and desktop. Prototyped interactions, nothing guessed.",
+  },
+  {
+    n: "04",
+    title: "Delivery",
+    tag: "Build, test, launch",
+    body: "Clean code, hosting, and launch QA. No agency maze — just your website going live.",
+  },
+];
+
+const STATS = [
+  { k: "Conversion rate", v: "+84%" },
+  { k: "User engagement", v: "+67%" },
+  { k: "Brand recall", v: "+91%" },
+];
+
+function SectionHead({ n, label }: { n: string; label: string }) {
+  return (
+    <div className="rule-top grid grid-cols-3 items-center px-5 py-4 md:px-8">
+      <span className="label-mono text-muted-foreground">
+        <span className="text-accent">◆</span> [ {n} ]
+      </span>
+      <span className="label-mono text-center">{label}</span>
+      <span className="label-mono text-right text-muted-foreground">© 2026</span>
+    </div>
+  );
+}
+
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <main id="top" className="min-h-screen bg-background text-foreground">
+      {/* NAV */}
+      <header className="fixed inset-x-0 top-0 z-50 flex items-start justify-between px-5 py-5 md:px-8">
+        <a href="#top" className="text-lg font-semibold tracking-tight">
+          Summit Studio<span className="text-accent">.</span>
+        </a>
+        <nav className="hidden items-start gap-10 md:flex">
+          {NAV.map((i) => (
+            <a
+              key={i.label}
+              href={i.href}
+              className="label-mono flex items-start gap-1.5 text-foreground/80 transition-colors hover:text-accent"
+            >
+              {i.label}
+              <sup className="text-[0.5rem] text-muted-foreground">{i.idx}</sup>
+            </a>
+          ))}
+        </nav>
+        <a
+          href="#contact"
+          className="label-mono border border-hairline bg-foreground/5 px-3 py-2 backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
+        >
+          Start a project
+        </a>
+      </header>
+
+      {/* HERO */}
+      <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
+        <img
+          src={heroImg}
+          alt="Blurred crimson city lights at night"
+          width={1920}
+          height={1280}
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/20 to-background" />
+        <div className="grain-overlay pointer-events-none absolute inset-0 opacity-40" />
+
+        <div className="relative flex h-full flex-col justify-between px-5 pt-32 pb-8 md:px-8">
+          <div className="rise max-w-lg">
+            <h1 className="text-base leading-relaxed tracking-tight md:text-lg">
+              Blending in is expensive.
+              <br />
+              <span className="text-foreground/70">
+                Branding, website design and development for businesses that want to be
+                remembered.
+              </span>
+            </h1>
+            <a
+              href="#work"
+              className="label-mono mt-8 flex w-full max-w-sm items-center justify-between border-b border-foreground pb-2 transition-colors hover:border-accent hover:text-accent"
+            >
+              Explore our work
+              <span>↗</span>
+            </a>
+          </div>
+
+          <div>
+            <ul className="label-mono mb-6 space-y-1.5 text-foreground/80 md:ml-[18%]">
+              {["Strategy", "Identity", "Development"].map((s, i) => (
+                <li key={s}>
+                  <span className="text-muted-foreground">[0{i + 1}]</span> {s}
+                </li>
+              ))}
+            </ul>
+            <p className="display-tight w-full text-[16vw] leading-[0.8] whitespace-nowrap">
+              Summit Studio
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* STUDIO */}
+      <section id="studio">
+        <SectionHead n="01" label="About us" />
+        <div className="px-5 pt-16 pb-20 md:px-8">
+          <h2 className="display-tight max-w-6xl text-[8vw] md:text-[5.4vw]">
+            Summit Studio is a brand and web partner for ambitious companies. We build
+            positioning, identity and sites that convert attention into revenue.
+          </h2>
+
+          <div className="mt-24 grid gap-12 md:grid-cols-12">
+            <div className="md:col-span-3">
+              <img
+                src={work4}
+                alt="Portrait lit in deep red light"
+                loading="lazy"
+                width={1000}
+                height={1200}
+                className="w-full object-cover"
+              />
+            </div>
+            <div className="space-y-16 md:col-span-9">
+              {[
+                {
+                  k: "[ Context ]",
+                  v: "Most studios ship websites that look good in a portfolio: a polished logo, a tidy style guide… and no measurable impact once it's live. Pretty brands with no engagement don't grow.",
+                },
+                {
+                  k: "[ Our take ]",
+                  v: "We design for attention. Strategy first, identity second, and a site engineered to convert — so the work keeps paying after launch day.",
+                },
+              ].map((r) => (
+                <div key={r.k} className="grid gap-4 md:grid-cols-2">
+                  <span className="label-mono text-muted-foreground">{r.k}</span>
+                  <p className="max-w-md text-sm leading-relaxed text-foreground/80">{r.v}</p>
+                </div>
+              ))}
+
+              <div className="grid gap-4 md:grid-cols-2">
+                <span className="label-mono text-muted-foreground">[ Our offer ]</span>
+                <div className="max-w-md">
+                  {[
+                    ["Brand", "Strategy — Identity"],
+                    ["Website", "Design — Build"],
+                    ["Growth", "Hosting — Iteration"],
+                  ].map(([a, b]) => (
+                    <div
+                      key={a}
+                      className="label-mono flex items-center justify-between border-b border-hairline py-3"
+                    >
+                      <span>{a}</span>
+                      <span className="text-muted-foreground">{b}</span>
+                    </div>
+                  ))}
+                  <a
+                    href="#contact"
+                    className="label-mono mt-10 flex items-center justify-between border-b border-foreground pb-2 transition-colors hover:border-accent hover:text-accent"
+                  >
+                    Start a project
+                    <span>↗</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* marquee */}
+        <div className="overflow-hidden border-y border-hairline py-5">
+          <div className="marquee-track flex w-max gap-16 pr-16">
+            {Array.from({ length: 2 }).map((_, r) => (
+              <div key={r} className="flex gap-16">
+                {[
+                  "Fast turnarounds",
+                  "100% satisfaction",
+                  "Exponential growth",
+                  "Senior-only team",
+                  "No agency maze",
+                ].map((t) => (
+                  <span key={t} className="label-mono text-foreground/60">
+                    ✳ {t}
+                  </span>
+                ))}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* WORK */}
+      <section id="work">
+        <SectionHead n="02" label="Some of the brands we made money for ↓" />
+        <div className="grid gap-px bg-hairline md:grid-cols-2">
+          {WORK.map((w) => (
+            <article key={w.n} className="group bg-background p-5 md:p-8">
+              <div className="relative overflow-hidden">
+                <img
+                  src={w.img}
+                  alt={`${w.name} project`}
+                  loading="lazy"
+                  width={1200}
+                  height={900}
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+                <div className="grain-overlay pointer-events-none absolute inset-0 opacity-25" />
+              </div>
+              <div className="mt-4 flex items-baseline justify-between">
+                <span className="label-mono text-muted-foreground">[ {w.n} ]</span>
+                <span className="label-mono text-muted-foreground">© {w.year}</span>
+              </div>
+              <h3 className="display-tight mt-2 text-3xl transition-colors group-hover:text-accent">
+                {w.name}
+              </h3>
+              <p className="label-mono mt-2 text-muted-foreground">{w.kind}</p>
+            </article>
+          ))}
+        </div>
+
+        <div className="grid gap-px border-t border-hairline bg-hairline md:grid-cols-3">
+          {STATS.map((s) => (
+            <div key={s.k} className="bg-background px-5 py-12 md:px-8">
+              <p className="display-tight text-6xl text-accent">{s.v}</p>
+              <p className="label-mono mt-3 text-muted-foreground">{s.k}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* PROCESS */}
+      <section id="process">
+        <SectionHead n="03" label="How we work" />
+        <div className="px-5 py-16 md:px-8">
+          <h2 className="display-tight max-w-4xl text-[7vw] md:text-[4vw]">
+            From idea to launch, in four moves.
+          </h2>
+          <div className="mt-16">
+            {PROCESS.map((p) => (
+              <div
+                key={p.n}
+                className="group grid gap-4 border-t border-hairline py-8 transition-colors hover:bg-secondary/40 md:grid-cols-12"
+              >
+                <span className="label-mono text-muted-foreground md:col-span-1">[{p.n}]</span>
+                <h3 className="display-tight text-3xl md:col-span-3">{p.title}</h3>
+                <p className="max-w-md text-sm leading-relaxed text-foreground/70 md:col-span-5">
+                  {p.body}
+                </p>
+                <span className="label-mono text-muted-foreground transition-colors group-hover:text-accent md:col-span-3 md:text-right">
+                  {p.tag}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact">
+        <SectionHead n="04" label="Let's work together" />
+        <div className="grid gap-12 px-5 py-20 md:grid-cols-2 md:px-8">
+          <div>
+            <h2 className="display-tight text-[9vw] md:text-[5vw]">Contact us.</h2>
+            <p className="mt-6 max-w-md text-sm leading-relaxed text-foreground/70">
+              Ready to build something bold? We partner with ambitious brands to create digital
+              experiences that leave a mark. Tell us what you're working on.
+            </p>
+            <a
+              href="mailto:hello@summitstudio.co"
+              className="label-mono mt-10 flex w-full max-w-sm items-center justify-between border-b border-foreground pb-2 transition-colors hover:border-accent hover:text-accent"
+            >
+              Send a message
+              <span>↗</span>
+            </a>
+          </div>
+          <div className="md:pt-4">
+            {[
+              ["Email", "hello@summitstudio.co"],
+              ["Instagram", "@summitstudios"],
+              ["Twitter / X", "@summitstudios"],
+              ["LinkedIn", "Summit Studio"],
+            ].map(([k, v]) => (
+              <div
+                key={k}
+                className="label-mono flex items-center justify-between border-b border-hairline py-4"
+              >
+                <span className="text-muted-foreground">{k}</span>
+                <span>{v}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="border-t border-hairline px-5 pt-10 pb-6 md:px-8">
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <p className="label-mono max-w-xs text-muted-foreground">
+            Bold digital experiences for ambitious brands that refuse to blend in.
+          </p>
+          <div className="flex gap-12">
+            <ul className="label-mono space-y-2 text-muted-foreground">
+              <li className="text-foreground">Services</li>
+              {["Branding", "Website design", "Development"].map((s) => (
+                <li key={s}>{s}</li>
+              ))}
+            </ul>
+            <ul className="label-mono space-y-2 text-muted-foreground">
+              <li className="text-foreground">Studio</li>
+              <li>
+                <a href="#work" className="hover:text-accent">
+                  Work
+                </a>
+              </li>
+              <li>
+                <a href="#process" className="hover:text-accent">
+                  Process
+                </a>
+              </li>
+              <li>
+                <a href="#studio" className="hover:text-accent">
+                  About
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <p className="display-tight mt-14 w-full text-[16vw] leading-[0.8] whitespace-nowrap">
+          Summit Studio
+        </p>
+        <div className="label-mono mt-6 flex justify-between text-muted-foreground">
+          <span>© 2026 Summit Studio</span>
+          <a href="#top" className="hover:text-accent">
+            Back to top ↑
+          </a>
+        </div>
+      </footer>
+    </main>
   );
 }
