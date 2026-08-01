@@ -286,7 +286,7 @@ function Index() {
 
         <div className="grid gap-px border-t border-hairline bg-hairline md:grid-cols-3">
           {STATS.map((s) => (
-            <div key={s.k} className="bg-background px-5 py-20 md:px-8">
+            <div key={s.k} className="bg-background px-5 py-16 md:px-8">
               <p className="display-tight text-6xl text-accent">{s.v}</p>
               <p className="label-mono mt-3 text-muted-foreground">{s.k}</p>
             </div>
