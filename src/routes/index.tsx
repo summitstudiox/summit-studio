@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero.jpg";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
@@ -557,45 +557,70 @@ function Index() {
         </div>
       </section>
 
-      {/* WORK / CASE STUDIES */}
+      {/* WORK / CASE STUDIES (Matching Screenshot 3 Layout) */}
       <section id="work" className="border-t border-hairline">
         <SectionHead n="02" label="Selected Work" />
 
-        <div className="px-6 py-16 md:px-16">
+        <div className="px-6 py-20 md:px-16">
+          <div className="grid gap-12 md:grid-cols-12 md:items-start">
+            {/* Left Header Column */}
+            <div className="flex flex-col justify-between space-y-12 md:col-span-4 md:sticky md:top-28">
+              <div>
+                <span className="label-mono text-xs text-muted-foreground">Our Works —</span>
+                <h2 className="display-tight mt-6 text-4xl font-normal leading-tight tracking-tight text-foreground md:text-5xl">
+                  OUR WORK SPEAKS THAN WORDS
+                </h2>
+              </div>
 
-          <div className="grid gap-px bg-hairline md:grid-cols-2">
-            {WORK.map((w) => (
-              <article
-                key={w.n}
-                onClick={() => setActiveProject(w)}
-                className="group cursor-pointer bg-background p-8 md:p-12 transition-all duration-300 hover:bg-secondary/40"
-              >
-                <div className="relative overflow-hidden rounded-lg">
+              <div className="space-y-6">
+                <Link
+                  to="/work"
+                  className="label-mono inline-flex items-center gap-2.5 rounded-full border border-hairline bg-secondary/50 px-6 py-3 text-xs font-medium backdrop-blur-md transition-all hover:border-accent hover:bg-accent hover:text-accent-foreground"
+                >
+                  <span>→</span> View All
+                </Link>
+                <p className="max-w-xs text-xs leading-relaxed text-foreground/70">
+                  Enable businesses to thrive online by delivering tailored web development, high-octane engineering & strategic visual identity systems.
+                </p>
+              </div>
+            </div>
+
+            {/* Right Horizontal Cards Carousel */}
+            <div className="flex gap-6 overflow-x-auto pb-6 md:col-span-8 no-scrollbar scroll-smooth">
+              {WORK.map((w) => (
+                <article
+                  key={w.n}
+                  onClick={() => setActiveProject(w)}
+                  className="group relative flex h-[500px] w-[340px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-hairline bg-card p-6 shadow-2xl transition-all duration-500 hover:border-accent/40 md:w-[420px] md:p-8"
+                >
+                  {/* Background Image */}
                   <img
                     src={w.img}
                     alt={`${w.name} project`}
-                    loading="lazy"
-                    width={1200}
-                    height={900}
-                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
-                  <div className="grain-overlay pointer-events-none absolute inset-0 opacity-20" />
-                </div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
+                  <div className="grain-overlay pointer-events-none absolute inset-0 opacity-25" />
 
-                <div className="mt-8 flex items-baseline justify-between">
-                  <h3 className="display-tight text-3xl font-medium text-foreground transition-colors group-hover:text-accent md:text-4xl">
-                    {w.name}
-                  </h3>
-                  <span className="label-mono text-xs text-muted-foreground group-hover:text-foreground">
-                    View Case
-                  </span>
-                </div>
-                <p className="label-mono mt-2 text-xs text-accent/90">{w.kind}</p>
-                <p className="mt-4 text-sm leading-relaxed text-foreground/75 line-clamp-2">
-                  {w.challenge}
-                </p>
-              </article>
-            ))}
+                  {/* Top Tags */}
+                  <div className="relative z-10 flex justify-end gap-2">
+                    <span className="label-mono rounded-full bg-black/70 px-3 py-1 text-[0.65rem] text-foreground backdrop-blur-md border border-hairline">
+                      {w.kind.split("·")[0]}
+                    </span>
+                    <span className="label-mono rounded-full bg-black/70 px-3 py-1 text-[0.65rem] text-foreground backdrop-blur-md border border-hairline">
+                      Web Design
+                    </span>
+                  </div>
+
+                  {/* Bottom Title overlay */}
+                  <div className="relative z-10 space-y-2">
+                    <h3 className="display-tight text-3xl font-medium text-white transition-colors group-hover:text-accent md:text-4xl">
+                      {w.name} — {w.year}
+                    </h3>
+                  </div>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
