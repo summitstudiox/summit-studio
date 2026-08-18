@@ -587,16 +587,13 @@ function Index() {
                 </h2>
               </div>
 
-              <div className="space-y-6">
+              <div>
                 <Link
                   to="/work"
                   className="label-mono inline-flex items-center gap-2.5 rounded-full border border-hairline bg-secondary/50 px-6 py-3 text-xs font-medium backdrop-blur-md transition-all hover:border-accent hover:bg-accent hover:text-accent-foreground"
                 >
                   <span>→</span> View All
                 </Link>
-                <p className="max-w-xs text-xs leading-relaxed text-foreground/70">
-                  Enable businesses to thrive online by delivering tailored web development, high-octane engineering & strategic visual identity systems.
-                </p>
               </div>
             </div>
 
