@@ -257,7 +257,7 @@ function Index() {
           </div>
 
           <div>
-            <div className="mb-10 flex flex-wrap gap-3 md:ml-[18%]">
+            <div className="mb-10 flex flex-wrap justify-end gap-3">
               {[
                 { label: "Strategy", href: "#process" },
                 { label: "Identity", href: "#studio" },
