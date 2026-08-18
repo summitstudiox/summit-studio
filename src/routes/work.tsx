@@ -91,21 +91,58 @@ const ALL_WORK = [
   },
 ];
 
+const CATEGORIES = [
+  { id: "ALL", label: "All Projects", count: 4 },
+  { id: "PLATFORM", label: "Full Platform", count: 1 },
+  { id: "WEB", label: "Web Design", count: 2 },
+  { id: "SYSTEMS", label: "UI/UX Systems", count: 1 },
+];
+
 function WorkPage() {
   const [activeProject, setActiveProject] = useState<(typeof ALL_WORK)[number] | null>(null);
+  const [activeFilter, setActiveFilter] = useState("ALL");
+
+  const filteredWork = ALL_WORK.filter((w) => {
+    if (activeFilter === "PLATFORM") return w.n === "01";
+    if (activeFilter === "WEB") return w.n === "02" || w.n === "03";
+    if (activeFilter === "SYSTEMS") return w.n === "04";
+    return true;
+  });
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      {/* Top Navbar */}
-      <header className="sticky top-0 z-50 flex items-center justify-between border-b border-hairline bg-background/95 px-6 py-4 backdrop-blur-md md:px-16">
-        <Link to="/" className="display-tight text-xl font-medium tracking-tight text-foreground">
+      {/* Top Navbar matching Home page layout */}
+      <header className="sticky top-0 z-50 flex items-center justify-between border-b border-hairline/60 bg-background/90 px-6 py-4 backdrop-blur-md md:px-16">
+        <Link to="/" className="text-lg font-semibold tracking-tight text-foreground">
           Summit Studio<span className="text-accent">.</span>
         </Link>
+        
+        <nav className="hidden items-center gap-10 md:flex">
+          {[
+            { label: "Home", href: "/#top" },
+            { label: "Studio", href: "/#studio" },
+            { label: "Work", href: "/work" },
+            { label: "Process", href: "/#process" },
+            { label: "FAQ", href: "/#faq" },
+            { label: "Contact", href: "/#contact" },
+          ].map((i) => (
+            <Link
+              key={i.label}
+              to={i.href}
+              className={`label-mono text-xs transition-colors hover:text-accent ${
+                i.label === "Work" ? "text-accent font-semibold" : "text-foreground/80"
+              }`}
+            >
+              {i.label}
+            </Link>
+          ))}
+        </nav>
+
         <Link
-          to="/"
-          className="label-mono inline-flex items-center gap-2 rounded-full border border-hairline bg-secondary/50 px-5 py-2 text-xs transition-colors hover:border-accent hover:text-accent"
+          to="/#contact"
+          className="label-mono border-b border-foreground pb-1 text-foreground transition-colors hover:border-accent hover:text-accent"
         >
-          <span>←</span> Back to Studio
+          Talk to Us
         </Link>
       </header>
 
@@ -206,27 +243,31 @@ function WorkPage() {
           </p>
         </div>
 
-        {/* Category Pill Badges */}
+        {/* Working Interactive Category Pill Badges */}
         <div className="mt-12 flex flex-wrap gap-2.5">
-          {["All Projects (04)", "Full Platform (01)", "Web Design (02)", "UI/UX Systems (01)"].map((tag, idx) => (
-            <span
-              key={tag}
-              className={`label-mono cursor-pointer rounded-full px-5 py-2 text-xs transition-all ${
-                idx === 0
-                  ? "bg-accent text-accent-foreground font-medium shadow-md"
-                  : "border border-hairline bg-secondary/30 text-muted-foreground hover:border-hairline hover:text-foreground"
-              }`}
-            >
-              {tag}
-            </span>
-          ))}
+          {CATEGORIES.map((cat) => {
+            const isActive = activeFilter === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => setActiveFilter(cat.id)}
+                className={`label-mono cursor-pointer rounded-full px-5 py-2 text-xs transition-all ${
+                  isActive
+                    ? "bg-accent text-accent-foreground font-medium shadow-md scale-[1.02]"
+                    : "border border-hairline bg-secondary/30 text-muted-foreground hover:border-hairline hover:text-foreground"
+                }`}
+              >
+                {cat.label} ({cat.count < 10 ? `0${cat.count}` : cat.count})
+              </button>
+            );
+          })}
         </div>
       </section>
 
       {/* Work Grid */}
       <section className="px-6 py-16 md:px-16 md:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
-          {ALL_WORK.map((w) => (
+          {filteredWork.map((w) => (
             <article
               key={w.n}
               onClick={() => setActiveProject(w)}
