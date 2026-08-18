@@ -771,8 +771,8 @@ function Index() {
                   className="group py-6 [&_summary::-webkit-details-marker]:hidden"
                 >
                   <summary className="flex cursor-pointer items-center justify-between font-medium text-foreground transition-colors group-hover:text-accent">
-                    <span className="display-tight text-lg md:text-2xl">{faq.q}</span>
-                    <span className="label-mono ml-4 text-sm text-muted-foreground transition-transform duration-300 group-open:rotate-45">
+                    <span className="display-tight text-base md:text-lg font-normal">{faq.q}</span>
+                    <span className="label-mono ml-4 text-xs text-muted-foreground transition-transform duration-300 group-open:rotate-45">
                       +
                     </span>
                   </summary>
