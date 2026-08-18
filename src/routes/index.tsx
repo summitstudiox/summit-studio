@@ -236,10 +236,13 @@ function Index() {
       const processEl = document.getElementById("process");
       if (processEl) {
         const rect = processEl.getBoundingClientRect();
-        const totalHeight = rect.height - window.innerHeight;
-        if (totalHeight > 0) {
-          const progress = Math.min(Math.max(-rect.top / totalHeight, 0), 1);
-          const step = Math.min(Math.floor(progress * 4), 3);
+        const stickyOffset = 64; // height of fixed header
+        const scrollableDistance = rect.height - window.innerHeight;
+        
+        if (scrollableDistance > 0) {
+          const traveled = stickyOffset - rect.top;
+          const progress = Math.min(Math.max(traveled / scrollableDistance, 0), 0.99);
+          const step = Math.floor(progress * 4);
           setActiveProcessStep(step);
         }
       }
@@ -666,12 +669,13 @@ function Index() {
                   return (
                     <div
                       key={p.n}
-                      className={`flex h-56 flex-col justify-between p-6 transition-all duration-500 md:p-8 ${
+                      onClick={() => setActiveProcessStep(idx)}
+                      className={`flex h-56 cursor-pointer flex-col justify-between p-6 transition-all duration-500 md:p-8 ${
                         isActive
                           ? "bg-secondary/80 ring-1 ring-accent"
                           : isPassed
-                          ? "bg-background opacity-90"
-                          : "bg-background/40 opacity-40"
+                          ? "bg-background opacity-90 hover:opacity-100"
+                          : "bg-background/40 opacity-40 hover:opacity-70"
                       }`}
                     >
                       {/* Floating Step Ribbon */}
@@ -708,12 +712,13 @@ function Index() {
                   return (
                     <div
                       key={p.n}
-                      className={`p-6 transition-all duration-500 md:p-8 space-y-3 ${
+                      onClick={() => setActiveProcessStep(idx)}
+                      className={`cursor-pointer p-6 transition-all duration-500 md:p-8 space-y-3 ${
                         isActive
                           ? "bg-secondary/90 border-t-2 border-accent"
                           : isPassed
-                          ? "bg-background"
-                          : "bg-background/30 opacity-40"
+                          ? "bg-background hover:bg-secondary/30"
+                          : "bg-background/30 opacity-40 hover:opacity-70"
                       }`}
                     >
                       <h3 className="display-tight text-xl font-medium text-foreground">{p.title}</h3>
