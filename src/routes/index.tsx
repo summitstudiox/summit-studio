@@ -387,7 +387,7 @@ function Index() {
           href="#contact"
           className="label-mono border-b border-foreground pb-1 text-foreground transition-colors hover:border-accent hover:text-accent"
         >
-          Start a project
+          Talk to Us
         </a>
       </header>
 
