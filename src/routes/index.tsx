@@ -464,61 +464,61 @@ function Index() {
         <SectionHead n="01" label="About Company" />
         <div className="px-6 py-20 md:px-16">
 
-          {/* 4-Card Bento Row (Matching Screenshot Structure) */}
-          <div className="grid gap-px bg-hairline md:grid-cols-4">
+          {/* 4-Card Bento Row (2x2 on Mobile, 4-Cols on Desktop) */}
+          <div className="grid gap-px bg-hairline grid-cols-2 md:grid-cols-4">
             {/* Card 1: Global Collaborations */}
-            <div className="group flex flex-col justify-between bg-background p-8 transition-colors duration-300 hover:bg-secondary">
+            <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
               <div>
-                <span className="label-mono text-xs text-accent">[ Global Network ]</span>
-                <p className="mt-4 text-xs leading-relaxed text-foreground/75">
+                <span className="label-mono text-[0.65rem] sm:text-xs text-accent">[ Global Network ]</span>
+                <p className="mt-3 text-[0.68rem] sm:text-xs leading-relaxed text-foreground/75">
                   Partnering remotely with ambitious teams across major tech hubs.
                 </p>
               </div>
-              <div className="mt-12">
-                <p className="display-tight text-4xl font-medium text-foreground md:text-5xl">48+</p>
-                <p className="label-mono mt-2 text-xs text-muted-foreground">Global Collaborations</p>
+              <div className="mt-8 sm:mt-12">
+                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">48+</p>
+                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">Global Collaborations</p>
               </div>
             </div>
 
             {/* Card 2: Industry Authority */}
-            <div className="group flex flex-col justify-between bg-background p-8 transition-colors duration-300 hover:bg-secondary">
+            <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
               <div>
-                <span className="label-mono text-xs text-accent">[ Authority & Awards ]</span>
-                <p className="mt-4 text-xs leading-relaxed text-foreground/75">
+                <span className="label-mono text-[0.65rem] sm:text-xs text-accent">[ Authority & Awards ]</span>
+                <p className="mt-3 text-[0.68rem] sm:text-xs leading-relaxed text-foreground/75">
                   Featured and celebrated for high-octane engineering & positioning.
                 </p>
               </div>
-              <div className="mt-12">
-                <p className="display-tight text-4xl font-medium text-foreground md:text-5xl">12+</p>
-                <p className="label-mono mt-2 text-xs text-muted-foreground">Industry Recognitions</p>
+              <div className="mt-8 sm:mt-12">
+                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">12+</p>
+                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">Industry Recognitions</p>
               </div>
             </div>
 
             {/* Card 3: Projects Delivered */}
-            <div className="group flex flex-col justify-between bg-background p-8 transition-colors duration-300 hover:bg-secondary">
+            <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
               <div>
-                <span className="label-mono text-xs text-accent">[ Execution ]</span>
-                <p className="mt-4 text-xs leading-relaxed text-foreground/75">
+                <span className="label-mono text-[0.65rem] sm:text-xs text-accent">[ Execution ]</span>
+                <p className="mt-3 text-[0.68rem] sm:text-xs leading-relaxed text-foreground/75">
                   From emerging startups to market leaders, crafted as unique digital worlds.
                 </p>
               </div>
-              <div className="mt-12">
-                <p className="display-tight text-4xl font-medium text-foreground md:text-5xl">150+</p>
-                <p className="label-mono mt-2 text-xs text-muted-foreground">Projects Delivered</p>
+              <div className="mt-8 sm:mt-12">
+                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">150+</p>
+                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">Projects Delivered</p>
               </div>
             </div>
 
             {/* Card 4: Countries Reached */}
-            <div className="group flex flex-col justify-between bg-background p-8 transition-colors duration-300 hover:bg-secondary">
+            <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
               <div>
-                <span className="label-mono text-xs text-accent">[ Reach ]</span>
-                <p className="mt-4 text-xs leading-relaxed text-foreground/75">
+                <span className="label-mono text-[0.65rem] sm:text-xs text-accent">[ Reach ]</span>
+                <p className="mt-3 text-[0.68rem] sm:text-xs leading-relaxed text-foreground/75">
                   Collaborating with visionary brands driving global impact.
                 </p>
               </div>
-              <div className="mt-12">
-                <p className="display-tight text-4xl font-medium text-foreground md:text-5xl">14+</p>
-                <p className="label-mono mt-2 text-xs text-muted-foreground">Countries Reached</p>
+              <div className="mt-8 sm:mt-12">
+                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">14+</p>
+                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">Countries Reached</p>
               </div>
             </div>
           </div>
