@@ -613,30 +613,32 @@ function Index() {
             </p>
           </div>
 
-          {/* Stepped Timeline Production Bar (Matching Screenshot 2) */}
+          {/* Clean Stepped Timeline Grid (Matching Screenshot 2 exact aesthetic) */}
           <div className="mt-20">
-            <div className="grid gap-6 md:grid-cols-4">
+            {/* Top Step Graphic Cards */}
+            <div className="grid gap-px bg-hairline md:grid-cols-4">
               {PROCESS.map((p) => (
-                <div key={p.n} className="flex flex-col justify-between space-y-6">
-                  {/* Visual Step Bar with Pill */}
-                  <div className="relative h-44 w-full rounded-2xl border border-hairline bg-secondary/30 p-2 overflow-hidden flex flex-col justify-end">
-                    <div className="grain-overlay pointer-events-none absolute inset-0 opacity-10" />
-                    <div
-                      className="w-full rounded-xl bg-foreground px-4 py-3 text-background transition-all duration-500"
-                      style={{ marginBottom: p.offset }}
-                    >
-                      <span className="display-tight text-sm font-semibold">{p.title}</span>
-                    </div>
-                    <div className="p-2 text-center">
-                      <span className="label-mono text-xs text-muted-foreground">{p.n}</span>
-                    </div>
+                <div key={p.n} className="flex flex-col justify-between bg-background p-6 h-64 md:p-8">
+                  {/* Floating Black Indicator Ribbon */}
+                  <div
+                    className="w-full rounded bg-foreground px-4 py-2.5 text-background font-medium text-xs tracking-wider"
+                    style={{ marginTop: p.offset }}
+                  >
+                    {p.title}
                   </div>
+                  <div className="text-center">
+                    <span className="label-mono text-xs text-muted-foreground">{p.n}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-                  {/* Card Content */}
-                  <div className="rounded-2xl border border-hairline bg-card/60 p-6 space-y-3 min-h-[160px]">
-                    <h3 className="display-tight text-xl font-medium text-foreground">{p.title}</h3>
-                    <p className="text-xs leading-relaxed text-foreground/75">{p.sub}</p>
-                  </div>
+            {/* Bottom Content Description Cards */}
+            <div className="mt-4 grid gap-px bg-hairline md:grid-cols-4">
+              {PROCESS.map((p) => (
+                <div key={p.n} className="bg-background p-6 md:p-8 space-y-3">
+                  <h3 className="display-tight text-xl font-medium text-foreground">{p.title}</h3>
+                  <p className="text-xs leading-relaxed text-foreground/70">{p.sub}</p>
                 </div>
               ))}
             </div>
