@@ -102,6 +102,17 @@ function WorkPage() {
   const [activeProject, setActiveProject] = useState<(typeof ALL_WORK)[number] | null>(null);
   const [activeFilter, setActiveFilter] = useState("ALL");
 
+  useEffect(() => {
+    if (activeProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeProject]);
+
   const filteredWork = ALL_WORK.filter((w) => {
     if (activeFilter === "PLATFORM") return w.n === "01";
     if (activeFilter === "WEB") return w.n === "02" || w.n === "03";
@@ -290,13 +301,6 @@ function WorkPage() {
                 <div className="absolute top-5 left-5 rounded-full border border-hairline bg-background/80 px-3.5 py-1.5 backdrop-blur-md">
                   <span className="label-mono text-xs text-foreground">[{w.n}]</span>
                 </div>
-
-                {/* Live Status Pill */}
-                {w.url && (
-                  <div className="absolute top-5 right-5 rounded-full border border-accent/40 bg-accent/20 px-3.5 py-1.5 backdrop-blur-md">
-                    <span className="label-mono text-[0.65rem] text-accent animate-pulse">● LIVE PLATFORM</span>
-                  </div>
-                )}
 
                 {/* Preview Trigger Pill */}
                 <div className="absolute bottom-5 right-5 rounded-full border border-hairline bg-background/80 px-4 py-2 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100">

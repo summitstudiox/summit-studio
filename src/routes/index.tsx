@@ -238,6 +238,17 @@ function Index() {
   const [activeProcessStep, setActiveProcessStep] = useState(0);
 
   useEffect(() => {
+    if (activeProject) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [activeProject]);
+
+  useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
 
