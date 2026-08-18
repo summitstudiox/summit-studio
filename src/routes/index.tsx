@@ -597,38 +597,39 @@ function Index() {
               </div>
             </div>
 
-            {/* Right Horizontal Cards Carousel */}
-            <div className="flex gap-6 overflow-x-auto pb-6 md:col-span-8 no-scrollbar scroll-smooth">
+            {/* Full-Width Laptop Screen Widescreen Cards Carousel */}
+            <div className="flex gap-8 overflow-x-auto pb-8 md:col-span-8 no-scrollbar scroll-smooth">
               {WORK.map((w) => (
                 <article
                   key={w.n}
                   onClick={() => setActiveProject(w)}
-                  className="group relative flex h-[500px] w-[340px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-hairline bg-card p-6 shadow-2xl transition-all duration-500 hover:border-accent/40 md:w-[420px] md:p-8"
+                  className="group relative flex aspect-[16/9.5] w-[90vw] max-w-[780px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-hairline bg-card p-6 shadow-2xl transition-all duration-500 hover:border-accent/50 md:p-10"
                 >
                   {/* Background Image */}
                   <img
                     src={w.img}
                     alt={`${w.name} project`}
-                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20" />
-                  <div className="grain-overlay pointer-events-none absolute inset-0 opacity-25" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/15" />
+                  <div className="grain-overlay pointer-events-none absolute inset-0 opacity-20" />
 
                   {/* Top Tags */}
                   <div className="relative z-10 flex justify-end gap-2">
-                    <span className="label-mono rounded-full bg-black/70 px-3 py-1 text-[0.65rem] text-foreground backdrop-blur-md border border-hairline">
+                    <span className="label-mono rounded-full bg-black/75 px-4 py-1.5 text-xs text-foreground backdrop-blur-md border border-hairline">
                       {w.kind.split("·")[0]}
                     </span>
-                    <span className="label-mono rounded-full bg-black/70 px-3 py-1 text-[0.65rem] text-foreground backdrop-blur-md border border-hairline">
+                    <span className="label-mono rounded-full bg-black/75 px-4 py-1.5 text-xs text-foreground backdrop-blur-md border border-hairline">
                       Web Design
                     </span>
                   </div>
 
                   {/* Bottom Title overlay */}
                   <div className="relative z-10 space-y-2">
-                    <h3 className="display-tight text-3xl font-medium text-white transition-colors group-hover:text-accent md:text-4xl">
+                    <h3 className="display-tight text-3xl font-medium text-white transition-colors group-hover:text-accent md:text-5xl">
                       {w.name} — {w.year}
                     </h3>
+                    <p className="label-mono text-xs text-accent/90">{w.kind}</p>
                   </div>
                 </article>
               ))}
