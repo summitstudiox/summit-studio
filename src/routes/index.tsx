@@ -375,91 +375,77 @@ function Index() {
 
       {/* STUDIO */}
       <section id="studio">
-        <SectionHead n="01" label="About us" />
+        <SectionHead n="01" label="About Company" />
         <div className="px-6 py-20 md:px-16">
-          <h2 className="display-tight w-full max-w-none text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl md:leading-tight">
-            Summit Studio builds high-converting digital platforms and brand identities for companies taking market share. We turn raw brand vision into dominant digital authority.
+          {/* Dual-Tone Large Statement */}
+          <h2 className="display-tight w-full max-w-5xl text-3xl font-normal leading-snug tracking-tight md:text-5xl md:leading-tight">
+            <span className="text-foreground">
+              We believe the most memorable brands are not built through decoration, but through atmosphere —
+            </span>{" "}
+            <span className="text-foreground/45">
+              quietly captures attention, and leaves a lasting commercial authority long after launch day.
+            </span>
           </h2>
 
-          <div className="mt-24 space-y-16">
-            {/* Context, Our Take & Our Offer as a uniform grid block */}
-            <div className="grid gap-px bg-hairline">
-              {/* Context & Our Take */}
-              <div className="grid gap-px md:grid-cols-2">
-                <div className="group bg-background p-8 md:p-12 transition-colors duration-300 hover:bg-secondary">
-                  <div className="flex items-center justify-between">
-                    <span className="label-mono text-accent">[ Our Focus ]</span>
-                    <span className="label-mono text-xs text-muted-foreground">01</span>
-                  </div>
-                  <h3 className="display-tight mt-6 text-2xl font-medium text-foreground">
-                    Built For Measurable Growth
-                  </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-foreground/80">
-                    We craft brand systems and websites engineered for long-term commercial performance — combining strategic positioning, flawless design, and high-impact digital experiences that scale.
-                  </p>
-                </div>
-
-                <div className="group bg-background p-8 md:p-12 transition-colors duration-300 hover:bg-secondary">
-                  <div className="flex items-center justify-between">
-                    <span className="label-mono text-accent">[ Our Take ]</span>
-                    <span className="label-mono text-xs text-muted-foreground">02</span>
-                  </div>
-                  <h3 className="display-tight mt-6 text-2xl font-medium text-foreground">
-                    Engineered For Conversion
-                  </h3>
-                  <p className="mt-4 text-sm leading-relaxed text-foreground/80">
-                    We design for attention. Strategy first, identity second, and a site engineered to convert — so the work keeps paying after launch day.
-                  </p>
-                </div>
+          {/* 4-Card Bento Row (Matching Screenshot Structure) */}
+          <div className="mt-20 grid gap-px bg-hairline md:grid-cols-4">
+            {/* Card 1: Global Collaborations */}
+            <div className="group flex flex-col justify-between bg-background p-8 transition-colors duration-300 hover:bg-secondary">
+              <div>
+                <span className="label-mono text-xs text-accent">[ Global Network ]</span>
+                <p className="mt-4 text-xs leading-relaxed text-foreground/75">
+                  Partnering remotely with ambitious teams across major tech hubs.
+                </p>
               </div>
+              <div className="mt-12">
+                <p className="display-tight text-4xl font-medium text-foreground md:text-5xl">48+</p>
+                <p className="label-mono mt-2 text-xs text-muted-foreground">Global Collaborations</p>
+              </div>
+            </div>
 
-              {/* Our Offer — Architectural 3-Column Grid */}
-              <div className="grid gap-px bg-hairline md:grid-cols-3">
-                {[
-                  {
-                    num: "01",
-                    title: "Brand Strategy & Identity",
-                    sub: "Strategy · Visual Systems",
-                    desc: "Crafting distinct visual identities and bulletproof market positioning that captures instant authority.",
-                  },
-                  {
-                    num: "02",
-                    title: "Website Design & Build",
-                    sub: "UI/UX · Custom Engineering",
-                    desc: "High-octane digital experiences built with sub-second page loads and conversion-driven flows.",
-                  },
-                  {
-                    num: "03",
-                    title: "Growth & Iteration",
-                    sub: "Analytics · Infrastructure",
-                    desc: "Ongoing optimization, hosting infrastructure, and iterative feature releases that scale with revenue.",
-                  },
-                ].map((item) => (
-                  <div
-                    key={item.title}
-                    className="group flex flex-col justify-between bg-background p-8 md:p-12 transition-colors duration-300 hover:bg-secondary"
-                  >
-                    <div>
-                      <div className="flex items-center justify-between">
-                        <span className="label-mono text-accent">[ Offer // {item.num} ]</span>
-                      </div>
-                      <h3 className="display-tight mt-6 text-2xl font-medium text-foreground transition-colors group-hover:text-accent">
-                        {item.title}
-                      </h3>
-                      <p className="label-mono mt-2 text-[0.65rem] text-muted-foreground">
-                        {item.sub}
-                      </p>
-                      <p className="mt-4 text-xs leading-relaxed text-foreground/80">
-                        {item.desc}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+            {/* Card 2: Industry Authority */}
+            <div className="group flex flex-col justify-between bg-background p-8 transition-colors duration-300 hover:bg-secondary">
+              <div>
+                <span className="label-mono text-xs text-accent">[ Authority & Awards ]</span>
+                <p className="mt-4 text-xs leading-relaxed text-foreground/75">
+                  Featured and celebrated for high-octane engineering & positioning.
+                </p>
+              </div>
+              <div className="mt-12">
+                <p className="display-tight text-4xl font-medium text-foreground md:text-5xl">12+</p>
+                <p className="label-mono mt-2 text-xs text-muted-foreground">Industry Recognitions</p>
+              </div>
+            </div>
+
+            {/* Card 3: Projects Delivered */}
+            <div className="group flex flex-col justify-between bg-background p-8 transition-colors duration-300 hover:bg-secondary">
+              <div>
+                <span className="label-mono text-xs text-accent">[ Execution ]</span>
+                <p className="mt-4 text-xs leading-relaxed text-foreground/75">
+                  From emerging startups to market leaders, crafted as unique digital worlds.
+                </p>
+              </div>
+              <div className="mt-12">
+                <p className="display-tight text-4xl font-medium text-foreground md:text-5xl">150+</p>
+                <p className="label-mono mt-2 text-xs text-muted-foreground">Projects Delivered</p>
+              </div>
+            </div>
+
+            {/* Card 4: Countries Reached */}
+            <div className="group flex flex-col justify-between bg-background p-8 transition-colors duration-300 hover:bg-secondary">
+              <div>
+                <span className="label-mono text-xs text-accent">[ Reach ]</span>
+                <p className="mt-4 text-xs leading-relaxed text-foreground/75">
+                  Collaborating with visionary brands driving global impact.
+                </p>
+              </div>
+              <div className="mt-12">
+                <p className="display-tight text-4xl font-medium text-foreground md:text-5xl">14+</p>
+                <p className="label-mono mt-2 text-xs text-muted-foreground">Countries Reached</p>
               </div>
             </div>
           </div>
         </div>
-
       </section>
 
       {/* WORK / CASE STUDIES */}
