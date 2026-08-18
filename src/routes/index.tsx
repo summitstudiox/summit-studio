@@ -284,7 +284,7 @@ function Index() {
       <section id="studio">
         <SectionHead n="01" label="About us" />
         <div className="px-5 pt-16 pb-24 md:px-8">
-          <h2 className="display-tight max-w-4xl text-3xl font-normal leading-snug tracking-tight text-foreground/90 md:text-5xl md:leading-tight">
+          <h2 className="display-tight w-full max-w-none text-3xl font-normal leading-snug tracking-tight text-foreground/90 md:text-5xl md:leading-tight">
             Summit Studio is a brand and web partner for ambitious companies. We build{" "}
             <span className="text-foreground font-medium">positioning</span>,{" "}
             <span className="text-foreground font-medium">identity</span> and sites that{" "}
