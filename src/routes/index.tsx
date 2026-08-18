@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import heroImg from "@/assets/hero.jpg";
 import work1 from "@/assets/work-1.jpg";
@@ -34,16 +35,54 @@ const NAV = [
 ];
 
 const WORK = [
-  { n: "01", name: "Vanta Digital", kind: "Web Design · Development", year: "2025", img: work2 },
-  { n: "02", name: "Campus Connect", kind: "Brand Identity · Web", year: "2024", img: work1 },
-  { n: "03", name: "Ascend", kind: "UI Design · Development", year: "2024", img: work3 },
   {
-    n: "04",
+    n: "01",
     name: "Club Exotism",
     kind: "Full Platform · Slot Booking · Admin Dashboards",
     year: "2026",
     img: clubExotismImg,
     url: "https://clubexotism.com",
+    stats: [
+      { k: "Conversion Rate", v: "+84%" },
+      { k: "User Engagement", v: "+67%" },
+      { k: "Brand Recall", v: "+91%" },
+    ],
+  },
+  {
+    n: "02",
+    name: "Vanta Digital",
+    kind: "Web Design · Development",
+    year: "2025",
+    img: work2,
+    stats: [
+      { k: "Revenue Impact", v: "+140%" },
+      { k: "Page Load Speed", v: "0.4s" },
+      { k: "Lead Conversion", v: "+95%" },
+    ],
+  },
+  {
+    n: "03",
+    name: "Campus Connect",
+    kind: "Brand Identity · Web",
+    year: "2024",
+    img: work1,
+    stats: [
+      { k: "Active Members", v: "50k+" },
+      { k: "User Retention", v: "88%" },
+      { k: "Brand Recall", v: "+76%" },
+    ],
+  },
+  {
+    n: "04",
+    name: "Ascend",
+    kind: "UI Design · Development",
+    year: "2024",
+    img: work3,
+    stats: [
+      { k: "Signup Rate", v: "+112%" },
+      { k: "User Engagement", v: "+55%" },
+      { k: "Time on Site", v: "+3.4m" },
+    ],
   },
 ];
 
@@ -93,8 +132,75 @@ function SectionHead({ n, label }: { n: string; label: string }) {
 }
 
 function Index() {
+  const [activeProject, setActiveProject] = useState<(typeof WORK)[number] | null>(null);
+
   return (
     <main id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      {/* IFRAME / PROJECT PREVIEW MODAL */}
+      {activeProject && (
+        <div
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-4 backdrop-blur-md md:p-8"
+          onClick={() => setActiveProject(null)}
+        >
+          <div
+            className="relative flex h-full max-h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-xl border border-hairline bg-card shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Modal Header */}
+            <div className="flex items-center justify-between border-b border-hairline px-6 py-4">
+              <div>
+                <h3 className="display-tight text-xl font-bold">{activeProject.name}</h3>
+                <p className="label-mono text-xs text-muted-foreground">{activeProject.kind}</p>
+              </div>
+              <div className="flex items-center gap-4">
+                {activeProject.url && (
+                  <a
+                    href={activeProject.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="label-mono text-xs text-accent hover:underline"
+                  >
+                    Open live site ↗
+                  </a>
+                )}
+                <button
+                  onClick={() => setActiveProject(null)}
+                  className="label-mono rounded-full border border-hairline px-3 py-1 text-xs transition-colors hover:bg-secondary"
+                >
+                  ✕ Close
+                </button>
+              </div>
+            </div>
+
+            {/* Modal Body / Preview */}
+            <div className="relative flex-1 bg-black">
+              {activeProject.url ? (
+                <iframe
+                  src={activeProject.url}
+                  title={`${activeProject.name} preview`}
+                  className="h-full w-full border-0"
+                />
+              ) : (
+                <img
+                  src={activeProject.img}
+                  alt={`${activeProject.name} preview`}
+                  className="h-full w-full object-contain"
+                />
+              )}
+            </div>
+
+            {/* Modal Footer / Per-Project Impact Stats */}
+            <div className="grid gap-px border-t border-hairline bg-hairline md:grid-cols-3">
+              {activeProject.stats.map((s) => (
+                <div key={s.k} className="bg-card px-6 py-4">
+                  <p className="display-tight text-3xl text-accent">{s.v}</p>
+                  <p className="label-mono text-xs text-muted-foreground">{s.k}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
       {/* NAV */}
       <header className="fixed inset-x-0 top-0 z-50 flex items-start justify-between px-5 py-5 md:px-8">
         <a href="#top" className="text-lg font-semibold tracking-tight">
@@ -267,56 +373,48 @@ function Index() {
       <section id="work">
         <SectionHead n="02" label="Some of the brands we made money for ↓" />
         <div className="grid gap-px bg-hairline md:grid-cols-2">
-          {WORK.map((w) => {
-            const content = (
-              <>
-                <div className="relative overflow-hidden">
-                  <img
-                    src={w.img}
-                    alt={`${w.name} project`}
-                    loading="lazy"
-                    width={1200}
-                    height={900}
-                    className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                  <div className="grain-overlay pointer-events-none absolute inset-0 opacity-25" />
+          {WORK.map((w) => (
+            <article
+              key={w.n}
+              onClick={() => setActiveProject(w)}
+              className="group cursor-pointer bg-background p-6 md:p-8"
+            >
+              <div className="relative overflow-hidden">
+                <img
+                  src={w.img}
+                  alt={`${w.name} project`}
+                  loading="lazy"
+                  width={1200}
+                  height={900}
+                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+                <div className="grain-overlay pointer-events-none absolute inset-0 opacity-25" />
+                <div className="absolute right-3 top-3 rounded-full border border-hairline bg-background/80 px-3 py-1 text-xs backdrop-blur-sm transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-accent-foreground">
+                  Preview Live ↗
                 </div>
-                <div className="mt-4 flex items-baseline justify-between">
-                  <span className="label-mono text-muted-foreground">[ {w.n} ]</span>
-                  <span className="label-mono text-muted-foreground">© {w.year}</span>
-                </div>
-                <h3 className="display-tight mt-2 flex items-center justify-between text-3xl transition-colors group-hover:text-accent">
-                  <span>{w.name}</span>
-                  {w.url && <span className="text-xl">↗</span>}
-                </h3>
-                <p className="label-mono mt-2 text-muted-foreground">{w.kind}</p>
-              </>
-            );
+              </div>
 
-            return w.url ? (
-              <a
-                key={w.n}
-                href={w.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block bg-background p-6 md:p-8"
-              >
-                {content}
-              </a>
-            ) : (
-              <article key={w.n} className="group bg-background p-6 md:p-8">
-                {content}
-              </article>
-            );
-          })}
-        </div>
+              <div className="mt-4 flex items-baseline justify-between">
+                <span className="label-mono text-muted-foreground">[ {w.n} ]</span>
+                <span className="label-mono text-muted-foreground">© {w.year}</span>
+              </div>
 
-        <div className="grid gap-px border-t border-hairline bg-hairline md:grid-cols-3">
-          {STATS.map((s) => (
-            <div key={s.k} className="bg-background px-5 py-16 md:px-8">
-              <p className="display-tight text-6xl text-accent">{s.v}</p>
-              <p className="label-mono mt-3 text-muted-foreground">{s.k}</p>
-            </div>
+              <h3 className="display-tight mt-2 flex items-center justify-between text-3xl transition-colors group-hover:text-accent">
+                <span>{w.name}</span>
+                <span className="text-xl">↗</span>
+              </h3>
+              <p className="label-mono mt-2 text-muted-foreground">{w.kind}</p>
+
+              {/* Per-project performance highlights */}
+              <div className="mt-6 grid grid-cols-3 gap-2 border-t border-hairline pt-4">
+                {w.stats.map((s) => (
+                  <div key={s.k}>
+                    <p className="display-tight text-lg text-accent">{s.v}</p>
+                    <p className="label-mono text-[0.65rem] text-muted-foreground">{s.k}</p>
+                  </div>
+                ))}
+              </div>
+            </article>
           ))}
         </div>
       </section>
