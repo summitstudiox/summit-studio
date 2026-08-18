@@ -221,12 +221,12 @@ const STATS = [
 
 function SectionHead({ n, label }: { n: string; label: string }) {
   return (
-    <div className="rule-top grid grid-cols-3 items-center px-5 py-6 md:px-8">
-      <span className="label-mono text-muted-foreground">
+    <div className="rule-top flex items-center justify-between px-4 py-5 md:grid md:grid-cols-3 md:px-8 md:py-6">
+      <span className="label-mono text-muted-foreground text-[0.65rem] md:text-xs">
         <span className="text-accent">◆</span> [ {n} ]
       </span>
-      <span className="label-mono text-center">{label}</span>
-      <span className="label-mono text-right text-muted-foreground">© 2026</span>
+      <span className="label-mono text-center text-[0.65rem] md:text-xs tracking-wider">{label}</span>
+      <span className="label-mono text-right text-muted-foreground hidden md:inline text-xs">© 2026</span>
     </div>
   );
 }
@@ -698,83 +698,83 @@ function Index() {
             </div>
           </div>
 
-          {/* Stepped Timeline Production Grid */}
-          <div className="mt-16 space-y-4">
-            {/* Top Stepped Ribbon Columns */}
-            <div className="grid gap-px bg-hairline md:grid-cols-4">
-              {PROCESS.map((p, idx) => {
-                const isActive = idx <= activeProcessStep;
-                const isCurrent = idx === activeProcessStep;
-                return (
-                  <div
-                    key={p.n}
-                    onMouseEnter={() => setActiveProcessStep(idx)}
-                    onClick={() => setActiveProcessStep(idx)}
-                    className={`group flex h-64 cursor-pointer flex-col justify-between p-6 transition-all duration-500 md:p-8 ${
-                      isCurrent
-                        ? "bg-secondary/90 ring-1 ring-accent scale-[1.01]"
-                        : isActive
-                        ? "bg-background/90"
-                        : "bg-background/40 opacity-40 hover:opacity-80"
-                    }`}
-                  >
-                    {/* Floating Black/White Indicator Ribbon */}
+            {/* Stepped Timeline Production Grid */}
+            <div className="mt-10 space-y-4 md:mt-16">
+              {/* Top Stepped Ribbon Columns */}
+              <div className="grid gap-px bg-hairline grid-cols-2 md:grid-cols-4">
+                {PROCESS.map((p, idx) => {
+                  const isActive = idx <= activeProcessStep;
+                  const isCurrent = idx === activeProcessStep;
+                  return (
                     <div
-                      className={`w-full rounded px-4 py-3 text-xs font-medium tracking-wider transition-all duration-500 ${
+                      key={p.n}
+                      onMouseEnter={() => setActiveProcessStep(idx)}
+                      onClick={() => setActiveProcessStep(idx)}
+                      className={`group flex h-48 sm:h-56 md:h-64 cursor-pointer flex-col justify-between p-4 sm:p-6 md:p-8 transition-all duration-500 ${
                         isCurrent
-                          ? "bg-accent text-accent-foreground shadow-xl scale-[1.02]"
+                          ? "bg-secondary/90 ring-1 ring-accent scale-[1.01]"
                           : isActive
-                          ? "bg-foreground text-background"
-                          : "bg-muted/80 text-muted-foreground"
+                          ? "bg-background/90"
+                          : "bg-background/40 opacity-40 hover:opacity-80"
                       }`}
-                      style={{ marginTop: p.offset }}
                     >
-                      {p.title}
-                    </div>
-                    <div className="flex items-center justify-between pt-4">
-                      <span className={`label-mono text-xs ${isCurrent ? "text-accent font-bold" : "text-muted-foreground"}`}>
-                        {p.n}
-                      </span>
-                      {isCurrent && (
-                        <span className="label-mono text-[0.65rem] text-accent animate-pulse">
-                          ● ACTIVE
+                      {/* Floating Black/White Indicator Ribbon */}
+                      <div
+                        className={`w-full rounded px-3 py-2 sm:px-4 sm:py-3 text-[0.65rem] sm:text-xs font-medium tracking-wider transition-all duration-500 ${
+                          isCurrent
+                            ? "bg-accent text-accent-foreground shadow-xl scale-[1.02]"
+                            : isActive
+                            ? "bg-foreground text-background"
+                            : "bg-muted/80 text-muted-foreground"
+                        }`}
+                        style={{ marginTop: p.offset }}
+                      >
+                        {p.title}
+                      </div>
+                      <div className="flex items-center justify-between pt-2 sm:pt-4">
+                        <span className={`label-mono text-[0.65rem] sm:text-xs ${isCurrent ? "text-accent font-bold" : "text-muted-foreground"}`}>
+                          {p.n}
                         </span>
-                      )}
+                        {isCurrent && (
+                          <span className="label-mono text-[0.55rem] sm:text-[0.65rem] text-accent animate-pulse">
+                            ● ACTIVE
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
 
-            {/* Bottom Step Content Description Cards */}
-            <div className="grid gap-px bg-hairline md:grid-cols-4">
-              {PROCESS.map((p, idx) => {
-                const isActive = idx <= activeProcessStep;
-                const isCurrent = idx === activeProcessStep;
-                return (
-                  <div
-                    key={p.n}
-                    onMouseEnter={() => setActiveProcessStep(idx)}
-                    onClick={() => setActiveProcessStep(idx)}
-                    className={`group cursor-pointer p-6 space-y-3 transition-all duration-500 md:p-8 ${
-                      isCurrent
-                        ? "bg-secondary/90 border-t-2 border-accent"
-                        : isActive
-                        ? "bg-background opacity-90"
-                        : "bg-background/30 opacity-40 hover:opacity-80"
-                    }`}
-                  >
-                    <h3 className={`display-tight text-xl font-medium transition-colors ${isCurrent ? "text-accent" : "text-foreground"}`}>
-                      {p.title}
-                    </h3>
-                    <p className="text-xs leading-relaxed text-foreground/80">
-                      {p.sub}
-                    </p>
-                  </div>
-                );
-              })}
+              {/* Bottom Step Content Description Cards */}
+              <div className="grid gap-px bg-hairline grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+                {PROCESS.map((p, idx) => {
+                  const isActive = idx <= activeProcessStep;
+                  const isCurrent = idx === activeProcessStep;
+                  return (
+                    <div
+                      key={p.n}
+                      onMouseEnter={() => setActiveProcessStep(idx)}
+                      onClick={() => setActiveProcessStep(idx)}
+                      className={`group cursor-pointer p-5 sm:p-6 md:p-8 space-y-2.5 transition-all duration-500 ${
+                        isCurrent
+                          ? "bg-secondary/90 border-t-2 border-accent"
+                          : isActive
+                          ? "bg-background opacity-90"
+                          : "bg-background/30 opacity-40 hover:opacity-80"
+                      }`}
+                    >
+                      <h3 className={`display-tight text-lg sm:text-xl font-medium transition-colors ${isCurrent ? "text-accent" : "text-foreground"}`}>
+                        {p.title}
+                      </h3>
+                      <p className="text-xs leading-relaxed text-foreground/80">
+                        {p.sub}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
         </div>
       </section>
 
@@ -808,16 +808,16 @@ function Index() {
       {/* CONTACT */}
       <section id="contact" className="border-t border-hairline">
         <SectionHead n="05" label="Let's work together" />
-        <div className="grid gap-20 px-6 py-32 md:grid-cols-2 md:px-16 md:py-40">
+        <div className="grid gap-16 px-6 py-20 md:grid-cols-2 md:px-16 md:py-40">
           <div>
-            <h2 className="display-tight text-[9vw] md:text-[5vw]">Contact us.</h2>
-            <p className="mt-8 max-w-md text-sm leading-relaxed text-foreground/70">
+            <h2 className="display-tight text-5xl sm:text-[9vw] md:text-[5vw]">Contact us.</h2>
+            <p className="mt-6 max-w-md text-xs sm:text-sm leading-relaxed text-foreground/70">
               Ready to build something bold? We partner with ambitious brands to create digital
               experiences that leave a mark. Tell us what you're working on.
             </p>
             <a
               href="mailto:hello@summitstudio.co"
-              className="label-mono mt-14 flex w-full max-w-sm items-center justify-between border-b border-foreground pb-3 text-sm transition-colors hover:border-accent hover:text-accent"
+              className="label-mono mt-10 flex w-full max-w-sm items-center justify-between border-b border-foreground pb-3 text-xs sm:text-sm transition-colors hover:border-accent hover:text-accent"
             >
               Send a message
               <span>↗</span>
@@ -832,10 +832,10 @@ function Index() {
             ].map(([k, v]) => (
               <div
                 key={k}
-                className="label-mono flex items-center justify-between border-b border-hairline py-6 text-sm"
+                className="label-mono flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-hairline py-5 text-xs sm:text-sm"
               >
                 <span className="text-muted-foreground">{k}</span>
-                <span>{v}</span>
+                <span className="text-foreground">{v}</span>
               </div>
             ))}
           </div>
