@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import heroImg from "@/assets/hero.jpg";
 import work1 from "@/assets/work-1.jpg";
@@ -38,22 +38,52 @@ const WORK = [
   {
     n: "01",
     name: "Club Exotism",
-    kind: "Full Platform · Slot Booking · Admin Dashboards",
+    client: "Club Exotism — Flagship Gaming Sanctuary & Esports Arena (Thrissur, Kerala)",
+    kind: "Full Platform · Real-Time Engine · High-Octane Admin Suite",
     year: "2026",
     img: clubExotismImg,
     url: "https://clubexotism.com",
+    stack: "React (TanStack Start) · Edge-State PostgreSQL · Vercel Global Edge",
+    researchInsights: [
+      "Deep Operator Infiltration: Deployed our core team on-site for 72 hours, dissecting every micro-interaction between gamers, lounge staff, and console stations.",
+      "Zero-Friction Behavioral Discovery: Uncovered that high-spending gaming squads abandon traditional 3D-Secure payment forms, demanding instant, 1-tap WhatsApp VIP reservations.",
+      "Hardware Capacity Matrix: Engineered custom zero-collision algorithms to resolve multi-console hardware conflicts across Sim Racing rigs, VR setups, and PS5 multiplayer hubs.",
+    ],
+    customerPartnership:
+      "We co-engineered this platform shoulder-to-shoulder with the founders and venue operators. No corporate fluff, no generic templates — pure, bespoke digital firepower tailored to dominate their local market.",
+    challenge:
+      "Club Exotism needed a beast of a booking platform capable of managing complex physical hardware inventory (PS5 consoles, VR rigs, Sim Racing cockpits) with real-time multi-player capacity logic, instant 1-tap WhatsApp checkout, and dominant #1 Google search ranking from day zero.",
+    solution:
+      "Architected a ultra-slick, dark-mode digital weapon featuring real-time bin-packing inventory calculations, instant pre-filled WhatsApp VIP booking checkout, an intuitive daily visual control panel for staff, and aggressive LocalBusiness schema SEO integration.",
+    designIdentity: [
+      "The Cyber-Lounge Palette: Obsidian pitch-black base (#010102) fused with hyper-vibrant molten ember accents (#f58c04 / #e46417) — mimicking neon signs burning in a pitch-black arcade.",
+      "Poster-Grade Typography: Raw, ultra-bold Anton display typography paired with crisp Inter micro-type and massive background Japanese Katakana watermarks (レーシング, プレステ, ビリヤード).",
+      "Tactile Glassmorphism: Translucent glass panels, heavy backdrop blur, and neon ember radiation glows (shadow-[0_0_25px_rgba(245,140,4,0.3)]) for an unmatched futuristic feel.",
+    ],
+    seoDiscoverability:
+      "Beyond the build, we handled the site's technical SEO foundation end-to-end: search engine crawlability, structured data so Google understands it as a real local business (hours, address, pricing), social share previews, and canonical domain configuration to keep ranking signal consolidated on one URL instead of split across variants. We also caught and fixed a cross-browser rendering bug affecting how the brand appeared in Safari — the kind of detail that's easy to miss without checking across real browsers, not just one.",
+    problemsSolved: [
+      "Bin-Packing Inventory Engine: Replaced primitive booking slots with real-time hardware capacity algorithms that mathematically prevent double-booking across shared physical equipment.",
+      "WhatsApp Instant Conversion: Converted traditional payment drop-offs into high-converting 1-tap WhatsApp VIP confirmation streams.",
+      "Sub-Millisecond Safari & SEO Fixes: Vaporized WebKit rendering bugs and locked down domain canonicalization for flawless #1 local search dominance.",
+    ],
     stats: [
-      { k: "Conversion Rate", v: "+84%" },
-      { k: "User Engagement", v: "+67%" },
-      { k: "Brand Recall", v: "+91%" },
+      { k: "Slot Utilization", v: "100%" },
+      { k: "Checkout Speed", v: "< 12s" },
+      { k: "Local SEO Dominance", v: "#1 RANK" },
     ],
   },
   {
     n: "02",
     name: "Vanta Digital",
-    kind: "Web Design · Development",
+    client: "Vanta Technologies",
+    kind: "Web Design · High-Performance Engineering",
     year: "2025",
     img: work2,
+    challenge:
+      "Legacy website was suffering from slow load times, high drop-off rates on mobile, and outdated brand messaging that failed to convert enterprise leads.",
+    solution:
+      "Rebuilt the core architecture with modern SSR, sub-second global asset delivery, and an aggressive editorial visual identity.",
     stats: [
       { k: "Revenue Impact", v: "+140%" },
       { k: "Page Load Speed", v: "0.4s" },
@@ -63,9 +93,14 @@ const WORK = [
   {
     n: "03",
     name: "Campus Connect",
-    kind: "Brand Identity · Web",
+    client: "Campus Connect Network",
+    kind: "Brand Identity · Community Web App",
     year: "2024",
     img: work1,
+    challenge:
+      "Fragmented digital presence across 12 university hubs led to low community retention and confusing user onboarding.",
+    solution:
+      "Crafted a unified brand identity system paired with an intuitive student web platform featuring instant event discovery and group portals.",
     stats: [
       { k: "Active Members", v: "50k+" },
       { k: "User Retention", v: "88%" },
@@ -75,9 +110,14 @@ const WORK = [
   {
     n: "04",
     name: "Ascend",
-    kind: "UI Design · Development",
+    client: "Ascend Performance Lab",
+    kind: "UI Design · Conversion Optimization",
     year: "2024",
     img: work3,
+    challenge:
+      "SaaS product had strong top-of-funnel traffic but struggled with complex user onboarding and high signup drop-off.",
+    solution:
+      "Redesigned user flows with micro-interactions, clear value props, and a streamlined multi-step signup experience.",
     stats: [
       { k: "Signup Rate", v: "+112%" },
       { k: "User Engagement", v: "+55%" },
@@ -89,27 +129,27 @@ const WORK = [
 const PROCESS = [
   {
     n: "01",
-    title: "Strategy",
-    tag: "Find the sharp angle",
-    body: "Clarify your offer, audience, and competitive edge. Map the visitor journey before designing screens.",
+    title: "Kickoff & Discovery",
+    tag: "Scope & Alignment",
+    body: "We begin with a discovery call to understand your project scope, goals, and challenges. This helps us align on expectations and define the path forward.",
   },
   {
     n: "02",
-    title: "Brand",
-    tag: "Shape the language",
-    body: "Logo, type, color — a system that works beyond the homepage and scales with your growth.",
+    title: "Brand Strategy & Systems",
+    tag: "Visual Systems",
+    body: "Clarify positioning, visual identity, typography, and color architecture that establishes instant market authority and scales with growth.",
   },
   {
     n: "03",
-    title: "Design",
-    tag: "Experience architecture",
-    body: "High-converting page layouts for mobile and desktop. Prototyped interactions, nothing guessed.",
+    title: "Digital Engineering",
+    tag: "Custom UI/UX",
+    body: "High-octane web design and sub-second page performance. Prototyped interactive flows with conversion psychology baked into every screen.",
   },
   {
     n: "04",
-    title: "Delivery",
-    tag: "Build, test, launch",
-    body: "Clean code, hosting, and launch QA. No agency maze — just your website going live.",
+    title: "Launch & Growth",
+    tag: "Testing & Hosting",
+    body: "Rigorous QA testing, continuous analytics monitoring, edge hosting infrastructure, and iterative releases that scale alongside revenue.",
   },
 ];
 
@@ -133,23 +173,32 @@ function SectionHead({ n, label }: { n: string; label: string }) {
 
 function Index() {
   const [activeProject, setActiveProject] = useState<(typeof WORK)[number] | null>(null);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 40);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <main id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
-      {/* IFRAME / PROJECT PREVIEW MODAL */}
+      {/* IFRAME / CASE STUDY MODAL */}
       {activeProject && (
         <div
           className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-4 backdrop-blur-md md:p-8"
           onClick={() => setActiveProject(null)}
         >
           <div
-            className="relative flex h-full max-h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-xl border border-hairline bg-card shadow-2xl"
+            className="relative flex h-full max-h-[92vh] w-full max-w-6xl flex-col overflow-hidden rounded-xl border border-hairline bg-card shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Modal Header */}
             <div className="flex items-center justify-between border-b border-hairline px-6 py-4">
               <div>
-                <h3 className="display-tight text-xl font-bold">{activeProject.name}</h3>
+                <h3 className="display-tight text-xl font-medium text-foreground">{activeProject.name}</h3>
                 <p className="label-mono text-xs text-muted-foreground">{activeProject.kind}</p>
               </div>
               <div className="flex items-center gap-4">
@@ -158,51 +207,91 @@ function Index() {
                     href={activeProject.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="label-mono text-xs text-accent hover:underline"
+                    className="label-mono text-xs text-foreground transition-colors hover:text-accent"
                   >
-                    Open live site ↗
+                    Open site ↗
                   </a>
                 )}
                 <button
                   onClick={() => setActiveProject(null)}
-                  className="label-mono rounded-full border border-hairline px-3 py-1 text-xs transition-colors hover:bg-secondary"
+                  className="text-base text-muted-foreground transition-colors hover:text-foreground p-1"
                 >
-                  ✕ Close
+                  ✕
                 </button>
               </div>
             </div>
 
-            {/* Modal Body / Preview */}
-            <div className="relative flex-1 bg-black">
-              {activeProject.url ? (
-                <iframe
-                  src={activeProject.url}
-                  title={`${activeProject.name} preview`}
-                  className="h-full w-full border-0"
-                />
-              ) : (
-                <img
-                  src={activeProject.img}
-                  alt={`${activeProject.name} preview`}
-                  className="h-full w-full object-contain"
-                />
-              )}
-            </div>
-
-            {/* Modal Footer / Per-Project Impact Stats */}
-            <div className="grid gap-px border-t border-hairline bg-hairline md:grid-cols-3">
-              {activeProject.stats.map((s) => (
-                <div key={s.k} className="bg-card px-6 py-4">
-                  <p className="display-tight text-3xl text-accent">{s.v}</p>
-                  <p className="label-mono text-xs text-muted-foreground">{s.k}</p>
+            {/* Modal Body / Case Story & Live Preview */}
+            <div className="grid flex-1 overflow-hidden md:grid-cols-12 min-h-0">
+              {/* Left Column: Simple & Neat Case Story */}
+              <div className="flex flex-col justify-between overflow-y-auto border-b border-hairline p-6 md:col-span-5 md:border-r md:border-b-0 md:p-8 space-y-6">
+                <div className="space-y-6">
+                  <div>
+                    <h4 className="label-mono text-xs text-accent">Overview</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/90">{activeProject.challenge}</p>
+                  </div>
+                  <div>
+                    <h4 className="label-mono text-xs text-accent">What We Built</h4>
+                    <p className="mt-2 text-sm leading-relaxed text-foreground/80">{activeProject.solution}</p>
+                  </div>
+                  {activeProject.problemsSolved && activeProject.problemsSolved.length > 0 && (
+                    <div>
+                      <h4 className="label-mono text-xs text-accent">Key Highlights</h4>
+                      <ul className="mt-2 space-y-2 text-xs text-foreground/80">
+                        {activeProject.problemsSolved.map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <span className="text-accent">•</span>
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
                 </div>
-              ))}
+
+                <div className="border-t border-hairline pt-6">
+                  <h4 className="label-mono text-xs text-muted-foreground">Impact</h4>
+                  <div className="mt-3 grid grid-cols-3 gap-3">
+                    {activeProject.stats.map((s) => (
+                      <div key={s.k}>
+                        <p className="display-tight text-lg text-accent">{s.v}</p>
+                        <p className="label-mono text-[0.6rem] text-muted-foreground mt-0.5">{s.k}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Independently Scrollable Live Web Preview / Image */}
+              <div className="relative flex h-full flex-col bg-black md:col-span-7 overflow-hidden">
+                {activeProject.url ? (
+                  <iframe
+                    src={activeProject.url}
+                    title={`${activeProject.name} preview`}
+                    className="h-full w-full flex-1 border-0"
+                  />
+                ) : (
+                  <div className="h-full w-full overflow-y-auto">
+                    <img
+                      src={activeProject.img}
+                      alt={`${activeProject.name} preview`}
+                      className="w-full object-cover"
+                    />
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </div>
       )}
       {/* NAV */}
-      <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-5 md:px-8">
+      <header
+        className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-4 transition-all duration-500 md:px-8 ${
+          isScrolled
+            ? "border-b border-hairline/40 bg-background/80 backdrop-blur-md py-4 shadow-sm"
+            : "border-b border-transparent bg-transparent py-6"
+        }`}
+      >
         <a href="#top" className="text-lg font-semibold tracking-tight">
           Summit Studio<span className="text-accent">.</span>
         </a>
@@ -253,26 +342,9 @@ function Index() {
             >
               Explore our work
               <span>↗</span>
-            </a>
-          </div>
+            </a>          </div>
 
           <div>
-            <div className="mb-10 flex flex-wrap justify-end gap-3">
-              {[
-                { label: "Strategy", href: "#process" },
-                { label: "Identity", href: "#studio" },
-                { label: "Development", href: "#work" },
-              ].map((s, i) => (
-                <a
-                  key={s.label}
-                  href={s.href}
-                  className="label-mono inline-flex items-center gap-2 rounded-full border border-hairline bg-background/40 px-4 py-3 backdrop-blur-sm transition-colors hover:border-accent hover:bg-accent hover:text-accent-foreground"
-                >
-                  <span className="text-muted-foreground">[0{i + 1}]</span>
-                  {s.label}
-                </a>
-              ))}
-            </div>
             <p className="display-tight w-full text-[10.4vw] leading-[0.8] whitespace-nowrap">
               Summit Studio<span className="text-accent">.</span>
             </p>
@@ -283,146 +355,147 @@ function Index() {
       {/* STUDIO */}
       <section id="studio">
         <SectionHead n="01" label="About us" />
-        <div className="px-5 pt-16 pb-24 md:px-8">
-          <h2 className="display-tight w-full max-w-none text-3xl font-normal leading-snug tracking-tight text-foreground/90 md:text-5xl md:leading-tight">
-            Summit Studio is a brand and web partner for ambitious companies. We build{" "}
-            <span className="text-foreground font-medium">positioning</span>,{" "}
-            <span className="text-foreground font-medium">identity</span> and sites that{" "}
-            <span className="text-accent underline decoration-accent/40 underline-offset-8">
-              convert attention into revenue
-            </span>
-            .
+        <div className="px-6 py-20 md:px-16">
+          <h2 className="display-tight w-full max-w-none text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl md:leading-tight">
+            Summit Studio builds high-converting digital platforms and brand identities for companies taking market share. We turn raw brand vision into dominant digital authority.
           </h2>
 
-          <div className="mt-20 space-y-16">
-            {[
-              {
-                k: "[ Context ]",
-                v: "Most studios ship websites that look good in a portfolio: a polished logo, a tidy style guide… and no measurable impact once it's live. Pretty brands with no engagement don't grow.",
-              },
-              {
-                k: "[ Our take ]",
-                v: "We design for attention. Strategy first, identity second, and a site engineered to convert — so the work keeps paying after launch day.",
-              },
-            ].map((r) => (
-              <div key={r.k} className="grid gap-4 border-t border-hairline pt-8 md:grid-cols-12">
-                <span className="label-mono text-muted-foreground md:col-span-4">{r.k}</span>
-                <p className="text-base leading-relaxed text-foreground/80 md:col-span-8">{r.v}</p>
-              </div>
-            ))}
+          <div className="mt-24 space-y-16">
+            {/* Context, Our Take & Our Offer as a uniform grid block */}
+            <div className="grid gap-px bg-hairline">
+              {/* Context & Our Take */}
+              <div className="grid gap-px md:grid-cols-2">
+                <div className="group bg-background p-8 md:p-12 transition-colors duration-300 hover:bg-secondary">
+                  <div className="flex items-center justify-between">
+                    <span className="label-mono text-accent">[ Our Focus ]</span>
+                    <span className="label-mono text-xs text-muted-foreground">01</span>
+                  </div>
+                  <h3 className="display-tight mt-6 text-2xl font-medium text-foreground">
+                    Built For Measurable Growth
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-foreground/80">
+                    We craft brand systems and websites engineered for long-term commercial performance — combining strategic positioning, flawless design, and high-impact digital experiences that scale.
+                  </p>
+                </div>
 
-            <div className="grid gap-4 border-t border-hairline pt-8 md:grid-cols-12">
-              <span className="label-mono text-muted-foreground md:col-span-4">[ Our offer ]</span>
-              <div className="md:col-span-8">
+                <div className="group bg-background p-8 md:p-12 transition-colors duration-300 hover:bg-secondary">
+                  <div className="flex items-center justify-between">
+                    <span className="label-mono text-accent">[ Our Take ]</span>
+                    <span className="label-mono text-xs text-muted-foreground">02</span>
+                  </div>
+                  <h3 className="display-tight mt-6 text-2xl font-medium text-foreground">
+                    Engineered For Conversion
+                  </h3>
+                  <p className="mt-4 text-sm leading-relaxed text-foreground/80">
+                    We design for attention. Strategy first, identity second, and a site engineered to convert — so the work keeps paying after launch day.
+                  </p>
+                </div>
+              </div>
+
+              {/* Our Offer — Architectural 3-Column Grid */}
+              <div className="grid gap-px bg-hairline md:grid-cols-3">
                 {[
-                  ["Brand", "Strategy — Identity"],
-                  ["Website", "Design — Build"],
-                  ["Growth", "Hosting — Iteration"],
-                ].map(([a, b]) => (
+                  {
+                    num: "01",
+                    title: "Brand Strategy & Identity",
+                    sub: "Strategy · Visual Systems",
+                    desc: "Crafting distinct visual identities and bulletproof market positioning that captures instant authority.",
+                  },
+                  {
+                    num: "02",
+                    title: "Website Design & Build",
+                    sub: "UI/UX · Custom Engineering",
+                    desc: "High-octane digital experiences built with sub-second page loads and conversion-driven flows.",
+                  },
+                  {
+                    num: "03",
+                    title: "Growth & Iteration",
+                    sub: "Analytics · Infrastructure",
+                    desc: "Ongoing optimization, hosting infrastructure, and iterative feature releases that scale with revenue.",
+                  },
+                ].map((item) => (
                   <div
-                    key={a}
-                    className="label-mono flex items-center justify-between border-b border-hairline py-4 text-sm"
+                    key={item.title}
+                    className="group flex flex-col justify-between bg-background p-8 md:p-12 transition-colors duration-300 hover:bg-secondary"
                   >
-                    <span>{a}</span>
-                    <span className="text-muted-foreground">{b}</span>
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <span className="label-mono text-accent">[ Offer // {item.num} ]</span>
+                      </div>
+                      <h3 className="display-tight mt-6 text-2xl font-medium text-foreground transition-colors group-hover:text-accent">
+                        {item.title}
+                      </h3>
+                      <p className="label-mono mt-2 text-[0.65rem] text-muted-foreground">
+                        {item.sub}
+                      </p>
+                      <p className="mt-4 text-xs leading-relaxed text-foreground/80">
+                        {item.desc}
+                      </p>
+                    </div>
                   </div>
                 ))}
-                <a
-                  href="#contact"
-                  className="label-mono mt-8 inline-flex items-center gap-3 border-b border-foreground pb-1 text-sm transition-colors hover:border-accent hover:text-accent"
-                >
-                  Start a project
-                  <span>↗</span>
-                </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* marquee */}
-        <div className="overflow-hidden border-y border-hairline py-5">
-          <div className="marquee-track flex w-max gap-16 pr-16">
-            {Array.from({ length: 2 }).map((_, r) => (
-              <div key={r} className="flex gap-16">
-                {[
-                  "Fast turnarounds",
-                  "100% satisfaction",
-                  "Exponential growth",
-                  "Senior-only team",
-                  "No agency maze",
-                ].map((t) => (
-                  <span key={t} className="label-mono text-foreground/60">
-                    ✳ {t}
-                  </span>
-                ))}
-              </div>
-            ))}
-          </div>
-        </div>
       </section>
 
-      {/* WORK */}
-      <section id="work">
-        <SectionHead n="02" label="Some of the brands we made money for ↓" />
-        <div className="grid gap-px bg-hairline md:grid-cols-2">
-          {WORK.map((w) => (
-            <article
-              key={w.n}
-              onClick={() => setActiveProject(w)}
-              className="group cursor-pointer bg-background p-6 md:p-8"
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={w.img}
-                  alt={`${w.name} project`}
-                  loading="lazy"
-                  width={1200}
-                  height={900}
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                />
-                <div className="grain-overlay pointer-events-none absolute inset-0 opacity-25" />
-                <div className="absolute right-3 top-3 rounded-full border border-hairline bg-background/80 px-3 py-1 text-xs backdrop-blur-sm transition-colors group-hover:border-accent group-hover:bg-accent group-hover:text-accent-foreground">
-                  Preview Live ↗
+      {/* WORK / CASE STUDIES */}
+      <section id="work" className="border-t border-hairline">
+        <SectionHead n="02" label="Selected Work" />
+
+        <div className="px-6 py-16 md:px-16">
+
+          <div className="grid gap-px bg-hairline md:grid-cols-2">
+            {WORK.map((w) => (
+              <article
+                key={w.n}
+                onClick={() => setActiveProject(w)}
+                className="group cursor-pointer bg-background p-8 md:p-12 transition-all duration-300 hover:bg-secondary/40"
+              >
+                <div className="relative overflow-hidden rounded-lg">
+                  <img
+                    src={w.img}
+                    alt={`${w.name} project`}
+                    loading="lazy"
+                    width={1200}
+                    height={900}
+                    className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
+                  />
+                  <div className="grain-overlay pointer-events-none absolute inset-0 opacity-20" />
                 </div>
-              </div>
 
-              <div className="mt-4 flex items-baseline justify-between">
-                <span className="label-mono text-muted-foreground">[ {w.n} ]</span>
-                <span className="label-mono text-muted-foreground">© {w.year}</span>
-              </div>
-
-              <h3 className="display-tight mt-2 flex items-center justify-between text-3xl transition-colors group-hover:text-accent">
-                <span>{w.name}</span>
-                <span className="text-xl">↗</span>
-              </h3>
-              <p className="label-mono mt-2 text-muted-foreground">{w.kind}</p>
-
-              {/* Per-project performance highlights */}
-              <div className="mt-6 grid grid-cols-3 gap-2 border-t border-hairline pt-4">
-                {w.stats.map((s) => (
-                  <div key={s.k}>
-                    <p className="display-tight text-lg text-accent">{s.v}</p>
-                    <p className="label-mono text-[0.65rem] text-muted-foreground">{s.k}</p>
-                  </div>
-                ))}
-              </div>
-            </article>
-          ))}
+                <div className="mt-8 flex items-baseline justify-between">
+                  <h3 className="display-tight text-3xl font-medium text-foreground transition-colors group-hover:text-accent md:text-4xl">
+                    {w.name}
+                  </h3>
+                  <span className="label-mono text-xs text-muted-foreground group-hover:text-foreground">
+                    View Case
+                  </span>
+                </div>
+                <p className="label-mono mt-2 text-xs text-accent/90">{w.kind}</p>
+                <p className="mt-4 text-sm leading-relaxed text-foreground/75 line-clamp-2">
+                  {w.challenge}
+                </p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* PROCESS */}
       <section id="process">
         <SectionHead n="03" label="How we work" />
-        <div className="px-5 py-20 md:px-8">
-          <h2 className="display-tight max-w-4xl text-[7vw] md:text-[4vw]">
+        <div className="px-6 py-28 md:px-16 md:py-36">
+          <h2 className="display-tight w-full max-w-none text-3xl font-normal tracking-tight text-foreground/90 md:text-5xl">
             From idea to launch, in four moves.
           </h2>
-          <div className="mt-16">
+          <div className="mt-20">
             {PROCESS.map((p) => (
               <div
                 key={p.n}
-                className="group grid gap-4 border-t border-hairline py-10 transition-colors hover:bg-secondary/40 md:grid-cols-12"
+                className="group grid gap-6 border-t border-hairline py-14 transition-colors hover:bg-secondary/15 md:grid-cols-12 md:items-center"
               >
                 <span className="label-mono text-muted-foreground md:col-span-1">[{p.n}]</span>
                 <h3 className="display-tight text-3xl md:col-span-3">{p.title}</h3>
@@ -441,16 +514,16 @@ function Index() {
       {/* CONTACT */}
       <section id="contact">
         <SectionHead n="04" label="Let's work together" />
-        <div className="grid gap-16 px-5 py-24 md:grid-cols-2 md:px-8">
+        <div className="grid gap-20 px-6 py-32 md:grid-cols-2 md:px-16 md:py-40">
           <div>
             <h2 className="display-tight text-[9vw] md:text-[5vw]">Contact us.</h2>
-            <p className="mt-6 max-w-md text-sm leading-relaxed text-foreground/70">
+            <p className="mt-8 max-w-md text-sm leading-relaxed text-foreground/70">
               Ready to build something bold? We partner with ambitious brands to create digital
               experiences that leave a mark. Tell us what you're working on.
             </p>
             <a
               href="mailto:hello@summitstudio.co"
-              className="label-mono mt-10 flex w-full max-w-sm items-center justify-between border-b border-foreground pb-2 transition-colors hover:border-accent hover:text-accent"
+              className="label-mono mt-14 flex w-full max-w-sm items-center justify-between border-b border-foreground pb-3 text-sm transition-colors hover:border-accent hover:text-accent"
             >
               Send a message
               <span>↗</span>
@@ -465,7 +538,7 @@ function Index() {
             ].map(([k, v]) => (
               <div
                 key={k}
-                className="label-mono flex items-center justify-between border-b border-hairline py-4"
+                className="label-mono flex items-center justify-between border-b border-hairline py-6 text-sm"
               >
                 <span className="text-muted-foreground">{k}</span>
                 <span>{v}</span>
@@ -476,44 +549,55 @@ function Index() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-hairline px-5 pt-14 pb-8 md:px-8">
-        <div className="flex flex-wrap items-end justify-between gap-6">
-          <p className="label-mono max-w-xs text-muted-foreground">
+      <footer className="border-t border-hairline px-6 pt-28 pb-12 md:px-16">
+        <div className="flex flex-wrap items-start justify-between gap-12">
+          <p className="label-mono max-w-sm text-sm leading-relaxed text-muted-foreground">
             Bold digital experiences for ambitious brands that refuse to blend in.
           </p>
-          <div className="flex gap-12">
-            <ul className="label-mono space-y-2 text-muted-foreground">
-              <li className="text-foreground">Services</li>
-              {["Branding", "Website design", "Development"].map((s) => (
-                <li key={s}>{s}</li>
-              ))}
-            </ul>
-            <ul className="label-mono space-y-2 text-muted-foreground">
-              <li className="text-foreground">Studio</li>
-              <li>
-                <a href="#work" className="hover:text-accent">
-                  Work
-                </a>
-              </li>
-              <li>
-                <a href="#process" className="hover:text-accent">
-                  Process
-                </a>
-              </li>
-              <li>
-                <a href="#studio" className="hover:text-accent">
-                  About
-                </a>
-              </li>
-            </ul>
+
+          <div className="flex gap-16 md:gap-24">
+            <div className="space-y-3">
+              <p className="label-mono text-xs font-semibold text-foreground">Services</p>
+              <ul className="label-mono space-y-2 text-xs text-muted-foreground">
+                {["Branding", "Website design", "Development"].map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <p className="label-mono text-xs font-semibold text-foreground">Studio</p>
+              <ul className="label-mono space-y-2 text-xs text-muted-foreground">
+                <li>
+                  <a href="#work" className="transition-colors hover:text-accent">
+                    Work
+                  </a>
+                </li>
+                <li>
+                  <a href="#process" className="transition-colors hover:text-accent">
+                    Process
+                  </a>
+                </li>
+                <li>
+                  <a href="#studio" className="transition-colors hover:text-accent">
+                    About
+                  </a>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
-        <p className="display-tight mt-14 w-full text-[10.4vw] leading-[0.8] whitespace-nowrap">
-          Summit Studio
-        </p>
-        <div className="label-mono mt-6 flex justify-between text-muted-foreground">
-          <span>© 2026 Summit Studio</span>
-          <a href="#top" className="hover:text-accent">
+
+        {/* Big Footer Brand Display */}
+        <div className="pt-24 pb-10">
+          <p className="display-tight w-full text-[10.4vw] leading-[0.8] tracking-tight whitespace-nowrap">
+            Summit Studio<span className="text-accent">.</span>
+          </p>
+        </div>
+
+        {/* Bottom Sub-bar without inner border line */}
+        <div className="label-mono flex flex-col gap-4 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <span>© 2026 Summit Studio. All rights reserved.</span>
+          <a href="#top" className="transition-colors hover:text-accent">
             Back to top ↑
           </a>
         </div>

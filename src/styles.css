@@ -48,7 +48,7 @@
   --popover-foreground: oklch(0.98 0 0);
   --primary: oklch(0.98 0 0);
   --primary-foreground: oklch(0.06 0 0);
-  --secondary: oklch(0.14 0.01 20);
+  --secondary: oklch(0.135 0.005 20);
   --secondary-foreground: oklch(0.98 0 0);
   --muted: oklch(0.14 0.01 20);
   --muted-foreground: oklch(0.62 0.01 20);
@@ -77,6 +77,11 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 1.5rem;
+  }
+
+  section {
+    scroll-margin-top: 1.5rem;
   }
 
   body {
