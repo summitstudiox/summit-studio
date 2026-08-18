@@ -421,15 +421,22 @@ function Index() {
       <section id="studio">
         <SectionHead n="01" label="About Company" />
         <div className="px-6 py-20 md:px-16">
-          {/* Dual-Tone Large Statement */}
-          <h2 className="display-tight w-full max-w-5xl text-3xl font-normal leading-snug tracking-tight md:text-5xl md:leading-tight">
-            <span className="text-foreground">
-              We believe the most memorable brands are not built through decoration, but through atmosphere —
-            </span>{" "}
-            <span className="text-foreground/45">
-              quietly captures attention, and leaves a lasting commercial authority long after launch day.
-            </span>
-          </h2>
+          {/* Dual-Tone Headline matching Screenshot 1 layout (Right Aligned column) */}
+          <div className="grid gap-8 md:grid-cols-12 md:items-start">
+            <div className="md:col-span-4">
+              <span className="label-mono text-xs text-muted-foreground">[ 01 ] ABOUT COMPANY</span>
+            </div>
+            <div className="md:col-span-8">
+              <h2 className="display-tight text-3xl font-normal leading-snug tracking-tight md:text-5xl md:leading-tight">
+                <span className="text-foreground">
+                  We believe the most memorable brands are not built through decoration, but through atmosphere —
+                </span>{" "}
+                <span className="text-foreground/40">
+                  quietly captures attention, and leaves a lasting impression after the experience ends.
+                </span>
+              </h2>
+            </div>
+          </div>
 
           {/* 4-Card Bento Row (Matching Screenshot Structure) */}
           <div className="mt-20 grid gap-px bg-hairline md:grid-cols-4">
