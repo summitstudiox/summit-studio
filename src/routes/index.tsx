@@ -219,7 +219,7 @@ function Index() {
         </nav>
         <a
           href="#contact"
-          className="label-mono border border-hairline bg-foreground/5 px-3 py-2 backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
+          className="label-mono border-b border-foreground pb-1 text-foreground transition-colors hover:border-accent hover:text-accent"
         >
           Start a project
         </a>
