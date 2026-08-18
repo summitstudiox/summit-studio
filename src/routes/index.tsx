@@ -600,7 +600,7 @@ function Index() {
         </div>
       </section>
 
-      {/* PROCESS */}
+      {/* PROCESS — Sticky Scroll-Driven Timeline */}
       <section id="process" className="border-t border-hairline">
         <SectionHead n="03" label="Our Process" />
         <div className="px-6 py-20 md:px-16">
@@ -609,39 +609,45 @@ function Index() {
               Our Process Moves Like Production.
             </h2>
             <p className="max-w-md text-xs leading-relaxed text-muted-foreground md:text-sm">
-              Every memorable experience begins with a clear vision. Our process transforms ideas into immersive digital worlds through strategy, craftsmanship, and thoughtful execution.
+              Scroll to walk through our 4-stage engineering timeline — from initial brand discovery to final global edge release.
             </p>
           </div>
 
-          {/* Clean Stepped Timeline Grid (Matching Screenshot 2 exact aesthetic) */}
-          <div className="mt-20">
-            {/* Top Step Graphic Cards */}
-            <div className="grid gap-px bg-hairline md:grid-cols-4">
-              {PROCESS.map((p) => (
-                <div key={p.n} className="flex flex-col justify-between bg-background p-6 h-64 md:p-8">
-                  {/* Floating Black Indicator Ribbon */}
-                  <div
-                    className="w-full rounded bg-foreground px-4 py-2.5 text-background font-medium text-xs tracking-wider"
-                    style={{ marginTop: p.offset }}
-                  >
-                    {p.title}
+          {/* Scroll-Driven Stepped Timeline */}
+          <div className="mt-16 space-y-12">
+            {PROCESS.map((p, idx) => (
+              <div
+                key={p.n}
+                className="sticky top-24 rounded-2xl border border-hairline bg-card/90 p-8 backdrop-blur-xl shadow-2xl transition-all duration-500 md:p-12"
+                style={{ top: `${6 + idx * 2.5}rem` }}
+              >
+                <div className="grid gap-8 md:grid-cols-12 md:items-center">
+                  <div className="md:col-span-4 space-y-3">
+                    <div className="flex items-center gap-3">
+                      <span className="label-mono rounded-full bg-accent/20 px-3 py-1 text-xs text-accent">
+                        Stage // {p.n}
+                      </span>
+                      <span className="label-mono text-xs text-muted-foreground">0{idx + 1} of 04</span>
+                    </div>
+                    <h3 className="display-tight text-3xl font-medium text-foreground md:text-4xl">
+                      {p.title}
+                    </h3>
                   </div>
-                  <div className="text-center">
-                    <span className="label-mono text-xs text-muted-foreground">{p.n}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
 
-            {/* Bottom Content Description Cards */}
-            <div className="mt-4 grid gap-px bg-hairline md:grid-cols-4">
-              {PROCESS.map((p) => (
-                <div key={p.n} className="bg-background p-6 md:p-8 space-y-3">
-                  <h3 className="display-tight text-xl font-medium text-foreground">{p.title}</h3>
-                  <p className="text-xs leading-relaxed text-foreground/70">{p.sub}</p>
+                  <div className="md:col-span-8 md:border-l md:border-hairline md:pl-8 space-y-4">
+                    <p className="text-sm leading-relaxed text-foreground/90 md:text-base font-normal">
+                      {p.sub}
+                    </p>
+                    <div className="pt-2 flex items-center gap-2">
+                      <div className="h-1.5 w-12 rounded-full bg-accent" />
+                      <span className="label-mono text-[0.65rem] text-muted-foreground">
+                        Phase {p.n} Operational Milestone
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
