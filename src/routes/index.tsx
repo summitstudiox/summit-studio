@@ -238,7 +238,7 @@ function Index() {
         <div className="grain-overlay pointer-events-none absolute inset-0 opacity-40" />
 
         <div className="relative flex h-full flex-col justify-between gap-16 px-5 pt-36 pb-10 md:px-8 md:pt-40 md:pb-12">
-          <div className="rise max-w-lg">
+          <div className="rise ml-auto max-w-lg md:text-left">
             <h1 className="text-base leading-loose tracking-tight md:text-lg">
               Blending in is expensive.
               <br />
