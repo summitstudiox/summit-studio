@@ -294,58 +294,46 @@ function Index() {
             .
           </h2>
 
-          <div className="mt-24 grid gap-14 md:gap-12 md:grid-cols-12">
-            <div className="md:col-span-3">
-              <img
-                src={work4}
-                alt="Portrait lit in deep red light"
-                loading="lazy"
-                width={1000}
-                height={1200}
-                className="w-full object-cover"
-              />
-            </div>
-            <div className="space-y-20 md:col-span-9">
-              {[
-                {
-                  k: "[ Context ]",
-                  v: "Most studios ship websites that look good in a portfolio: a polished logo, a tidy style guide… and no measurable impact once it's live. Pretty brands with no engagement don't grow.",
-                },
-                {
-                  k: "[ Our take ]",
-                  v: "We design for attention. Strategy first, identity second, and a site engineered to convert — so the work keeps paying after launch day.",
-                },
-              ].map((r) => (
-                <div key={r.k} className="grid gap-4 md:grid-cols-2">
-                  <span className="label-mono text-muted-foreground">{r.k}</span>
-                  <p className="max-w-md text-sm leading-relaxed text-foreground/80">{r.v}</p>
-                </div>
-              ))}
+          <div className="mt-20 space-y-16">
+            {[
+              {
+                k: "[ Context ]",
+                v: "Most studios ship websites that look good in a portfolio: a polished logo, a tidy style guide… and no measurable impact once it's live. Pretty brands with no engagement don't grow.",
+              },
+              {
+                k: "[ Our take ]",
+                v: "We design for attention. Strategy first, identity second, and a site engineered to convert — so the work keeps paying after launch day.",
+              },
+            ].map((r) => (
+              <div key={r.k} className="grid gap-4 border-t border-hairline pt-8 md:grid-cols-12">
+                <span className="label-mono text-muted-foreground md:col-span-4">{r.k}</span>
+                <p className="text-base leading-relaxed text-foreground/80 md:col-span-8">{r.v}</p>
+              </div>
+            ))}
 
-              <div className="grid gap-4 md:grid-cols-2">
-                <span className="label-mono text-muted-foreground">[ Our offer ]</span>
-                <div className="max-w-md">
-                  {[
-                    ["Brand", "Strategy — Identity"],
-                    ["Website", "Design — Build"],
-                    ["Growth", "Hosting — Iteration"],
-                  ].map(([a, b]) => (
-                    <div
-                      key={a}
-                      className="label-mono flex items-center justify-between border-b border-hairline py-4"
-                    >
-                      <span>{a}</span>
-                      <span className="text-muted-foreground">{b}</span>
-                    </div>
-                  ))}
-                  <a
-                    href="#contact"
-                    className="label-mono mt-10 flex items-center justify-between border-b border-foreground pb-2 transition-colors hover:border-accent hover:text-accent"
+            <div className="grid gap-4 border-t border-hairline pt-8 md:grid-cols-12">
+              <span className="label-mono text-muted-foreground md:col-span-4">[ Our offer ]</span>
+              <div className="md:col-span-8">
+                {[
+                  ["Brand", "Strategy — Identity"],
+                  ["Website", "Design — Build"],
+                  ["Growth", "Hosting — Iteration"],
+                ].map(([a, b]) => (
+                  <div
+                    key={a}
+                    className="label-mono flex items-center justify-between border-b border-hairline py-4 text-sm"
                   >
-                    Start a project
-                    <span>↗</span>
-                  </a>
-                </div>
+                    <span>{a}</span>
+                    <span className="text-muted-foreground">{b}</span>
+                  </div>
+                ))}
+                <a
+                  href="#contact"
+                  className="label-mono mt-8 inline-flex items-center gap-3 border-b border-foreground pb-1 text-sm transition-colors hover:border-accent hover:text-accent"
+                >
+                  Start a project
+                  <span>↗</span>
+                </a>
               </div>
             </div>
           </div>
