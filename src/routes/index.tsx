@@ -42,6 +42,14 @@ const FAQ_ITEMS = [
     a: "We work with ambitious founders, scaling startups, and established brands taking market share. Whether you need a full brand overhaul or a high-converting digital platform, we design for impact and commercial growth.",
   },
   {
+    q: "How does your project pricing work?",
+    a: "We operate on fixed-fee project scopes or flexible monthly retainers — no hidden hourly surprise bills. Complete brand identity & digital platform packages typically start at fixed milestones tailored to your deliverables and speed-to-market.",
+  },
+  {
+    q: "What payment schedules do you offer?",
+    a: "Our standard engagement model is structured around key project milestones: a 50% deposit upon kickoff to reserve project capacity, and 50% upon final sign-off and edge deployment.",
+  },
+  {
     q: "How long does a typical project take from kickoff to launch?",
     a: "Most web design and brand engineering projects take 3 to 6 weeks depending on scope. We run a streamlined process with clear milestones, so you're always updated without traditional agency delays.",
   },
