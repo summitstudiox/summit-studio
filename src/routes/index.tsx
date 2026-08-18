@@ -621,16 +621,6 @@ function Index() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/15" />
                   <div className="grain-overlay pointer-events-none absolute inset-0 opacity-20" />
 
-                  {/* Top Tags */}
-                  <div className="relative z-10 flex justify-end gap-2">
-                    <span className="label-mono rounded-full bg-black/75 px-4 py-1.5 text-xs text-foreground backdrop-blur-md border border-hairline">
-                      {w.kind.split("·")[0]}
-                    </span>
-                    <span className="label-mono rounded-full bg-black/75 px-4 py-1.5 text-xs text-foreground backdrop-blur-md border border-hairline">
-                      Web Design
-                    </span>
-                  </div>
-
                   {/* Bottom Title overlay */}
                   <div className="relative z-10 space-y-2">
                     <h3 className="display-tight text-3xl font-medium text-white transition-colors group-hover:text-accent md:text-5xl">
