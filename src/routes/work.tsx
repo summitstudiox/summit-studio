@@ -293,18 +293,58 @@ function WorkPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-hairline px-6 py-12 text-center md:px-16 md:py-16">
-        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
-          <Link to="/" className="display-tight text-xl font-medium text-foreground">
-            Summit Studio<span className="text-accent">.</span>
-          </Link>
-          <p className="label-mono text-xs text-muted-foreground">
-            © 2026 Summit Studio. All rights reserved.
+      {/* FOOTER */}
+      <footer className="border-t border-hairline px-6 pt-28 pb-12 md:px-16">
+        <div className="flex flex-wrap items-start justify-between gap-12">
+          <p className="label-mono max-w-sm text-sm leading-relaxed text-muted-foreground">
+            Bold digital experiences for ambitious brands that refuse to blend in.
           </p>
-          <Link to="/" className="label-mono text-xs text-accent hover:underline">
+
+          <div className="flex gap-16 md:gap-24">
+            <div className="space-y-3">
+              <p className="label-mono text-xs font-semibold text-foreground">Services</p>
+              <ul className="label-mono space-y-2 text-xs text-muted-foreground">
+                {["Branding", "Website design", "Development"].map((s) => (
+                  <li key={s}>{s}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="space-y-3">
+              <p className="label-mono text-xs font-semibold text-foreground">Studio</p>
+              <ul className="label-mono space-y-2 text-xs text-muted-foreground">
+                <li>
+                  <Link to="/#work" className="transition-colors hover:text-accent">
+                    Work
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/#process" className="transition-colors hover:text-accent">
+                    Process
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/#studio" className="transition-colors hover:text-accent">
+                    About
+                  </Link>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        {/* Big Footer Brand Display */}
+        <div className="pt-24 pb-10">
+          <p className="display-tight w-full text-[10.4vw] leading-[0.8] tracking-tight whitespace-nowrap">
+            Summit Studio<span className="text-accent">.</span>
+          </p>
+        </div>
+
+        {/* Bottom Sub-bar */}
+        <div className="label-mono flex flex-col gap-4 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
+          <span>© 2026 Summit Studio. All rights reserved.</span>
+          <a href="#top" className="transition-colors hover:text-accent">
             Back to top ↑
-          </Link>
+          </a>
         </div>
       </footer>
     </main>
