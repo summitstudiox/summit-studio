@@ -642,11 +642,10 @@ function Index() {
         </div>
       </section>
 
-      {/* PROCESS — Pin-Based Scroll-Driven Production Timeline */}
-      <section id="process" className="relative min-h-[175vh] border-t border-hairline">
-        <div className="sticky top-16 z-10 bg-background pb-12">
-          <SectionHead n="03" label="Our Process" />
-          <div className="px-6 py-8 md:px-16">
+      {/* PROCESS — Clean Production Grid Timeline */}
+      <section id="process" className="border-t border-hairline">
+        <SectionHead n="03" label="Our Process" />
+        <div className="px-6 py-20 md:px-16 md:py-28">
           {/* Header */}
           <div className="flex flex-col justify-between gap-6 md:flex-row md:items-start">
             <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
@@ -679,6 +678,7 @@ function Index() {
                 return (
                   <div
                     key={p.n}
+                    onMouseEnter={() => setActiveProcessStep(idx)}
                     onClick={() => setActiveProcessStep(idx)}
                     className={`group flex h-64 cursor-pointer flex-col justify-between p-6 transition-all duration-500 md:p-8 ${
                       isCurrent
@@ -724,6 +724,7 @@ function Index() {
                 return (
                   <div
                     key={p.n}
+                    onMouseEnter={() => setActiveProcessStep(idx)}
                     onClick={() => setActiveProcessStep(idx)}
                     className={`group cursor-pointer p-6 space-y-3 transition-all duration-500 md:p-8 ${
                       isCurrent
@@ -742,7 +743,6 @@ function Index() {
                   </div>
                 );
               })}
-            </div>
             </div>
           </div>
         </div>
