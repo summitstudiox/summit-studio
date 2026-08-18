@@ -735,23 +735,23 @@ function Index() {
       <section id="faq" className="border-t border-hairline">
         <SectionHead n="04" label="Frequently Asked Questions" />
         <div className="px-6 py-20 md:px-16">
-          <div className="max-w-4xl">
-            <h2 className="display-tight text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+          <div className="w-full">
+            <h2 className="display-tight w-full max-w-none text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
               Everything you need to know.
             </h2>
-            <div className="mt-16 divide-y divide-hairline border-t border-b border-hairline">
+            <div className="mt-16 w-full divide-y divide-hairline border-t border-b border-hairline">
               {FAQ_ITEMS.map((faq) => (
                 <details
                   key={faq.q}
                   className="group py-6 [&_summary::-webkit-details-marker]:hidden"
                 >
                   <summary className="flex cursor-pointer items-center justify-between font-medium text-foreground transition-colors group-hover:text-accent">
-                    <span className="display-tight text-lg md:text-xl">{faq.q}</span>
-                    <span className="label-mono ml-4 text-xs text-muted-foreground transition-transform duration-300 group-open:rotate-45">
+                    <span className="display-tight text-lg md:text-2xl">{faq.q}</span>
+                    <span className="label-mono ml-4 text-sm text-muted-foreground transition-transform duration-300 group-open:rotate-45">
                       +
                     </span>
                   </summary>
-                  <p className="mt-4 max-w-2xl text-xs leading-relaxed text-foreground/75 md:text-sm">
+                  <p className="mt-4 max-w-4xl text-sm leading-relaxed text-foreground/75 md:text-base">
                     {faq.a}
                   </p>
                 </details>
