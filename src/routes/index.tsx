@@ -28,10 +28,10 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV = [
-  { label: "Home", href: "#top", idx: "01" },
-  { label: "Work", href: "#work", idx: "02" },
-  { label: "Studio", href: "#studio", idx: "03" },
-  { label: "Contact", href: "#contact", idx: "04" },
+  { label: "Home", href: "#top" },
+  { label: "Work", href: "#work" },
+  { label: "Studio", href: "#studio" },
+  { label: "Contact", href: "#contact" },
 ];
 
 const WORK = [
@@ -211,10 +211,9 @@ function Index() {
             <a
               key={i.label}
               href={i.href}
-              className="label-mono flex items-start gap-1.5 text-foreground/80 transition-colors hover:text-accent"
+              className="label-mono text-foreground/80 transition-colors hover:text-accent"
             >
               {i.label}
-              <sup className="text-[0.5rem] text-muted-foreground">{i.idx}</sup>
             </a>
           ))}
         </nav>
