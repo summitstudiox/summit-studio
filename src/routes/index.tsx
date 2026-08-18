@@ -274,7 +274,7 @@ function Index() {
               ))}
             </div>
             <p className="display-tight w-full text-[10.4vw] leading-[0.8] whitespace-nowrap">
-              Summit Studio
+              Summit Studio<span className="text-accent">.</span>
             </p>
           </div>
         </div>
