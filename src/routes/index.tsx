@@ -612,7 +612,7 @@ function Index() {
             </div>
 
             {/* Full-Width Laptop Screen Widescreen Cards Carousel */}
-            <div className="flex gap-8 overflow-x-auto pb-8 md:col-span-8 no-scrollbar scroll-smooth">
+            <div className="flex gap-8 overflow-x-auto pb-8 md:col-span-8 no-scrollbar scroll-smooth mask-edge-fade">
               {WORK.map((w) => (
                 <article
                   key={w.n}
