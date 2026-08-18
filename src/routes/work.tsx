@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
