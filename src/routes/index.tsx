@@ -202,11 +202,11 @@ function Index() {
         </div>
       )}
       {/* NAV */}
-      <header className="fixed inset-x-0 top-0 z-50 flex items-start justify-between px-5 py-5 md:px-8">
+      <header className="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-5 md:px-8">
         <a href="#top" className="text-lg font-semibold tracking-tight">
           Summit Studio<span className="text-accent">.</span>
         </a>
-        <nav className="hidden items-start gap-10 md:flex">
+        <nav className="hidden items-center gap-10 md:flex">
           {NAV.map((i) => (
             <a
               key={i.label}
