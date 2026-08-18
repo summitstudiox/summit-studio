@@ -191,25 +191,25 @@ const PROCESS = [
     n: "01",
     title: "Discover",
     sub: "We study the emotional position of your brand before touching visuals.",
-    offset: "0%",
+    offset: "0px",
   },
   {
     n: "02",
     title: "Construct",
     sub: "Narratives, systems, motion principles, and visual tension begin to take shape.",
-    offset: "25%",
+    offset: "36px",
   },
   {
     n: "03",
     title: "Direct",
     sub: "Every interaction is refined frame-by-frame like a digital film sequence.",
-    offset: "50%",
+    offset: "72px",
   },
   {
     n: "04",
     title: "Release",
     sub: "A polished experience engineered to feel timeless on launch day.",
-    offset: "75%",
+    offset: "108px",
   },
 ];
 
@@ -631,93 +631,107 @@ function Index() {
         </div>
       </section>
 
-      {/* PROCESS — 4-Stage Production Grid (Matching Screenshot 2) */}
-      <section id="process" className="border-t border-hairline">
-        <SectionHead n="03" label="Our Process" />
-        <div className="px-6 py-20 md:px-16 md:py-28">
-          {/* Header */}
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-start">
-            <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
-              Our Process Moves Like Production.
-            </h2>
-            <p className="max-w-md text-xs leading-relaxed text-muted-foreground md:text-sm">
-              Every memorable experience begins with a clear vision. Our process transforms ideas into immersive digital worlds through strategy, craftsmanship, and thoughtful execution.
-            </p>
-          </div>
-
-          {/* Stepped Timeline Production Grid */}
-          <div className="mt-20 space-y-4">
-            {/* Top Stepped Ribbon Columns */}
-            <div className="grid gap-px bg-hairline md:grid-cols-4">
-              {PROCESS.map((p, idx) => {
-                const isActive = idx <= activeProcessStep;
-                const isCurrent = idx === activeProcessStep;
-                return (
-                  <div
-                    key={p.n}
-                    onClick={() => setActiveProcessStep(idx)}
-                    className={`group flex h-72 cursor-pointer flex-col justify-between p-6 transition-all duration-500 md:p-8 ${
-                      isCurrent
-                        ? "bg-secondary/90 ring-1 ring-accent"
-                        : isActive
-                        ? "bg-background/90"
-                        : "bg-background/40 opacity-40 hover:opacity-80"
-                    }`}
-                  >
-                    {/* Floating Black/White Indicator Ribbon */}
+      {/* PROCESS — Pin-Based Scroll-Driven Production Timeline */}
+      <section id="process" className="relative min-h-[450vh] border-t border-hairline">
+        <div className="sticky top-16 z-10 bg-background/95 pb-12 backdrop-blur-md">
+          <SectionHead n="03" label="Our Process" />
+          <div className="px-6 py-12 md:px-16">
+            {/* Header */}
+            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-start">
+              <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+                Our Process Moves Like Production.
+              </h2>
+              <div className="flex items-center gap-4">
+                <span className="label-mono text-xs text-accent font-semibold">
+                  STAGE 0{activeProcessStep + 1} OF 04
+                </span>
+                <div className="flex gap-1.5">
+                  {[0, 1, 2, 3].map((i) => (
                     <div
-                      className={`w-full rounded px-4 py-3 text-xs font-medium tracking-wider transition-all duration-500 ${
-                        isCurrent
-                          ? "bg-accent text-accent-foreground shadow-xl scale-[1.03]"
-                          : isActive
-                          ? "bg-foreground text-background"
-                          : "bg-muted/80 text-muted-foreground"
+                      key={i}
+                      className={`h-1.5 w-6 rounded-full transition-colors duration-500 ${
+                        i <= activeProcessStep ? "bg-accent" : "bg-hairline"
                       }`}
-                      style={{ marginTop: p.offset }}
-                    >
-                      {p.title}
-                    </div>
-                    <div className="flex items-center justify-between">
-                      <span className={`label-mono text-xs ${isCurrent ? "text-accent font-bold" : "text-muted-foreground"}`}>
-                        {p.n}
-                      </span>
-                      {isCurrent && (
-                        <span className="label-mono text-[0.65rem] text-accent animate-pulse">
-                          ● STEP 0{idx + 1}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                );
-              })}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
 
-            {/* Bottom Step Content Description Cards */}
-            <div className="grid gap-px bg-hairline md:grid-cols-4">
-              {PROCESS.map((p, idx) => {
-                const isActive = idx <= activeProcessStep;
-                const isCurrent = idx === activeProcessStep;
-                return (
-                  <div
-                    key={p.n}
-                    onClick={() => setActiveProcessStep(idx)}
-                    className={`group cursor-pointer p-6 space-y-3 transition-all duration-500 md:p-8 ${
-                      isCurrent
-                        ? "bg-secondary/90 border-t-2 border-accent"
-                        : isActive
-                        ? "bg-background"
-                        : "bg-background/30 opacity-40 hover:opacity-80"
-                    }`}
-                  >
-                    <h3 className={`display-tight text-xl font-medium transition-colors ${isCurrent ? "text-accent" : "text-foreground"}`}>
-                      {p.title}
-                    </h3>
-                    <p className="text-xs leading-relaxed text-foreground/80">
-                      {p.sub}
-                    </p>
-                  </div>
-                );
-              })}
+            {/* Stepped Timeline Production Grid */}
+            <div className="mt-12 space-y-4">
+              {/* Top Stepped Ribbon Columns */}
+              <div className="grid gap-px bg-hairline md:grid-cols-4">
+                {PROCESS.map((p, idx) => {
+                  const isActive = idx <= activeProcessStep;
+                  const isCurrent = idx === activeProcessStep;
+                  return (
+                    <div
+                      key={p.n}
+                      onClick={() => setActiveProcessStep(idx)}
+                      className={`group flex h-64 cursor-pointer flex-col justify-between p-6 transition-all duration-500 md:p-8 ${
+                        isCurrent
+                          ? "bg-secondary/90 ring-1 ring-accent"
+                          : isActive
+                          ? "bg-background/90"
+                          : "bg-background/40 opacity-30 hover:opacity-70"
+                      }`}
+                    >
+                      {/* Floating Black/White Indicator Ribbon */}
+                      <div
+                        className={`w-full rounded px-4 py-3 text-xs font-medium tracking-wider transition-all duration-500 ${
+                          isCurrent
+                            ? "bg-accent text-accent-foreground shadow-xl scale-[1.02]"
+                            : isActive
+                            ? "bg-foreground text-background"
+                            : "bg-muted/80 text-muted-foreground"
+                        }`}
+                        style={{ marginTop: p.offset }}
+                      >
+                        {p.title}
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className={`label-mono text-xs ${isCurrent ? "text-accent font-bold" : "text-muted-foreground"}`}>
+                          {p.n}
+                        </span>
+                        {isCurrent && (
+                          <span className="label-mono text-[0.65rem] text-accent animate-pulse">
+                            ● ACTIVE
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Bottom Step Content Description Cards */}
+              <div className="grid gap-px bg-hairline md:grid-cols-4">
+                {PROCESS.map((p, idx) => {
+                  const isActive = idx <= activeProcessStep;
+                  const isCurrent = idx === activeProcessStep;
+                  return (
+                    <div
+                      key={p.n}
+                      onClick={() => setActiveProcessStep(idx)}
+                      className={`group cursor-pointer p-6 space-y-3 transition-all duration-500 md:p-8 ${
+                        isCurrent
+                          ? "bg-secondary/90 border-t-2 border-accent"
+                          : isActive
+                          ? "bg-background"
+                          : "bg-background/30 opacity-30 hover:opacity-70"
+                      }`}
+                    >
+                      <h3 className={`display-tight text-xl font-medium transition-colors ${isCurrent ? "text-accent" : "text-foreground"}`}>
+                        {p.title}
+                      </h3>
+                      <p className="text-xs leading-relaxed text-foreground/80">
+                        {p.sub}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
