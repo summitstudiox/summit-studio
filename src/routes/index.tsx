@@ -247,8 +247,8 @@ function Index() {
         const totalScrollableDistance = rect.height - window.innerHeight;
         
         if (totalScrollableDistance > 0) {
-          // Progress goes from 0 to 1 while section is pinned at top-0
-          const scrolledAmount = -rect.top;
+          const stickyHeaderHeight = 64;
+          const scrolledAmount = stickyHeaderHeight - rect.top;
           const progress = Math.min(Math.max(scrolledAmount / totalScrollableDistance, 0), 0.99);
           const step = Math.floor(progress * 4);
           setActiveProcessStep(step);
@@ -642,10 +642,11 @@ function Index() {
         </div>
       </section>
 
-      {/* PROCESS — Clean Production Grid Timeline */}
-      <section id="process" className="border-t border-hairline">
-        <SectionHead n="03" label="Our Process" />
-        <div className="px-6 py-20 md:px-16 md:py-28">
+      {/* PROCESS — Pin-Based Scroll-Driven Production Timeline */}
+      <section id="process" className="relative min-h-[220vh] border-t border-hairline">
+        <div className="sticky top-16 z-10 bg-background/95 pb-16 backdrop-blur-md">
+          <SectionHead n="03" label="Our Process" />
+          <div className="px-6 py-12 md:px-16">
             {/* Header */}
             <div className="flex flex-col justify-between gap-6 md:flex-row md:items-start">
               <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
@@ -746,6 +747,7 @@ function Index() {
                 })}
               </div>
             </div>
+          </div>
         </div>
       </section>
 
