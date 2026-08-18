@@ -676,32 +676,35 @@ function Index() {
                 {PROCESS.map((p, idx) => {
                   const isActive = idx <= activeProcessStep;
                   const isCurrent = idx === activeProcessStep;
+                  // Dynamic step movement offset: steps slide into position as scroll progresses
+                  const dynamicOffset = isActive ? p.offset : "140px";
+
                   return (
                     <div
                       key={p.n}
                       onClick={() => setActiveProcessStep(idx)}
-                      className={`group flex h-64 cursor-pointer flex-col justify-between p-6 transition-all duration-500 md:p-8 ${
+                      className={`group flex h-64 cursor-pointer flex-col justify-between p-6 transition-all duration-700 md:p-8 ${
                         isCurrent
-                          ? "bg-secondary/90 ring-1 ring-accent"
+                          ? "bg-secondary/90 ring-1 ring-accent scale-[1.01]"
                           : isActive
                           ? "bg-background/90"
-                          : "bg-background/40 opacity-30 hover:opacity-70"
+                          : "bg-background/30 opacity-30 hover:opacity-70"
                       }`}
                     >
-                      {/* Floating Black/White Indicator Ribbon */}
+                      {/* Floating Black/White Indicator Ribbon (Moving on Scroll) */}
                       <div
-                        className={`w-full rounded px-4 py-3 text-xs font-medium tracking-wider transition-all duration-500 ${
+                        className={`w-full rounded px-4 py-3 text-xs font-medium tracking-wider transition-all duration-700 ease-out ${
                           isCurrent
                             ? "bg-accent text-accent-foreground shadow-xl scale-[1.02]"
                             : isActive
                             ? "bg-foreground text-background"
-                            : "bg-muted/80 text-muted-foreground"
+                            : "bg-muted/60 text-muted-foreground opacity-50"
                         }`}
-                        style={{ marginTop: p.offset }}
+                        style={{ marginTop: dynamicOffset }}
                       >
                         {p.title}
                       </div>
-                      <div className="flex items-center justify-between">
+                      <div className="flex items-center justify-between pt-4">
                         <span className={`label-mono text-xs ${isCurrent ? "text-accent font-bold" : "text-muted-foreground"}`}>
                           {p.n}
                         </span>
@@ -725,12 +728,12 @@ function Index() {
                     <div
                       key={p.n}
                       onClick={() => setActiveProcessStep(idx)}
-                      className={`group cursor-pointer p-6 space-y-3 transition-all duration-500 md:p-8 ${
+                      className={`group cursor-pointer p-6 space-y-3 transition-all duration-700 md:p-8 ${
                         isCurrent
-                          ? "bg-secondary/90 border-t-2 border-accent"
+                          ? "bg-secondary/90 border-t-2 border-accent transform translate-y-0"
                           : isActive
-                          ? "bg-background"
-                          : "bg-background/30 opacity-30 hover:opacity-70"
+                          ? "bg-background opacity-90"
+                          : "bg-background/20 opacity-25 translate-y-2 hover:opacity-70"
                       }`}
                     >
                       <h3 className={`display-tight text-xl font-medium transition-colors ${isCurrent ? "text-accent" : "text-foreground"}`}>
