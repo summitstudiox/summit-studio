@@ -244,11 +244,16 @@ function Index() {
       const processEl = document.getElementById("process");
       if (processEl) {
         const rect = processEl.getBoundingClientRect();
-        const viewportHeight = window.innerHeight;
-        // Calculate how far down section top has scrolled relative to viewport center
-        const progress = (viewportHeight * 0.7 - rect.top) / (rect.height * 0.8);
-        const step = Math.min(Math.max(Math.floor(progress * 4), 0), 3);
-        setActiveProcessStep(step);
+        const stickyHeaderHeight = 64;
+        const totalScrollableDistance = rect.height - window.innerHeight;
+        
+        if (totalScrollableDistance > 0) {
+          // Progress is 0 when processEl top hits sticky header, and 1 when bottom reaches viewport end
+          const scrolledAmount = stickyHeaderHeight - rect.top;
+          const progress = Math.min(Math.max(scrolledAmount / totalScrollableDistance, 0), 0.99);
+          const step = Math.floor(progress * 4);
+          setActiveProcessStep(step);
+        }
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
