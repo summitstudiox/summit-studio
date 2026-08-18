@@ -244,18 +244,15 @@ function Index() {
       const processEl = document.getElementById("process");
       if (processEl) {
         const rect = processEl.getBoundingClientRect();
-        const stickyOffset = 64; // height of fixed header
-        const scrollableDistance = rect.height - window.innerHeight;
-        
-        if (scrollableDistance > 0) {
-          const traveled = stickyOffset - rect.top;
-          const progress = Math.min(Math.max(traveled / scrollableDistance, 0), 0.99);
-          const step = Math.floor(progress * 4);
-          setActiveProcessStep(step);
-        }
+        const viewportHeight = window.innerHeight;
+        // Calculate how far down section top has scrolled relative to viewport center
+        const progress = (viewportHeight * 0.7 - rect.top) / (rect.height * 0.8);
+        const step = Math.min(Math.max(Math.floor(progress * 4), 0), 3);
+        setActiveProcessStep(step);
       }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -657,44 +654,75 @@ function Index() {
           <div className="mt-20 space-y-4">
             {/* Top Stepped Ribbon Columns */}
             <div className="grid gap-px bg-hairline md:grid-cols-4">
-              {PROCESS.map((p, idx) => (
-                <div
-                  key={p.n}
-                  onClick={() => setActiveProcessStep(idx)}
-                  className="group flex h-64 cursor-pointer flex-col justify-between bg-background p-6 transition-colors duration-300 hover:bg-secondary/40 md:p-8"
-                >
-                  {/* Floating Black Indicator Ribbon */}
+              {PROCESS.map((p, idx) => {
+                const isActive = idx <= activeProcessStep;
+                const isCurrent = idx === activeProcessStep;
+                return (
                   <div
-                    className="w-full rounded-md bg-foreground px-4 py-3 text-xs font-medium tracking-wider text-background shadow-md transition-transform duration-300 group-hover:scale-[1.02]"
-                    style={{ marginTop: p.offset }}
+                    key={p.n}
+                    onClick={() => setActiveProcessStep(idx)}
+                    className={`group flex h-72 cursor-pointer flex-col justify-between p-6 transition-all duration-500 md:p-8 ${
+                      isCurrent
+                        ? "bg-secondary/90 ring-1 ring-accent"
+                        : isActive
+                        ? "bg-background/90"
+                        : "bg-background/40 opacity-40 hover:opacity-80"
+                    }`}
                   >
-                    {p.title}
+                    {/* Floating Black/White Indicator Ribbon */}
+                    <div
+                      className={`w-full rounded px-4 py-3 text-xs font-medium tracking-wider transition-all duration-500 ${
+                        isCurrent
+                          ? "bg-accent text-accent-foreground shadow-xl scale-[1.03]"
+                          : isActive
+                          ? "bg-foreground text-background"
+                          : "bg-muted/80 text-muted-foreground"
+                      }`}
+                      style={{ marginTop: p.offset }}
+                    >
+                      {p.title}
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <span className={`label-mono text-xs ${isCurrent ? "text-accent font-bold" : "text-muted-foreground"}`}>
+                        {p.n}
+                      </span>
+                      {isCurrent && (
+                        <span className="label-mono text-[0.65rem] text-accent animate-pulse">
+                          ● STEP 0{idx + 1}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                  <div className="text-center">
-                    <span className="label-mono text-xs text-muted-foreground transition-colors group-hover:text-accent">
-                      {p.n}
-                    </span>
-                  </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             {/* Bottom Step Content Description Cards */}
             <div className="grid gap-px bg-hairline md:grid-cols-4">
-              {PROCESS.map((p, idx) => (
-                <div
-                  key={p.n}
-                  onClick={() => setActiveProcessStep(idx)}
-                  className="group cursor-pointer bg-background p-6 space-y-3 transition-colors duration-300 hover:bg-secondary/40 md:p-8"
-                >
-                  <h3 className="display-tight text-xl font-medium text-foreground transition-colors group-hover:text-accent">
-                    {p.title}
-                  </h3>
-                  <p className="text-xs leading-relaxed text-foreground/75">
-                    {p.sub}
-                  </p>
-                </div>
-              ))}
+              {PROCESS.map((p, idx) => {
+                const isActive = idx <= activeProcessStep;
+                const isCurrent = idx === activeProcessStep;
+                return (
+                  <div
+                    key={p.n}
+                    onClick={() => setActiveProcessStep(idx)}
+                    className={`group cursor-pointer p-6 space-y-3 transition-all duration-500 md:p-8 ${
+                      isCurrent
+                        ? "bg-secondary/90 border-t-2 border-accent"
+                        : isActive
+                        ? "bg-background"
+                        : "bg-background/30 opacity-40 hover:opacity-80"
+                    }`}
+                  >
+                    <h3 className={`display-tight text-xl font-medium transition-colors ${isCurrent ? "text-accent" : "text-foreground"}`}>
+                      {p.title}
+                    </h3>
+                    <p className="text-xs leading-relaxed text-foreground/80">
+                      {p.sub}
+                    </p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
