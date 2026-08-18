@@ -147,30 +147,61 @@ const WORK = [
   },
 ];
 
-const PROCESS = [
+const SERVICES = [
   {
     n: "01",
-    title: "Kickoff & Discovery",
-    tag: "Scope & Alignment",
-    body: "We begin with a discovery call to understand your project scope, goals, and challenges. This helps us align on expectations and define the path forward.",
+    title: "Brand Strategy & Positioning",
+    desc: "Every memorable brand begins with clarity. We define the visual and strategic foundations that shape how your audience sees, feels, and remembers you.",
+    tags: ["Identity Systems", "Art Direction", "Visual Language"],
+    images: [work1, work2],
   },
   {
     n: "02",
-    title: "Brand Strategy & Systems",
-    tag: "Visual Systems",
-    body: "Clarify positioning, visual identity, typography, and color architecture that establishes instant market authority and scales with growth.",
+    title: "Digital Engineering & Web Design",
+    desc: "We create immersive digital experiences where storytelling, interaction, and technology come together to turn visitors into engaged, high-value audiences.",
+    tags: ["Custom UI/UX", "High-Performance SSR", "Conversion Architecture"],
+    images: [work3, clubExotismImg],
   },
   {
     n: "03",
-    title: "Digital Engineering",
-    tag: "Custom UI/UX",
-    body: "High-octane web design and sub-second page performance. Prototyped interactive flows with conversion psychology baked into every screen.",
+    title: "Creative Systems & Scalability",
+    desc: "A flexible framework that keeps your brand consistent across every touchpoint while leaving room for growth, evolution, and continuous experimentation.",
+    tags: ["Design Systems", "Component Libraries", "Brand Guidelines"],
+    images: [work4, work1],
   },
   {
     n: "04",
-    title: "Launch & Growth",
-    tag: "Testing & Hosting",
-    body: "Rigorous QA testing, continuous analytics monitoring, edge hosting infrastructure, and iterative releases that scale alongside revenue.",
+    title: "Growth & Infrastructure",
+    desc: "Movement brings emotion to design. Through thoughtful transitions, analytics monitoring, and edge infrastructure, we build digital assets that scale.",
+    tags: ["Edge Hosting", "Analytics & Conversion", "Iterative Releases"],
+    images: [work2, work3],
+  },
+];
+
+const PROCESS = [
+  {
+    n: "01",
+    title: "Discover",
+    sub: "We study the emotional position of your brand before touching visuals.",
+    offset: "0%",
+  },
+  {
+    n: "02",
+    title: "Construct",
+    sub: "Narratives, systems, motion principles, and visual tension begin to take shape.",
+    offset: "25%",
+  },
+  {
+    n: "03",
+    title: "Direct",
+    sub: "Every interaction is refined frame-by-frame like a digital film sequence.",
+    offset: "50%",
+  },
+  {
+    n: "04",
+    title: "Release",
+    sub: "A polished experience engineered to feel timeless on launch day.",
+    offset: "75%",
   },
 ];
 
@@ -195,6 +226,7 @@ function SectionHead({ n, label }: { n: string; label: string }) {
 function Index() {
   const [activeProject, setActiveProject] = useState<(typeof WORK)[number] | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [openService, setOpenService] = useState<string | null>("01");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -445,6 +477,83 @@ function Index() {
               </div>
             </div>
           </div>
+
+          {/* Collapsible Services Accordion Block */}
+          <div className="mt-24">
+            <div className="mb-12 flex flex-col justify-between gap-4 border-b border-hairline pb-8 md:flex-row md:items-end">
+              <div>
+                <span className="label-mono text-xs text-accent">[ Our Services ]</span>
+                <h3 className="display-tight mt-2 text-3xl font-medium text-foreground md:text-4xl">
+                  Crafting Experiences That Leave A Lasting Mark
+                </h3>
+              </div>
+              <p className="max-w-xs text-xs leading-relaxed text-muted-foreground">
+                A glimpse into our service capability across identity, experience, systems & growth.
+              </p>
+            </div>
+
+            <div className="divide-y divide-hairline border-t border-b border-hairline">
+              {SERVICES.map((s) => {
+                const isOpen = openService === s.n;
+                return (
+                  <div key={s.n} className="py-8 transition-colors">
+                    <div
+                      onClick={() => setOpenService(isOpen ? null : s.n)}
+                      className="flex cursor-pointer items-start justify-between gap-6"
+                    >
+                      <div className="flex items-baseline gap-6 md:gap-12">
+                        <span className="label-mono text-xs text-muted-foreground">[{s.n}]</span>
+                        <h4 className="display-tight text-2xl font-medium text-foreground transition-colors hover:text-accent md:text-3xl">
+                          {s.title}
+                        </h4>
+                      </div>
+
+                      <button className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-hairline text-lg text-foreground transition-colors hover:border-accent hover:text-accent">
+                        {isOpen ? "−" : "+"}
+                      </button>
+                    </div>
+
+                    {isOpen && (
+                      <div className="mt-8 grid gap-8 md:grid-cols-12 md:items-center">
+                        <div className="md:col-span-6 md:pl-16 space-y-6">
+                          <p className="text-sm leading-relaxed text-foreground/80 md:text-base">
+                            {s.desc}
+                          </p>
+                          <div className="flex flex-wrap gap-2 pt-2">
+                            {s.tags.map((t) => (
+                              <span
+                                key={t}
+                                className="label-mono rounded-full border border-hairline bg-secondary/40 px-3.5 py-1.5 text-[0.68rem] text-foreground/90"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+
+                        <div className="flex gap-4 md:col-span-6 md:justify-end">
+                          {s.images.map((imgSrc, idx) => (
+                            <div
+                              key={idx}
+                              className={`relative overflow-hidden border border-hairline shadow-lg ${
+                                idx === 0 ? "h-36 w-36 rounded-full" : "h-36 w-36 rounded-2xl"
+                              }`}
+                            >
+                              <img
+                                src={imgSrc}
+                                alt={`${s.title} preview ${idx}`}
+                                className="h-full w-full object-cover"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -492,28 +601,45 @@ function Index() {
       </section>
 
       {/* PROCESS */}
-      <section id="process">
-        <SectionHead n="03" label="How we work" />
-        <div className="px-6 py-28 md:px-16 md:py-36">
-          <h2 className="display-tight w-full max-w-none text-3xl font-normal tracking-tight text-foreground/90 md:text-5xl">
-            From idea to launch, in four moves.
-          </h2>
+      <section id="process" className="border-t border-hairline">
+        <SectionHead n="03" label="Our Process" />
+        <div className="px-6 py-20 md:px-16">
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-start">
+            <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+              Our Process Moves Like Production.
+            </h2>
+            <p className="max-w-md text-xs leading-relaxed text-muted-foreground md:text-sm">
+              Every memorable experience begins with a clear vision. Our process transforms ideas into immersive digital worlds through strategy, craftsmanship, and thoughtful execution.
+            </p>
+          </div>
+
+          {/* Stepped Timeline Production Bar (Matching Screenshot 2) */}
           <div className="mt-20">
-            {PROCESS.map((p) => (
-              <div
-                key={p.n}
-                className="group grid gap-6 border-t border-hairline py-14 transition-colors hover:bg-secondary/15 md:grid-cols-12 md:items-center"
-              >
-                <span className="label-mono text-muted-foreground md:col-span-1">[{p.n}]</span>
-                <h3 className="display-tight text-3xl md:col-span-3">{p.title}</h3>
-                <p className="max-w-md text-sm leading-relaxed text-foreground/70 md:col-span-5">
-                  {p.body}
-                </p>
-                <span className="label-mono text-muted-foreground transition-colors group-hover:text-accent md:col-span-3 md:text-right">
-                  {p.tag}
-                </span>
-              </div>
-            ))}
+            <div className="grid gap-6 md:grid-cols-4">
+              {PROCESS.map((p) => (
+                <div key={p.n} className="flex flex-col justify-between space-y-6">
+                  {/* Visual Step Bar with Pill */}
+                  <div className="relative h-44 w-full rounded-2xl border border-hairline bg-secondary/30 p-2 overflow-hidden flex flex-col justify-end">
+                    <div className="grain-overlay pointer-events-none absolute inset-0 opacity-10" />
+                    <div
+                      className="w-full rounded-xl bg-foreground px-4 py-3 text-background transition-all duration-500"
+                      style={{ marginBottom: p.offset }}
+                    >
+                      <span className="display-tight text-sm font-semibold">{p.title}</span>
+                    </div>
+                    <div className="p-2 text-center">
+                      <span className="label-mono text-xs text-muted-foreground">{p.n}</span>
+                    </div>
+                  </div>
+
+                  {/* Card Content */}
+                  <div className="rounded-2xl border border-hairline bg-card/60 p-6 space-y-3 min-h-[160px]">
+                    <h3 className="display-tight text-xl font-medium text-foreground">{p.title}</h3>
+                    <p className="text-xs leading-relaxed text-foreground/75">{p.sub}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
