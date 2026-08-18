@@ -226,7 +226,7 @@ function SectionHead({ n, label }: { n: string; label: string }) {
 function Index() {
   const [activeProject, setActiveProject] = useState<(typeof WORK)[number] | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [openService, setOpenService] = useState<string | null>("01");
+  const [openService, setOpenService] = useState<string | null>(null);
   const [activeProcessStep, setActiveProcessStep] = useState(0);
 
   useEffect(() => {
