@@ -500,16 +500,11 @@ function Index() {
 
           {/* Collapsible Services Accordion Block */}
           <div className="mt-24">
-            <div className="mb-12 flex flex-col justify-between gap-4 border-b border-hairline pb-8 md:flex-row md:items-end">
-              <div>
-                <span className="label-mono text-xs text-accent">[ Our Services ]</span>
-                <h3 className="display-tight mt-2 text-3xl font-medium text-foreground md:text-4xl">
-                  Crafting Experiences That Leave A Lasting Mark
-                </h3>
-              </div>
-              <p className="max-w-xs text-xs leading-relaxed text-muted-foreground">
-                A glimpse into our service capability across identity, experience, systems & growth.
-              </p>
+            <div className="mb-12">
+              <span className="label-mono text-xs text-accent">[ Our Services ]</span>
+              <h3 className="display-tight mt-2 text-3xl font-medium text-foreground md:text-4xl">
+                Crafting Experiences That Leave A Lasting Mark
+              </h3>
             </div>
 
             <div className="divide-y divide-hairline border-t border-b border-hairline">
