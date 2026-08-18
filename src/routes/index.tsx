@@ -29,8 +29,9 @@ export const Route = createFileRoute("/")({
 
 const NAV = [
   { label: "Home", href: "#top" },
-  { label: "Work", href: "#work" },
   { label: "Studio", href: "#studio" },
+  { label: "Work", href: "#work" },
+  { label: "Process", href: "#process" },
   { label: "Contact", href: "#contact" },
 ];
 
