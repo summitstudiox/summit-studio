@@ -227,10 +227,22 @@ function Index() {
   const [activeProject, setActiveProject] = useState<(typeof WORK)[number] | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [openService, setOpenService] = useState<string | null>("01");
+  const [activeProcessStep, setActiveProcessStep] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
+
+      const processEl = document.getElementById("process");
+      if (processEl) {
+        const rect = processEl.getBoundingClientRect();
+        const totalHeight = rect.height - window.innerHeight;
+        if (totalHeight > 0) {
+          const progress = Math.min(Math.max(-rect.top / totalHeight, 0), 1);
+          const step = Math.min(Math.floor(progress * 4), 3);
+          setActiveProcessStep(step);
+        }
+      }
     };
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
@@ -625,54 +637,101 @@ function Index() {
         </div>
       </section>
 
-      {/* PROCESS — Sticky Scroll-Driven Timeline */}
-      <section id="process" className="border-t border-hairline">
-        <SectionHead n="03" label="Our Process" />
-        <div className="px-6 py-20 md:px-16">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-start">
-            <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
-              Our Process Moves Like Production.
-            </h2>
-            <p className="max-w-md text-xs leading-relaxed text-muted-foreground md:text-sm">
-              Scroll to walk through our 4-stage engineering timeline — from initial brand discovery to final global edge release.
-            </p>
-          </div>
-
-          {/* Scroll-Driven Stepped Timeline */}
-          <div className="mt-16 space-y-12">
-            {PROCESS.map((p, idx) => (
-              <div
-                key={p.n}
-                className="sticky top-24 rounded-2xl border border-hairline bg-card/90 p-8 backdrop-blur-xl shadow-2xl transition-all duration-500 md:p-12"
-                style={{ top: `${6 + idx * 2.5}rem` }}
-              >
-                <div className="grid gap-8 md:grid-cols-12 md:items-center">
-                  <div className="md:col-span-4 space-y-3">
-                    <div className="flex items-center gap-3">
-                      <span className="label-mono rounded-full bg-accent/20 px-3 py-1 text-xs text-accent">
-                        Stage // {p.n}
-                      </span>
-                      <span className="label-mono text-xs text-muted-foreground">0{idx + 1} of 04</span>
-                    </div>
-                    <h3 className="display-tight text-3xl font-medium text-foreground md:text-4xl">
-                      {p.title}
-                    </h3>
-                  </div>
-
-                  <div className="md:col-span-8 md:border-l md:border-hairline md:pl-8 space-y-4">
-                    <p className="text-sm leading-relaxed text-foreground/90 md:text-base font-normal">
-                      {p.sub}
-                    </p>
-                    <div className="pt-2 flex items-center gap-2">
-                      <div className="h-1.5 w-12 rounded-full bg-accent" />
-                      <span className="label-mono text-[0.65rem] text-muted-foreground">
-                        Phase {p.n} Operational Milestone
-                      </span>
-                    </div>
-                  </div>
+      {/* PROCESS — Scroll-Driven Side-by-Side Graph Timeline */}
+      <section id="process" className="relative min-h-[220vh] border-t border-hairline">
+        <div className="sticky top-16 z-10 bg-background/95 backdrop-blur-md">
+          <SectionHead n="03" label="Our Process" />
+          <div className="px-6 py-12 md:px-16 md:py-16">
+            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-start">
+              <div>
+                <span className="label-mono text-xs text-accent">[ Production Timeline ]</span>
+                <h2 className="display-tight mt-2 max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+                  Our Process Moves Like Production.
+                </h2>
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="label-mono text-xs text-muted-foreground">
+                  Step 0{activeProcessStep + 1} of 04
+                </span>
+                <div className="flex gap-1.5">
+                  {[0, 1, 2, 3].map((i) => (
+                    <div
+                      key={i}
+                      className={`h-1.5 w-6 rounded-full transition-colors duration-300 ${
+                        i <= activeProcessStep ? "bg-accent" : "bg-hairline"
+                      }`}
+                    />
+                  ))}
                 </div>
               </div>
-            ))}
+            </div>
+
+            {/* Side-by-Side 4-Box Graph Grid (Matching Screenshot 2 exact boxes) */}
+            <div className="mt-12">
+              <div className="grid gap-px bg-hairline md:grid-cols-4">
+                {PROCESS.map((p, idx) => {
+                  const isActive = idx === activeProcessStep;
+                  const isPassed = idx < activeProcessStep;
+                  return (
+                    <div
+                      key={p.n}
+                      className={`flex h-56 flex-col justify-between p-6 transition-all duration-500 md:p-8 ${
+                        isActive
+                          ? "bg-secondary/80 ring-1 ring-accent"
+                          : isPassed
+                          ? "bg-background opacity-90"
+                          : "bg-background/40 opacity-40"
+                      }`}
+                    >
+                      {/* Floating Step Ribbon */}
+                      <div
+                        className={`w-full rounded px-4 py-2.5 text-xs font-medium tracking-wider transition-all duration-500 ${
+                          isActive
+                            ? "bg-accent text-accent-foreground shadow-lg scale-[1.02]"
+                            : isPassed
+                            ? "bg-foreground text-background"
+                            : "bg-muted text-muted-foreground"
+                        }`}
+                        style={{ marginTop: p.offset }}
+                      >
+                        {p.title}
+                      </div>
+                      <div className="flex items-center justify-between">
+                        <span className="label-mono text-xs text-muted-foreground">{p.n}</span>
+                        {isActive && (
+                          <span className="label-mono text-[0.65rem] text-accent animate-pulse">
+                            ACTIVE
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+
+              {/* Bottom Side-by-Side Description Cards */}
+              <div className="mt-4 grid gap-px bg-hairline md:grid-cols-4">
+                {PROCESS.map((p, idx) => {
+                  const isActive = idx === activeProcessStep;
+                  const isPassed = idx < activeProcessStep;
+                  return (
+                    <div
+                      key={p.n}
+                      className={`p-6 transition-all duration-500 md:p-8 space-y-3 ${
+                        isActive
+                          ? "bg-secondary/90 border-t-2 border-accent"
+                          : isPassed
+                          ? "bg-background"
+                          : "bg-background/30 opacity-40"
+                      }`}
+                    >
+                      <h3 className="display-tight text-xl font-medium text-foreground">{p.title}</h3>
+                      <p className="text-xs leading-relaxed text-foreground/80">{p.sub}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </section>
