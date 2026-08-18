@@ -236,9 +236,10 @@ function Index() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [openService, setOpenService] = useState<string | null>(null);
   const [activeProcessStep, setActiveProcessStep] = useState(0);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (activeProject) {
+    if (activeProject || mobileMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -246,7 +247,7 @@ function Index() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [activeProject]);
+  }, [activeProject, mobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -276,73 +277,57 @@ function Index() {
       {/* IFRAME / CASE STUDY MODAL */}
       {activeProject && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-4 backdrop-blur-md md:p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-3 backdrop-blur-md md:p-8 animate-in fade-in duration-300"
           onClick={() => setActiveProject(null)}
         >
           <div
-            className="relative flex h-full max-h-[92vh] w-full max-w-6xl flex-col overflow-hidden rounded-xl border border-hairline bg-card shadow-2xl"
+            className="relative flex h-full max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-hairline bg-card shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Modal Header */}
-            <div className="flex items-center justify-between border-b border-hairline px-6 py-4">
-              <div>
-                <h3 className="display-tight text-xl font-medium text-foreground">{activeProject.name}</h3>
-                <p className="label-mono text-xs text-muted-foreground">{activeProject.kind}</p>
+            <div className="flex items-center justify-between border-b border-hairline px-4 py-3.5 md:px-6 md:py-4">
+              <div className="max-w-[70%]">
+                <h3 className="display-tight truncate text-lg font-medium text-foreground md:text-xl">{activeProject.name}</h3>
+                <p className="label-mono truncate text-[0.65rem] text-muted-foreground md:text-xs">{activeProject.kind}</p>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3">
                 {activeProject.url && (
                   <a
                     href={activeProject.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="label-mono text-xs text-foreground transition-colors hover:text-accent"
+                    className="label-mono hidden text-xs text-accent transition-colors hover:underline sm:inline-flex"
                   >
                     Open site ↗
                   </a>
                 )}
                 <button
                   onClick={() => setActiveProject(null)}
-                  className="text-base text-muted-foreground transition-colors hover:text-foreground p-1"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-sm text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
                 >
                   ✕
                 </button>
               </div>
             </div>
 
-            {/* Modal Body / Case Story & Live Preview */}
             <div className="grid flex-1 overflow-hidden md:grid-cols-12 min-h-0">
-              {/* Left Column: Simple & Neat Case Story */}
-              <div className="flex flex-col justify-between overflow-y-auto border-b border-hairline p-6 md:col-span-5 md:border-r md:border-b-0 md:p-8 space-y-6">
-                <div className="space-y-6">
+              <div className="flex flex-col justify-between overflow-y-auto border-b border-hairline p-5 md:col-span-5 md:border-r md:border-b-0 md:p-8 space-y-6">
+                <div className="space-y-5">
                   <div>
-                    <h4 className="label-mono text-xs text-accent">Overview</h4>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground/90">{activeProject.challenge}</p>
+                    <h4 className="label-mono text-xs text-accent">[ Challenge & Scope ]</h4>
+                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-foreground/90">{activeProject.challenge}</p>
                   </div>
                   <div>
-                    <h4 className="label-mono text-xs text-accent">What We Built</h4>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground/80">{activeProject.solution}</p>
+                    <h4 className="label-mono text-xs text-accent">[ Strategic Execution ]</h4>
+                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-foreground/80">{activeProject.solution}</p>
                   </div>
-                  {activeProject.problemsSolved && activeProject.problemsSolved.length > 0 && (
-                    <div>
-                      <h4 className="label-mono text-xs text-accent">Key Highlights</h4>
-                      <ul className="mt-2 space-y-2 text-xs text-foreground/80">
-                        {activeProject.problemsSolved.map((item) => (
-                          <li key={item} className="flex items-start gap-2">
-                            <span className="text-accent">•</span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                 </div>
 
-                <div className="border-t border-hairline pt-6">
-                  <h4 className="label-mono text-xs text-muted-foreground">Impact</h4>
-                  <div className="mt-3 grid grid-cols-3 gap-3">
+                <div className="border-t border-hairline pt-5">
+                  <h4 className="label-mono text-xs text-muted-foreground">[ Commercial Impact ]</h4>
+                  <div className="mt-3 grid grid-cols-3 gap-2 sm:gap-4">
                     {activeProject.stats.map((s) => (
                       <div key={s.k}>
-                        <p className="display-tight text-lg text-accent">{s.v}</p>
+                        <p className="display-tight text-base sm:text-xl font-medium text-accent">{s.v}</p>
                         <p className="label-mono text-[0.6rem] text-muted-foreground mt-0.5">{s.k}</p>
                       </div>
                     ))}
@@ -350,8 +335,7 @@ function Index() {
                 </div>
               </div>
 
-              {/* Right Column: Independently Scrollable Live Web Preview / Image */}
-              <div className="relative flex h-full flex-col bg-black md:col-span-7 overflow-hidden">
+              <div className="relative flex min-h-[260px] h-full flex-col bg-black md:col-span-7 overflow-hidden">
                 {activeProject.url ? (
                   <iframe
                     src={activeProject.url}
@@ -359,11 +343,11 @@ function Index() {
                     className="h-full w-full flex-1 border-0"
                   />
                 ) : (
-                  <div className="h-full w-full overflow-y-auto">
+                  <div className="h-full w-full overflow-y-auto p-3">
                     <img
                       src={activeProject.img}
                       alt={`${activeProject.name} preview`}
-                      className="w-full object-cover"
+                      className="w-full rounded-lg object-cover shadow-2xl"
                     />
                   </div>
                 )}
@@ -372,12 +356,13 @@ function Index() {
           </div>
         </div>
       )}
+
       {/* NAV */}
       <header
         className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-4 transition-all duration-500 md:px-8 ${
-          isScrolled
-            ? "border-b border-hairline/40 bg-background/80 backdrop-blur-md py-4 shadow-sm"
-            : "border-b border-transparent bg-transparent py-6"
+          isScrolled || mobileMenuOpen
+            ? "border-b border-hairline/40 bg-background/90 backdrop-blur-md py-4 shadow-sm"
+            : "border-b border-transparent bg-transparent py-5 md:py-6"
         }`}
       >
         <a href="#top" className="text-lg font-semibold tracking-tight">
@@ -394,16 +379,49 @@ function Index() {
             </a>
           ))}
         </nav>
-        <a
-          href="#contact"
-          className="label-mono border-b border-foreground pb-1 text-foreground transition-colors hover:border-accent hover:text-accent"
-        >
-          Talk to Us
-        </a>
+
+        <div className="flex items-center gap-4">
+          <a
+            href="#contact"
+            className="label-mono border-b border-foreground pb-1 text-xs sm:text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
+          >
+            Talk to Us
+          </a>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline text-foreground md:hidden"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? "✕" : "☰"}
+          </button>
+        </div>
       </header>
 
+      {/* Mobile Drawer Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 flex flex-col justify-between bg-background px-6 pt-28 pb-12 md:hidden animate-in fade-in duration-300">
+          <nav className="flex flex-col space-y-6">
+            {NAV.map((i) => (
+              <a
+                key={i.label}
+                href={i.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className="display-tight text-3xl font-medium text-foreground transition-colors hover:text-accent"
+              >
+                {i.label}
+              </a>
+            ))}
+          </nav>
+          <div className="border-t border-hairline pt-6">
+            <p className="label-mono text-xs text-muted-foreground">© 2026 Summit Studio</p>
+          </div>
+        </div>
+      )}
+
       {/* HERO */}
-      <section className="relative h-[100svh] min-h-[640px] w-full overflow-hidden">
+      <section className="relative min-h-[100svh] w-full overflow-hidden flex flex-col justify-between">
         <img
           src={heroImg}
           alt="Blurred crimson city lights at night"
@@ -414,9 +432,9 @@ function Index() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/20 to-background" />
         <div className="grain-overlay pointer-events-none absolute inset-0 opacity-40" />
 
-        <div className="relative flex h-full flex-col justify-between gap-16 px-5 pt-36 pb-10 md:px-8 md:pt-40 md:pb-12">
+        <div className="relative flex min-h-[100svh] flex-col justify-between gap-12 px-5 pt-32 pb-8 md:px-8 md:pt-40 md:pb-12">
           <div className="rise ml-auto flex max-w-lg flex-col items-end text-right">
-            <h1 className="text-base leading-loose tracking-tight md:text-lg">
+            <h1 className="text-sm leading-relaxed tracking-tight sm:text-base md:text-lg">
               Blending in is expensive.
               <br />
               <span className="text-foreground/70">
@@ -426,14 +444,15 @@ function Index() {
             </h1>
             <a
               href="#work"
-              className="label-mono mt-10 flex w-full max-w-sm items-center justify-between border-b border-foreground pb-3 transition-colors hover:border-accent hover:text-accent"
+              className="label-mono mt-8 sm:mt-10 flex w-full max-w-xs sm:max-w-sm items-center justify-between border-b border-foreground pb-3 text-xs sm:text-sm transition-colors hover:border-accent hover:text-accent"
             >
               Explore our work
               <span>↗</span>
-            </a>          </div>
+            </a>
+          </div>
 
-          <div>
-            <p className="display-tight w-full text-[10.4vw] leading-[0.8] whitespace-nowrap">
+          <div className="overflow-hidden w-full">
+            <p className="display-tight w-full text-[11vw] leading-[0.85] tracking-tight whitespace-nowrap md:text-[10.4vw]">
               Summit Studio<span className="text-accent">.</span>
             </p>
           </div>
@@ -623,12 +642,12 @@ function Index() {
             </div>
 
             {/* Full-Width Laptop Screen Widescreen Cards Carousel */}
-            <div className="flex gap-8 overflow-x-auto pb-8 md:col-span-8 no-scrollbar scroll-smooth mask-edge-fade">
+            <div className="flex gap-4 md:gap-8 overflow-x-auto pb-8 md:col-span-8 no-scrollbar scroll-smooth mask-edge-fade">
               {WORK.map((w) => (
                 <article
                   key={w.n}
                   onClick={() => setActiveProject(w)}
-                  className="group relative flex aspect-[16/9.5] w-[90vw] max-w-[780px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border border-hairline bg-card p-6 shadow-2xl transition-all duration-500 hover:border-accent/50 md:p-10"
+                  className="group relative flex aspect-[16/10.5] w-[84vw] max-w-[780px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-xl md:rounded-2xl border border-hairline bg-card p-5 shadow-2xl transition-all duration-500 hover:border-accent/50 md:p-10"
                 >
                   {/* Background Image */}
                   <img
