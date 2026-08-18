@@ -429,18 +429,9 @@ function Index() {
       <section id="studio">
         <SectionHead n="01" label="About Company" />
         <div className="px-6 py-20 md:px-16">
-          {/* Dual-Tone Headline (Full Width) */}
-          <h2 className="display-tight w-full max-w-5xl text-3xl font-normal leading-snug tracking-tight md:text-5xl md:leading-tight">
-            <span className="text-foreground">
-              We believe the most memorable brands are not built through decoration, but through atmosphere —
-            </span>{" "}
-            <span className="text-foreground/40">
-              quietly captures attention, and leaves a lasting impression after the experience ends.
-            </span>
-          </h2>
 
           {/* 4-Card Bento Row (Matching Screenshot Structure) */}
-          <div className="mt-20 grid gap-px bg-hairline md:grid-cols-4">
+          <div className="grid gap-px bg-hairline md:grid-cols-4">
             {/* Card 1: Global Collaborations */}
             <div className="group flex flex-col justify-between bg-background p-8 transition-colors duration-300 hover:bg-secondary">
               <div>
