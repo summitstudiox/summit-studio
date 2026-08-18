@@ -581,17 +581,32 @@ function Index() {
             <div className="flex flex-col justify-between space-y-12 md:col-span-4 md:sticky md:top-28">
               <div>
                 <h2 className="display-tight text-4xl font-normal leading-tight tracking-tight text-foreground md:text-5xl">
-                  OUR WORK SPEAKS THAN WORDS
+                  OUR WORK SPEAKS LOUDER THAN WORDS.
                 </h2>
+                <p className="mt-4 text-xs leading-relaxed text-foreground/65 md:text-sm">
+                  A curated collection of digital weapons, bespoke platforms, and identity systems engineered for dominant commercial growth.
+                </p>
               </div>
 
-              <div>
+              <div className="space-y-6">
                 <Link
                   to="/work"
                   className="label-mono inline-flex items-center gap-2.5 rounded-full border border-hairline bg-secondary/50 px-6 py-3 text-xs font-medium backdrop-blur-md transition-all hover:border-accent hover:bg-accent hover:text-accent-foreground"
                 >
-                  <span>→</span> View All
+                  <span>→</span> View All Cases
                 </Link>
+
+                <div className="flex items-center gap-6 border-t border-hairline pt-6">
+                  <div>
+                    <span className="display-tight text-xl font-medium text-foreground">04</span>
+                    <span className="label-mono block text-[0.65rem] text-muted-foreground">Featured Cases</span>
+                  </div>
+                  <div className="h-6 w-px bg-hairline" />
+                  <div>
+                    <span className="display-tight text-xl font-medium text-accent">100%</span>
+                    <span className="label-mono block text-[0.65rem] text-muted-foreground">Bespoke Build</span>
+                  </div>
+                </div>
               </div>
             </div>
 
