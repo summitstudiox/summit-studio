@@ -4,6 +4,7 @@ import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
 import work4 from "@/assets/work-4.jpg";
+import clubExotismImg from "@/assets/clubexotism.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -36,7 +37,14 @@ const WORK = [
   { n: "01", name: "Vanta Digital", kind: "Web Design · Development", year: "2025", img: work2 },
   { n: "02", name: "Campus Connect", kind: "Brand Identity · Web", year: "2024", img: work1 },
   { n: "03", name: "Ascend", kind: "UI Design · Development", year: "2024", img: work3 },
-  { n: "04", name: "Velocity", kind: "Web Design · Development", year: "2023", img: work4 },
+  {
+    n: "04",
+    name: "Club Exotism",
+    kind: "Full Platform · Slot Booking · Admin Dashboards",
+    year: "2026",
+    img: clubExotismImg,
+    url: "https://clubexotism.com",
+  },
 ];
 
 const PROCESS = [
@@ -259,29 +267,48 @@ function Index() {
       <section id="work">
         <SectionHead n="02" label="Some of the brands we made money for ↓" />
         <div className="grid gap-px bg-hairline md:grid-cols-2">
-          {WORK.map((w) => (
-            <article key={w.n} className="group bg-background p-6 md:p-8">
-              <div className="relative overflow-hidden">
-                <img
-                  src={w.img}
-                  alt={`${w.name} project`}
-                  loading="lazy"
-                  width={1200}
-                  height={900}
-                  className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                />
-                <div className="grain-overlay pointer-events-none absolute inset-0 opacity-25" />
-              </div>
-              <div className="mt-4 flex items-baseline justify-between">
-                <span className="label-mono text-muted-foreground">[ {w.n} ]</span>
-                <span className="label-mono text-muted-foreground">© {w.year}</span>
-              </div>
-              <h3 className="display-tight mt-2 text-3xl transition-colors group-hover:text-accent">
-                {w.name}
-              </h3>
-              <p className="label-mono mt-2 text-muted-foreground">{w.kind}</p>
-            </article>
-          ))}
+          {WORK.map((w) => {
+            const content = (
+              <>
+                <div className="relative overflow-hidden">
+                  <img
+                    src={w.img}
+                    alt={`${w.name} project`}
+                    loading="lazy"
+                    width={1200}
+                    height={900}
+                    className="aspect-[4/3] w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                  />
+                  <div className="grain-overlay pointer-events-none absolute inset-0 opacity-25" />
+                </div>
+                <div className="mt-4 flex items-baseline justify-between">
+                  <span className="label-mono text-muted-foreground">[ {w.n} ]</span>
+                  <span className="label-mono text-muted-foreground">© {w.year}</span>
+                </div>
+                <h3 className="display-tight mt-2 flex items-center justify-between text-3xl transition-colors group-hover:text-accent">
+                  <span>{w.name}</span>
+                  {w.url && <span className="text-xl">↗</span>}
+                </h3>
+                <p className="label-mono mt-2 text-muted-foreground">{w.kind}</p>
+              </>
+            );
+
+            return w.url ? (
+              <a
+                key={w.n}
+                href={w.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block bg-background p-6 md:p-8"
+              >
+                {content}
+              </a>
+            ) : (
+              <article key={w.n} className="group bg-background p-6 md:p-8">
+                {content}
+              </article>
+            );
+          })}
         </div>
 
         <div className="grid gap-px border-t border-hairline bg-hairline md:grid-cols-3">
