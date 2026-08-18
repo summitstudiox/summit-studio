@@ -639,102 +639,62 @@ function Index() {
         </div>
       </section>
 
-      {/* PROCESS — Scroll-Driven Side-by-Side Graph Timeline */}
-      <section id="process" className="relative min-h-[360vh] border-t border-hairline">
-        <div className="sticky top-16 z-10 bg-background/95 backdrop-blur-md">
-          <SectionHead n="03" label="Our Process" />
-          <div className="px-6 py-12 md:px-16 md:py-16">
-            <div className="flex flex-col justify-between gap-6 md:flex-row md:items-start">
-              <div>
-                <span className="label-mono text-xs text-accent">[ Production Timeline ]</span>
-                <h2 className="display-tight mt-2 max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
-                  Our Process Moves Like Production.
-                </h2>
-              </div>
-              <div className="flex items-center gap-4">
-                <span className="label-mono text-xs text-muted-foreground">
-                  Step 0{activeProcessStep + 1} of 04
-                </span>
-                <div className="flex gap-1.5">
-                  {[0, 1, 2, 3].map((i) => (
-                    <div
-                      key={i}
-                      className={`h-1.5 w-6 rounded-full transition-colors duration-300 ${
-                        i <= activeProcessStep ? "bg-accent" : "bg-hairline"
-                      }`}
-                    />
-                  ))}
+      {/* PROCESS — 4-Stage Production Grid (Matching Screenshot 2) */}
+      <section id="process" className="border-t border-hairline">
+        <SectionHead n="03" label="Our Process" />
+        <div className="px-6 py-20 md:px-16 md:py-28">
+          {/* Header */}
+          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-start">
+            <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+              Our Process Moves Like Production.
+            </h2>
+            <p className="max-w-md text-xs leading-relaxed text-muted-foreground md:text-sm">
+              Every memorable experience begins with a clear vision. Our process transforms ideas into immersive digital worlds through strategy, craftsmanship, and thoughtful execution.
+            </p>
+          </div>
+
+          {/* Stepped Timeline Production Grid */}
+          <div className="mt-20 space-y-4">
+            {/* Top Stepped Ribbon Columns */}
+            <div className="grid gap-px bg-hairline md:grid-cols-4">
+              {PROCESS.map((p, idx) => (
+                <div
+                  key={p.n}
+                  onClick={() => setActiveProcessStep(idx)}
+                  className="group flex h-64 cursor-pointer flex-col justify-between bg-background p-6 transition-colors duration-300 hover:bg-secondary/40 md:p-8"
+                >
+                  {/* Floating Black Indicator Ribbon */}
+                  <div
+                    className="w-full rounded-md bg-foreground px-4 py-3 text-xs font-medium tracking-wider text-background shadow-md transition-transform duration-300 group-hover:scale-[1.02]"
+                    style={{ marginTop: p.offset }}
+                  >
+                    {p.title}
+                  </div>
+                  <div className="text-center">
+                    <span className="label-mono text-xs text-muted-foreground transition-colors group-hover:text-accent">
+                      {p.n}
+                    </span>
+                  </div>
                 </div>
-              </div>
+              ))}
             </div>
 
-            {/* Side-by-Side 4-Box Graph Grid (Matching Screenshot 2 exact boxes) */}
-            <div className="mt-12">
-              <div className="grid gap-px bg-hairline md:grid-cols-4">
-                {PROCESS.map((p, idx) => {
-                  const isActive = idx === activeProcessStep;
-                  const isPassed = idx < activeProcessStep;
-                  return (
-                    <div
-                      key={p.n}
-                      onClick={() => setActiveProcessStep(idx)}
-                      className={`flex h-56 cursor-pointer flex-col justify-between p-6 transition-all duration-500 md:p-8 ${
-                        isActive
-                          ? "bg-secondary/80 ring-1 ring-accent"
-                          : isPassed
-                          ? "bg-background opacity-90 hover:opacity-100"
-                          : "bg-background/40 opacity-40 hover:opacity-70"
-                      }`}
-                    >
-                      {/* Floating Step Ribbon */}
-                      <div
-                        className={`w-full rounded px-4 py-2.5 text-xs font-medium tracking-wider transition-all duration-500 ${
-                          isActive
-                            ? "bg-accent text-accent-foreground shadow-lg scale-[1.02]"
-                            : isPassed
-                            ? "bg-foreground text-background"
-                            : "bg-muted text-muted-foreground"
-                        }`}
-                        style={{ marginTop: p.offset }}
-                      >
-                        {p.title}
-                      </div>
-                      <div className="flex items-center justify-between">
-                        <span className="label-mono text-xs text-muted-foreground">{p.n}</span>
-                        {isActive && (
-                          <span className="label-mono text-[0.65rem] text-accent animate-pulse">
-                            ACTIVE
-                          </span>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* Bottom Side-by-Side Description Cards */}
-              <div className="mt-4 grid gap-px bg-hairline md:grid-cols-4">
-                {PROCESS.map((p, idx) => {
-                  const isActive = idx === activeProcessStep;
-                  const isPassed = idx < activeProcessStep;
-                  return (
-                    <div
-                      key={p.n}
-                      onClick={() => setActiveProcessStep(idx)}
-                      className={`cursor-pointer p-6 transition-all duration-500 md:p-8 space-y-3 ${
-                        isActive
-                          ? "bg-secondary/90 border-t-2 border-accent"
-                          : isPassed
-                          ? "bg-background hover:bg-secondary/30"
-                          : "bg-background/30 opacity-40 hover:opacity-70"
-                      }`}
-                    >
-                      <h3 className="display-tight text-xl font-medium text-foreground">{p.title}</h3>
-                      <p className="text-xs leading-relaxed text-foreground/80">{p.sub}</p>
-                    </div>
-                  );
-                })}
-              </div>
+            {/* Bottom Step Content Description Cards */}
+            <div className="grid gap-px bg-hairline md:grid-cols-4">
+              {PROCESS.map((p, idx) => (
+                <div
+                  key={p.n}
+                  onClick={() => setActiveProcessStep(idx)}
+                  className="group cursor-pointer bg-background p-6 space-y-3 transition-colors duration-300 hover:bg-secondary/40 md:p-8"
+                >
+                  <h3 className="display-tight text-xl font-medium text-foreground transition-colors group-hover:text-accent">
+                    {p.title}
+                  </h3>
+                  <p className="text-xs leading-relaxed text-foreground/75">
+                    {p.sub}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
