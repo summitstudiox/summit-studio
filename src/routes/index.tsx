@@ -577,33 +577,35 @@ function Index() {
         <div className="px-6 py-20 md:px-16">
           <div className="grid gap-12 md:grid-cols-12 md:items-start">
             {/* Left Header Column */}
-            <div className="flex flex-col justify-between space-y-12 md:col-span-4 md:sticky md:top-28">
+            <div className="flex flex-col justify-between space-y-10 md:col-span-4 md:sticky md:top-28">
               <div>
-                <h2 className="display-tight text-4xl font-normal leading-tight tracking-tight text-foreground md:text-5xl">
+                <h2 className="display-tight text-4xl font-normal leading-[1.1] tracking-tight text-foreground md:text-5xl md:leading-[1.08]">
                   OUR WORK SPEAKS LOUDER THAN WORDS.
                 </h2>
-                <p className="mt-4 text-xs leading-relaxed text-foreground/65 md:text-sm">
+                <p className="mt-5 text-xs leading-relaxed text-foreground/70 md:text-sm font-normal">
                   A curated collection of digital weapons, bespoke platforms, and identity systems engineered for dominant commercial growth.
                 </p>
               </div>
 
-              <div className="space-y-6">
-                <Link
-                  to="/work"
-                  className="label-mono inline-flex items-center gap-2.5 rounded-full border border-hairline bg-secondary/50 px-6 py-3 text-xs font-medium backdrop-blur-md transition-all hover:border-accent hover:bg-accent hover:text-accent-foreground"
-                >
-                  <span>→</span> View All Cases
-                </Link>
+              <div className="space-y-8">
+                <div>
+                  <Link
+                    to="/work"
+                    className="label-mono inline-flex items-center gap-3 rounded-full border border-hairline bg-secondary/60 px-7 py-3.5 text-xs font-medium backdrop-blur-md transition-all hover:border-accent hover:bg-accent hover:text-accent-foreground"
+                  >
+                    <span>→</span> View All Cases
+                  </Link>
+                </div>
 
-                <div className="flex items-center gap-6 border-t border-hairline pt-6">
+                <div className="flex items-center gap-8 border-t border-hairline/60 pt-8">
                   <div>
-                    <span className="display-tight text-xl font-medium text-foreground">04</span>
-                    <span className="label-mono block text-[0.65rem] text-muted-foreground">Featured Cases</span>
+                    <span className="display-tight text-2xl font-medium text-foreground">04</span>
+                    <span className="label-mono mt-1 block text-[0.68rem] text-muted-foreground">Featured Cases</span>
                   </div>
-                  <div className="h-6 w-px bg-hairline" />
+                  <div className="h-8 w-px bg-hairline/60" />
                   <div>
-                    <span className="display-tight text-xl font-medium text-accent">100%</span>
-                    <span className="label-mono block text-[0.65rem] text-muted-foreground">Bespoke Build</span>
+                    <span className="display-tight text-2xl font-medium text-accent">100%</span>
+                    <span className="label-mono mt-1 block text-[0.68rem] text-muted-foreground">Bespoke Build</span>
                   </div>
                 </div>
               </div>
