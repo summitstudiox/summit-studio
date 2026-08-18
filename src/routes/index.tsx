@@ -515,7 +515,11 @@ function Index() {
               {SERVICES.map((s) => {
                 const isOpen = openService === s.n;
                 return (
-                  <div key={s.n} className="py-8 transition-colors">
+                  <div
+                    key={s.n}
+                    onMouseEnter={() => setOpenService(s.n)}
+                    className="py-8 transition-colors"
+                  >
                     <div
                       onClick={() => setOpenService(isOpen ? null : s.n)}
                       className="flex cursor-pointer items-start justify-between gap-6"
