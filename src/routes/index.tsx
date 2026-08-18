@@ -497,9 +497,8 @@ function Index() {
           {/* Collapsible Services Accordion Block */}
           <div className="mt-24">
             <div className="mb-12">
-              <span className="label-mono text-xs text-accent">[ Our Services ]</span>
-              <h3 className="display-tight mt-2 text-3xl font-medium text-foreground md:text-4xl">
-                Crafting Experiences That Leave A Lasting Mark
+              <h3 className="display-tight text-3xl font-medium text-foreground md:text-5xl">
+                Our Services.
               </h3>
             </div>
 
