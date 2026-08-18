@@ -582,8 +582,7 @@ function Index() {
             {/* Left Header Column */}
             <div className="flex flex-col justify-between space-y-12 md:col-span-4 md:sticky md:top-28">
               <div>
-                <span className="label-mono text-xs text-muted-foreground">Our Works —</span>
-                <h2 className="display-tight mt-6 text-4xl font-normal leading-tight tracking-tight text-foreground md:text-5xl">
+                <h2 className="display-tight text-4xl font-normal leading-tight tracking-tight text-foreground md:text-5xl">
                   OUR WORK SPEAKS THAN WORDS
                 </h2>
               </div>
