@@ -95,15 +95,28 @@ function WorkPage() {
   const [activeProject, setActiveProject] = useState<(typeof ALL_WORK)[number] | null>(null);
 
   return (
-    <main className="min-h-screen bg-background text-foreground px-6 py-20 md:px-16 md:py-28">
-      {/* Modal Header */}
+    <main className="min-h-screen bg-background text-foreground">
+      {/* Top Navbar */}
+      <header className="sticky top-0 z-50 flex items-center justify-between border-b border-hairline bg-background/95 px-6 py-4 backdrop-blur-md md:px-16">
+        <Link to="/" className="display-tight text-xl font-medium tracking-tight text-foreground">
+          Summit Studio<span className="text-accent">.</span>
+        </Link>
+        <Link
+          to="/"
+          className="label-mono inline-flex items-center gap-2 rounded-full border border-hairline bg-secondary/50 px-5 py-2 text-xs transition-colors hover:border-accent hover:text-accent"
+        >
+          <span>←</span> Back to Studio
+        </Link>
+      </header>
+
+      {/* Case Study Live Modal */}
       {activeProject && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-4 backdrop-blur-md md:p-8"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-4 backdrop-blur-md md:p-8 animate-in fade-in duration-300"
           onClick={() => setActiveProject(null)}
         >
           <div
-            className="relative flex h-full max-h-[92vh] w-full max-w-6xl flex-col overflow-hidden rounded-xl border border-hairline bg-card shadow-2xl"
+            className="relative flex h-full max-h-[92vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-hairline bg-card shadow-2xl"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-hairline px-6 py-4">
@@ -117,14 +130,14 @@ function WorkPage() {
                     href={activeProject.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="label-mono text-xs text-foreground transition-colors hover:text-accent"
+                    className="label-mono inline-flex items-center gap-1.5 text-xs text-accent transition-colors hover:underline"
                   >
-                    Open site ↗
+                    <span>Open Live Platform</span> ↗
                   </a>
                 )}
                 <button
                   onClick={() => setActiveProject(null)}
-                  className="text-base text-muted-foreground transition-colors hover:text-foreground p-1"
+                  className="flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-sm text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
                 >
                   ✕
                 </button>
@@ -135,22 +148,22 @@ function WorkPage() {
               <div className="flex flex-col justify-between overflow-y-auto border-b border-hairline p-6 md:col-span-5 md:border-r md:border-b-0 md:p-8 space-y-6">
                 <div className="space-y-6">
                   <div>
-                    <h4 className="label-mono text-xs text-accent">Overview</h4>
+                    <h4 className="label-mono text-xs text-accent">[ Challenge & Scope ]</h4>
                     <p className="mt-2 text-sm leading-relaxed text-foreground/90">{activeProject.challenge}</p>
                   </div>
                   <div>
-                    <h4 className="label-mono text-xs text-accent">What We Built</h4>
+                    <h4 className="label-mono text-xs text-accent">[ Strategic Execution ]</h4>
                     <p className="mt-2 text-sm leading-relaxed text-foreground/80">{activeProject.solution}</p>
                   </div>
                 </div>
 
                 <div className="border-t border-hairline pt-6">
-                  <h4 className="label-mono text-xs text-muted-foreground">Impact</h4>
-                  <div className="mt-3 grid grid-cols-3 gap-3">
+                  <h4 className="label-mono text-xs text-muted-foreground">[ Commercial Impact ]</h4>
+                  <div className="mt-4 grid grid-cols-3 gap-4">
                     {activeProject.stats.map((s) => (
                       <div key={s.k}>
-                        <p className="display-tight text-lg text-accent">{s.v}</p>
-                        <p className="label-mono text-[0.6rem] text-muted-foreground mt-0.5">{s.k}</p>
+                        <p className="display-tight text-xl font-medium text-accent">{s.v}</p>
+                        <p className="label-mono text-[0.65rem] text-muted-foreground mt-1">{s.k}</p>
                       </div>
                     ))}
                   </div>
@@ -165,11 +178,11 @@ function WorkPage() {
                     className="h-full w-full flex-1 border-0"
                   />
                 ) : (
-                  <div className="h-full w-full overflow-y-auto">
+                  <div className="h-full w-full overflow-y-auto p-4">
                     <img
                       src={activeProject.img}
                       alt={`${activeProject.name} preview`}
-                      className="w-full object-cover"
+                      className="w-full rounded-lg object-cover shadow-2xl"
                     />
                   </div>
                 )}
@@ -179,56 +192,121 @@ function WorkPage() {
         </div>
       )}
 
-      {/* Header */}
-      <div className="flex flex-col justify-between gap-6 border-b border-hairline pb-12 md:flex-row md:items-end">
-        <div>
-          <Link to="/" className="label-mono text-xs text-accent hover:underline">
-            ← Back to Home
-          </Link>
-          <h1 className="display-tight mt-4 text-4xl font-medium tracking-tight md:text-6xl">
-            All Selected Works.
-          </h1>
+      {/* Page Hero Banner */}
+      <section className="border-b border-hairline px-6 py-20 md:px-16 md:py-28">
+        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+          <div>
+            <span className="label-mono text-xs text-accent">[ Archive · 2024 — 2026 ]</span>
+            <h1 className="display-tight mt-3 text-4xl font-normal tracking-tight text-foreground md:text-7xl">
+              Selected Works<span className="text-accent">.</span>
+            </h1>
+          </div>
+          <p className="max-w-md text-xs leading-relaxed text-muted-foreground md:text-sm">
+            A comprehensive archive of custom web engines, digital platforms, and visual identity systems engineered for market leaders.
+          </p>
         </div>
-        <p className="max-w-xs label-mono text-xs text-muted-foreground">
-          Showing 04 of 04 Case Stories
-        </p>
-      </div>
+
+        {/* Category Pill Badges */}
+        <div className="mt-12 flex flex-wrap gap-2.5">
+          {["All Projects (04)", "Full Platform (01)", "Web Design (02)", "UI/UX Systems (01)"].map((tag, idx) => (
+            <span
+              key={tag}
+              className={`label-mono cursor-pointer rounded-full px-5 py-2 text-xs transition-all ${
+                idx === 0
+                  ? "bg-accent text-accent-foreground font-medium shadow-md"
+                  : "border border-hairline bg-secondary/30 text-muted-foreground hover:border-hairline hover:text-foreground"
+              }`}
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      </section>
 
       {/* Work Grid */}
-      <div className="mt-16 grid gap-px bg-hairline md:grid-cols-2">
-        {ALL_WORK.map((w) => (
-          <article
-            key={w.n}
-            onClick={() => setActiveProject(w)}
-            className="group cursor-pointer bg-background p-8 md:p-12 transition-all duration-300 hover:bg-secondary/40"
-          >
-            <div className="relative overflow-hidden rounded-lg">
-              <img
-                src={w.img}
-                alt={`${w.name} project`}
-                loading="lazy"
-                width={1200}
-                height={900}
-                className="aspect-[16/10] w-full object-cover transition-transform duration-700 group-hover:scale-[1.025]"
-              />
-              <div className="grain-overlay pointer-events-none absolute inset-0 opacity-20" />
-            </div>
+      <section className="px-6 py-16 md:px-16 md:py-24">
+        <div className="grid gap-12 md:grid-cols-2 md:gap-16">
+          {ALL_WORK.map((w) => (
+            <article
+              key={w.n}
+              onClick={() => setActiveProject(w)}
+              className="group cursor-pointer space-y-6"
+            >
+              {/* Image Frame */}
+              <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-hairline bg-card shadow-2xl transition-all duration-500 hover:border-accent/60">
+                <img
+                  src={w.img}
+                  alt={`${w.name} project`}
+                  loading="lazy"
+                  width={1200}
+                  height={900}
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                <div className="grain-overlay pointer-events-none absolute inset-0 opacity-20" />
 
-            <div className="mt-8 flex items-baseline justify-between">
-              <h3 className="display-tight text-3xl font-medium text-foreground transition-colors group-hover:text-accent md:text-4xl">
-                {w.name}
-              </h3>
-              <span className="label-mono text-xs text-muted-foreground group-hover:text-foreground">
-                View Case
-              </span>
-            </div>
-            <p className="label-mono mt-2 text-xs text-accent/90">{w.kind}</p>
-            <p className="mt-4 text-sm leading-relaxed text-foreground/75 line-clamp-2">
-              {w.challenge}
-            </p>
-          </article>
-        ))}
-      </div>
+                {/* Number Ribbon */}
+                <div className="absolute top-5 left-5 rounded-full border border-hairline bg-background/80 px-3.5 py-1.5 backdrop-blur-md">
+                  <span className="label-mono text-xs text-foreground">[{w.n}]</span>
+                </div>
+
+                {/* Live Status Pill */}
+                {w.url && (
+                  <div className="absolute top-5 right-5 rounded-full border border-accent/40 bg-accent/20 px-3.5 py-1.5 backdrop-blur-md">
+                    <span className="label-mono text-[0.65rem] text-accent animate-pulse">● LIVE PLATFORM</span>
+                  </div>
+                )}
+
+                {/* Preview Trigger Pill */}
+                <div className="absolute bottom-5 right-5 rounded-full border border-hairline bg-background/80 px-4 py-2 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100">
+                  <span className="label-mono text-xs text-foreground">Interactive Preview ↗</span>
+                </div>
+              </div>
+
+              {/* Title & Metadata */}
+              <div className="space-y-3 px-1">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="display-tight text-2xl font-medium text-foreground transition-colors group-hover:text-accent md:text-3xl">
+                    {w.name} — {w.year}
+                  </h3>
+                  <span className="label-mono text-xs text-muted-foreground group-hover:text-foreground">
+                    Explore ↗
+                  </span>
+                </div>
+                <p className="label-mono text-xs text-accent">{w.kind}</p>
+                <p className="text-xs leading-relaxed text-foreground/75 line-clamp-2 md:text-sm">
+                  {w.challenge}
+                </p>
+
+                {/* Stats Chips */}
+                <div className="flex items-center gap-6 border-t border-hairline/60 pt-4">
+                  {w.stats.map((s) => (
+                    <div key={s.k}>
+                      <span className="display-tight text-lg font-medium text-foreground">{s.v}</span>
+                      <span className="label-mono block text-[0.62rem] text-muted-foreground">{s.k}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-hairline px-6 py-12 text-center md:px-16 md:py-16">
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+          <Link to="/" className="display-tight text-xl font-medium text-foreground">
+            Summit Studio<span className="text-accent">.</span>
+          </Link>
+          <p className="label-mono text-xs text-muted-foreground">
+            © 2026 Summit Studio. All rights reserved.
+          </p>
+          <Link to="/" className="label-mono text-xs text-accent hover:underline">
+            Back to top ↑
+          </Link>
+        </div>
+      </footer>
     </main>
   );
 }
