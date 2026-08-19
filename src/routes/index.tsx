@@ -267,7 +267,12 @@ function Index() {
     const onScroll = () => {
       if (!isAutoScrolling) {
         markInteraction();
-        pos = el.scrollLeft; // re-sync in case the user scrolled manually
+        const newPos = el.scrollLeft;
+        // Continue in whatever direction the user just scrolled, not
+        // whatever direction the animation happened to be going before.
+        if (newPos > pos) dir = 1;
+        else if (newPos < pos) dir = -1;
+        pos = newPos;
       }
     };
     const onEnter = () => {
@@ -292,6 +297,8 @@ function Index() {
     el.addEventListener("pointerdown", onPointerDown);
     window.addEventListener("pointerup", onPointerUp);
 
+    let wasMoving = false;
+
     const step = (now: number) => {
       // The native "scroll" event from last frame's assignment below dispatches
       // asynchronously, so isAutoScrolling has to stay true until it's had a
@@ -302,7 +309,14 @@ function Index() {
       const dt = now - lastFrameTime;
       lastFrameTime = now;
       const idleEnough = Date.now() - lastInteraction > RESUME_DELAY;
-      if (idleEnough && !isHovering && !isPointerDown && !activeProjectRef.current) {
+      const shouldMove = idleEnough && !isHovering && !isPointerDown && !activeProjectRef.current;
+      if (shouldMove) {
+        if (!wasMoving) {
+          // Just resumed — trust the DOM's actual scroll position rather
+          // than our tracked `pos`, in case a scroll event from a manual
+          // jump hasn't dispatched yet and `pos` is stale.
+          pos = el.scrollLeft;
+        }
         const maxScroll = el.scrollWidth - el.clientWidth;
         if (maxScroll > 0) {
           pos += ((SPEED * dt) / 1000) * dir;
@@ -317,6 +331,7 @@ function Index() {
           el.scrollLeft = pos;
         }
       }
+      wasMoving = shouldMove;
       rafId = requestAnimationFrame(step);
     };
     rafId = requestAnimationFrame(step);
