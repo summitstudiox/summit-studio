@@ -98,12 +98,22 @@ const CATEGORIES = [
   { id: "SYSTEMS", label: "UI/UX Systems", count: 1 },
 ];
 
+const NAV = [
+  { label: "Home", href: "/#top" },
+  { label: "Studio", href: "/#studio" },
+  { label: "Work", href: "/work" },
+  { label: "Process", href: "/#process" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/#contact" },
+];
+
 function WorkPage() {
   const [activeProject, setActiveProject] = useState<(typeof ALL_WORK)[number] | null>(null);
   const [activeFilter, setActiveFilter] = useState("ALL");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (activeProject) {
+    if (activeProject || mobileMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -111,7 +121,7 @@ function WorkPage() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [activeProject]);
+  }, [activeProject, mobileMenuOpen]);
 
   const filteredWork = ALL_WORK.filter((w) => {
     if (activeFilter === "PLATFORM") return w.n === "01";
@@ -129,14 +139,7 @@ function WorkPage() {
         </Link>
         
         <nav className="hidden items-center gap-10 md:flex">
-          {[
-            { label: "Home", href: "/#top" },
-            { label: "Studio", href: "/#studio" },
-            { label: "Work", href: "/work" },
-            { label: "Process", href: "/#process" },
-            { label: "FAQ", href: "/#faq" },
-            { label: "Contact", href: "/#contact" },
-          ].map((i) => (
+          {NAV.map((i) => (
             <Link
               key={i.label}
               to={i.href}
@@ -149,13 +152,47 @@ function WorkPage() {
           ))}
         </nav>
 
-        <Link
-          to="/#contact"
-          className="label-mono border-b border-foreground pb-1 text-foreground transition-colors hover:border-accent hover:text-accent"
-        >
-          Talk to Us
-        </Link>
+        <div className="flex items-center gap-4">
+          <Link
+            to="/#contact"
+            className="label-mono border-b border-foreground pb-1 text-xs sm:text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
+          >
+            Talk to Us
+          </Link>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline text-foreground md:hidden"
+            aria-label="Toggle navigation menu"
+          >
+            {mobileMenuOpen ? "✕" : "☰"}
+          </button>
+        </div>
       </header>
+
+      {/* Mobile Drawer Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 flex flex-col justify-between bg-background px-6 pt-28 pb-12 md:hidden animate-in fade-in duration-300">
+          <nav className="flex flex-col space-y-6">
+            {NAV.map((i) => (
+              <Link
+                key={i.label}
+                to={i.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`display-tight text-3xl font-medium transition-colors hover:text-accent ${
+                  i.label === "Work" ? "text-accent" : "text-foreground"
+                }`}
+              >
+                {i.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="border-t border-hairline pt-6">
+            <p className="label-mono text-xs text-muted-foreground">© 2026 Summit Studio</p>
+          </div>
+        </div>
+      )}
 
       {/* Case Study Live Modal */}
       {activeProject && (
