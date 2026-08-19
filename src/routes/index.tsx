@@ -815,9 +815,9 @@ function Index() {
           </div>
 
             {/* Production Timeline Cards */}
-            <div className="mt-10 space-y-4 md:mt-16">
-              {/* Desktop 4-Column Timeline Ribbon & Content Grid */}
-              <div className="hidden md:block space-y-4">
+            <div className="mt-10 space-y-4 md:mt-16 md:flex md:min-h-[calc(100vh+420px)] md:flex-col md:justify-center">
+              {/* Desktop 4-Column Timeline Ribbon */}
+              <div className="hidden md:block">
                 <div className="grid gap-px bg-hairline grid-cols-4">
                   {PROCESS.map((p, idx) => {
                     const isActive = idx <= activeProcessStep;
@@ -827,7 +827,7 @@ function Index() {
                         key={p.n}
                         onMouseEnter={() => setActiveProcessStep(idx)}
                         onClick={() => setActiveProcessStep(idx)}
-                        className={`group flex h-64 cursor-pointer flex-col justify-between p-8 transition-all duration-500 ${
+                        className={`group relative flex h-80 cursor-pointer flex-col justify-between overflow-hidden p-8 transition-all duration-500 ${
                           isCurrent
                             ? "bg-secondary/90 ring-1 ring-accent scale-[1.01]"
                             : isActive
@@ -835,8 +835,18 @@ function Index() {
                             : "bg-background/40 opacity-40 hover:opacity-80"
                         }`}
                       >
+                        {/* Ghost step numeral fills the offset staircase's dead space */}
+                        <span
+                          aria-hidden="true"
+                          className={`display-tight pointer-events-none absolute -top-4 -right-3 text-[7rem] font-medium transition-colors duration-500 ${
+                            isCurrent ? "text-accent/10" : "text-foreground/[0.04]"
+                          }`}
+                        >
+                          {p.n}
+                        </span>
+
                         <div
-                          className={`w-full rounded px-4 py-3 text-xs font-medium tracking-wider transition-all duration-500 ${
+                          className={`relative w-fit rounded px-4 py-3 text-xs font-medium tracking-wider transition-all duration-500 ${
                             isCurrent
                               ? "bg-accent text-accent-foreground shadow-xl scale-[1.02]"
                               : isActive
@@ -847,39 +857,20 @@ function Index() {
                         >
                           {p.title}
                         </div>
-                        <div className="flex items-center justify-between pt-4">
-                          <span className={`label-mono text-xs ${isCurrent ? "text-accent font-bold" : "text-muted-foreground"}`}>
-                            {p.n}
-                          </span>
-                          {isCurrent && (
-                            <span className="label-mono text-[0.65rem] text-accent animate-pulse">
-                              ● ACTIVE
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
 
-                <div className="grid gap-px bg-hairline grid-cols-4">
-                  {PROCESS.map((p, idx) => {
-                    const isCurrent = idx === activeProcessStep;
-                    return (
-                      <div
-                        key={p.n}
-                        onMouseEnter={() => setActiveProcessStep(idx)}
-                        onClick={() => setActiveProcessStep(idx)}
-                        className={`group cursor-pointer p-8 space-y-3 transition-all duration-500 ${
-                          isCurrent ? "bg-secondary/90 border-t-2 border-accent" : "bg-background/60"
-                        }`}
-                      >
-                        <h3 className={`display-tight text-xl font-medium transition-colors ${isCurrent ? "text-accent" : "text-foreground"}`}>
-                          {p.title}
-                        </h3>
-                        <p className="text-xs leading-relaxed text-foreground/80">
-                          {p.sub}
-                        </p>
+                        <div className="relative space-y-3">
+                          <p className="text-xs leading-relaxed text-foreground/80">{p.sub}</p>
+                          <div className="flex items-center justify-between pt-1">
+                            <span className={`label-mono text-xs ${isCurrent ? "text-accent font-bold" : "text-muted-foreground"}`}>
+                              {p.n}
+                            </span>
+                            {isCurrent && (
+                              <span className="label-mono text-[0.65rem] text-accent animate-pulse">
+                                ● ACTIVE
+                              </span>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     );
                   })}
