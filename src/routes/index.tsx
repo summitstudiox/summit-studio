@@ -253,6 +253,11 @@ function Index() {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
 
+      // Scroll-jacked step tracking is tuned for the tall desktop timeline
+      // layout; the mobile accordion is much shorter, so skip it there and
+      // let taps drive the active step instead.
+      if (window.innerWidth < 768) return;
+
       const processEl = document.getElementById("process");
       if (processEl) {
         const rect = processEl.getBoundingClientRect();
@@ -578,8 +583,8 @@ function Index() {
                           {s.images.map((imgSrc, idx) => (
                             <div
                               key={idx}
-                              className={`relative overflow-hidden border border-hairline shadow-lg ${
-                                idx === 0 ? "h-36 w-36 rounded-full" : "h-36 w-36 rounded-2xl"
+                              className={`relative h-28 w-28 shrink-0 overflow-hidden border border-hairline shadow-lg sm:h-36 sm:w-36 ${
+                                idx === 0 ? "rounded-full" : "rounded-2xl"
                               }`}
                             >
                               <img

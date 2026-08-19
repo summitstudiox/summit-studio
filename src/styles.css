@@ -153,6 +153,15 @@
   animation: rise-in 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @utility mask-edge-fade {
   mask-image: linear-gradient(to right, transparent 0%, black 6%, black 90%, transparent 100%);
   -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 90%, transparent 100%);
