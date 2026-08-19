@@ -469,8 +469,8 @@ function Index() {
         <SectionHead n="01" label="About Company" />
         <div className="px-6 py-20 md:px-16">
 
-          {/* 4-Card Bento Row (2x2 on Mobile, 4-Cols on Desktop) */}
-          <div className="grid gap-px bg-hairline grid-cols-2 md:grid-cols-4">
+          {/* 4-Card Bento Row (Stacked on Mobile, 2x2 on Tablet, 4-Cols on Desktop) */}
+          <div className="grid gap-px bg-hairline grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
             {/* Card 1: Global Collaborations */}
             <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
               <div>
@@ -652,7 +652,7 @@ function Index() {
                 <article
                   key={w.n}
                   onClick={() => setActiveProject(w)}
-                  className="group relative flex aspect-[16/10.5] w-[84vw] max-w-[780px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-xl md:rounded-2xl border border-hairline bg-card p-5 shadow-2xl transition-all duration-500 hover:border-accent/50 md:p-10"
+                  className="group relative flex aspect-[4/3] sm:aspect-[16/10.5] w-[84vw] max-w-[780px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-xl md:rounded-2xl border border-hairline bg-card p-5 shadow-2xl transition-all duration-500 hover:border-accent/50 md:p-10"
                 >
                   {/* Background Image */}
                   <img
@@ -665,10 +665,10 @@ function Index() {
 
                   {/* Bottom Title overlay */}
                   <div className="relative z-10 space-y-2">
-                    <h3 className="display-tight text-3xl font-medium text-white transition-colors group-hover:text-accent md:text-5xl">
+                    <h3 className="display-tight text-2xl font-medium text-white transition-colors group-hover:text-accent sm:text-3xl md:text-5xl">
                       {w.name} — {w.year}
                     </h3>
-                    <p className="label-mono text-xs text-accent/90">{w.kind}</p>
+                    <p className="label-mono line-clamp-1 text-xs text-accent/90">{w.kind}</p>
                   </div>
                 </article>
               ))}
