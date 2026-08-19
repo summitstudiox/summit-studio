@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroImg from "@/assets/hero.jpg";
 import work1 from "@/assets/work-1.jpg";
@@ -237,6 +237,99 @@ function Index() {
   const [openService, setOpenService] = useState<string | null>(null);
   const [activeProcessStep, setActiveProcessStep] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const workScrollRef = useRef<HTMLDivElement>(null);
+  const activeProjectRef = useRef(activeProject);
+
+  useEffect(() => {
+    activeProjectRef.current = activeProject;
+  }, [activeProject]);
+
+  useEffect(() => {
+    const el = workScrollRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const SPEED = 22; // px per second — gentle ambient drift, independent of display refresh rate
+    const RESUME_DELAY = 1800; // ms of quiet before auto-scroll resumes after user interaction
+
+    let rafId: number;
+    let dir = 1;
+    let pos = el.scrollLeft;
+    let lastFrameTime = performance.now();
+    let isAutoScrolling = false;
+    let isHovering = false;
+    let isPointerDown = false;
+    let lastInteraction = 0;
+
+    const markInteraction = () => {
+      lastInteraction = Date.now();
+    };
+    const onScroll = () => {
+      if (!isAutoScrolling) {
+        markInteraction();
+        pos = el.scrollLeft; // re-sync in case the user scrolled manually
+      }
+    };
+    const onEnter = () => {
+      isHovering = true;
+    };
+    const onLeave = () => {
+      isHovering = false;
+      markInteraction();
+    };
+    const onPointerDown = () => {
+      isPointerDown = true;
+      markInteraction();
+    };
+    const onPointerUp = () => {
+      isPointerDown = false;
+      markInteraction();
+    };
+
+    el.addEventListener("scroll", onScroll, { passive: true });
+    el.addEventListener("mouseenter", onEnter);
+    el.addEventListener("mouseleave", onLeave);
+    el.addEventListener("pointerdown", onPointerDown);
+    window.addEventListener("pointerup", onPointerUp);
+
+    const step = (now: number) => {
+      // The native "scroll" event from last frame's assignment below dispatches
+      // asynchronously, so isAutoScrolling has to stay true until it's had a
+      // frame to fire — otherwise it's misread as user interaction and the
+      // animation pauses itself on every single frame.
+      isAutoScrolling = false;
+
+      const dt = now - lastFrameTime;
+      lastFrameTime = now;
+      const idleEnough = Date.now() - lastInteraction > RESUME_DELAY;
+      if (idleEnough && !isHovering && !isPointerDown && !activeProjectRef.current) {
+        const maxScroll = el.scrollWidth - el.clientWidth;
+        if (maxScroll > 0) {
+          pos += ((SPEED * dt) / 1000) * dir;
+          if (pos >= maxScroll) {
+            pos = maxScroll;
+            dir = -1;
+          } else if (pos <= 0) {
+            pos = 0;
+            dir = 1;
+          }
+          isAutoScrolling = true;
+          el.scrollLeft = pos;
+        }
+      }
+      rafId = requestAnimationFrame(step);
+    };
+    rafId = requestAnimationFrame(step);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      el.removeEventListener("scroll", onScroll);
+      el.removeEventListener("mouseenter", onEnter);
+      el.removeEventListener("mouseleave", onLeave);
+      el.removeEventListener("pointerdown", onPointerDown);
+      window.removeEventListener("pointerup", onPointerUp);
+    };
+  }, []);
 
   useEffect(() => {
     if (activeProject || mobileMenuOpen) {
@@ -647,7 +740,10 @@ function Index() {
             </div>
 
             {/* Full-Width Laptop Screen Widescreen Cards Carousel */}
-            <div className="flex gap-4 md:gap-8 overflow-x-auto pb-8 md:col-span-8 no-scrollbar scroll-smooth mask-edge-fade">
+            <div
+              ref={workScrollRef}
+              className="flex gap-4 md:gap-8 overflow-x-auto pb-8 md:col-span-8 no-scrollbar mask-edge-fade"
+            >
               {WORK.map((w) => (
                 <article
                   key={w.n}
