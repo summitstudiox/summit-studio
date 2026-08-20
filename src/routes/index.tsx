@@ -251,6 +251,7 @@ function Index() {
 
     const SPEED = 22; // px per second — gentle ambient drift, independent of display refresh rate
     const RESUME_DELAY = 1800; // ms of quiet before auto-scroll resumes after user interaction
+    const HOVER_MAX_PAUSE = 4500; // ms — resume even if the cursor never leaves, so it never looks frozen
 
     let rafId: number;
     let dir = 1;
@@ -258,6 +259,7 @@ function Index() {
     let lastFrameTime = performance.now();
     let isAutoScrolling = false;
     let isHovering = false;
+    let hoverStart = 0;
     let isPointerDown = false;
     let lastInteraction = 0;
 
@@ -277,6 +279,7 @@ function Index() {
     };
     const onEnter = () => {
       isHovering = true;
+      hoverStart = Date.now();
     };
     const onLeave = () => {
       isHovering = false;
@@ -309,7 +312,8 @@ function Index() {
       const dt = now - lastFrameTime;
       lastFrameTime = now;
       const idleEnough = Date.now() - lastInteraction > RESUME_DELAY;
-      const shouldMove = idleEnough && !isHovering && !isPointerDown && !activeProjectRef.current;
+      const hoverBlocking = isHovering && Date.now() - hoverStart < HOVER_MAX_PAUSE;
+      const shouldMove = idleEnough && !hoverBlocking && !isPointerDown && !activeProjectRef.current;
       if (shouldMove) {
         if (!wasMoving) {
           // Just resumed — trust the DOM's actual scroll position rather
