@@ -565,7 +565,12 @@ function Index() {
         {/* Predictive Arc (halftone-flow) authored background. pointer-events
             stay off so wheel/touch scrolling over the iframe reaches the page. */}
         <div className="absolute inset-0 pointer-events-none">
-          <PredictiveArcCanvas variant="halftone-flow" hue={-30} saturation={2} brightness={1.05} />
+          <PredictiveArcCanvas
+            variant="halftone-flow"
+            hue={-30}
+            saturation={2}
+            brightness={1.05}
+          />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/20 to-background" />
         <div className="grain-overlay pointer-events-none absolute inset-0 opacity-40" />
