@@ -565,12 +565,7 @@ function Index() {
         {/* Predictive Arc (halftone-flow) authored background. pointer-events
             stay off so wheel/touch scrolling over the iframe reaches the page. */}
         <div className="absolute inset-0 pointer-events-none">
-          <PredictiveArcCanvas
-            variant="halftone-flow"
-            hue={-30}
-            saturation={2}
-            brightness={1.05}
-          />
+          <PredictiveArcCanvas variant="halftone-flow" hue={-30} saturation={2} brightness={1.05} />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/20 to-background" />
         <div className="grain-overlay pointer-events-none absolute inset-0 opacity-40" />
@@ -835,14 +830,16 @@ function Index() {
       {/* PROCESS — Sticky Stacking Card Timeline */}
       <section id="process" className="border-t border-hairline">
         <div className="px-6 py-16 md:px-16 md:py-24">
-          {/* Pin Window with height for scroll progress */}
-          <div ref={processPinRef} className="relative min-h-[300vh]">
-            <div className="sticky top-16 z-10">
+          {/* Pin Window with height for scroll progress. Desktop-only: on
+            small screens the card must grow with its content instead of
+            sticking in a viewport-height window where it clips. */}
+          <div ref={processPinRef} className="relative md:min-h-[300vh]">
+            <div className="z-10 md:sticky md:top-16">
               <div className="-mx-6 -mt-16 md:-mx-16 md:-mt-24">
                 <SectionHead n="03" label="Our Process" />
               </div>
 
-              <div className="mb-12 pt-8 md:pt-12">
+              <div className="mb-10 pt-8 md:mb-12 md:pt-12">
                 <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl xl:max-w-none xl:whitespace-nowrap">
                   A Clear Path From Idea to Launch.
                 </h2>
@@ -852,8 +849,8 @@ function Index() {
                 </p>
               </div>
 
-              <div className="flex min-h-[480px] items-center overflow-hidden rounded-2xl border border-hairline bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:min-h-[560px] md:p-16">
-                <div className="grid w-full gap-10 md:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] md:gap-16">
+              <div className="flex items-center overflow-hidden rounded-2xl border border-hairline bg-card/95 p-5 shadow-2xl backdrop-blur-xl sm:p-8 md:min-h-[560px] md:p-16">
+                <div className="grid w-full gap-8 md:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] md:gap-16">
                   {/* Badge / Stage Indicator */}
                   <div className="min-w-0 space-y-6 md:space-y-8">
                     <div className="inline-flex items-center gap-2 rounded-full border border-hairline bg-secondary/60 px-4 py-1.5 backdrop-blur-md">
