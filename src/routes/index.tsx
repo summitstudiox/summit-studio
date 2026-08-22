@@ -849,7 +849,44 @@ function Index() {
                 </p>
               </div>
 
-              <div className="flex items-center overflow-hidden rounded-2xl border border-hairline bg-card/95 p-5 shadow-2xl backdrop-blur-xl sm:p-8 md:min-h-[560px] md:p-16">
+              {/* MOBILE — compact stacked stages. No pinning, no
+                  interactive machinery: every stage is a small static card
+                  with just number, title, summary and deliverables. */}
+              <div className="grid gap-4 md:hidden">
+                {PROCESS.map((stage) => (
+                  <article
+                    key={stage.n}
+                    className="rounded-xl border border-hairline bg-card/95 p-5 shadow-sm backdrop-blur-xl"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="label-mono text-[0.65rem] text-muted-foreground">
+                        [ {stage.n} ]
+                      </span>
+                      <span className="h-1 w-1 rounded-full bg-accent" />
+                    </div>
+                    <h3 className="display-tight mt-3 text-2xl font-medium tracking-tight text-foreground">
+                      {stage.title}
+                    </h3>
+                    <p className="mt-2 text-[0.7rem] leading-relaxed text-foreground/70">
+                      {stage.sub}
+                    </p>
+                    <ul className="mt-4 space-y-1.5 border-t border-hairline/60 pt-4">
+                      {stage.highlights.map((h) => (
+                        <li
+                          key={h}
+                          className="flex items-start gap-2 text-xs leading-relaxed text-foreground/80"
+                        >
+                          <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" />
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
+
+              {/* DESKTOP — sticky stacking card timeline */}
+              <div className="hidden items-center overflow-hidden rounded-2xl border border-hairline bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:flex md:min-h-[560px] md:p-16">
                 <div className="grid w-full gap-8 md:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] md:gap-16">
                   {/* Badge / Stage Indicator */}
                   <div className="min-w-0 space-y-6 md:space-y-8">
