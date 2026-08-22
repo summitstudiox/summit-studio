@@ -11,13 +11,13 @@ import clubExotismImg from "@/assets/clubexotism.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Summit Studio — Branding, Web Design & Development" },
+      { title: "Summit Studio | Branding, Web Design & Development" },
       {
         name: "description",
         content:
           "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery.",
       },
-      { property: "og:title", content: "Summit Studio — Branding, Web Design & Development" },
+      { property: "og:title", content: "Summit Studio | Branding, Web Design & Development" },
       {
         property: "og:description",
         content:
@@ -44,7 +44,7 @@ const FAQ_ITEMS = [
   },
   {
     q: "How does your project pricing work?",
-    a: "We operate on fixed-fee project scopes or flexible monthly retainers — no hidden hourly surprise bills. Complete brand identity & digital platform packages typically start at fixed milestones tailored to your deliverables and speed-to-market.",
+    a: "We operate on fixed-fee project scopes or flexible monthly retainers with no hidden hourly surprise bills. Complete brand identity & digital platform packages typically start at fixed milestones tailored to your deliverables and speed-to-market.",
   },
   {
     q: "What payment schedules do you offer?",
@@ -69,7 +69,7 @@ const WORK = [
     n: "01",
     slug: "club-exotism",
     name: "Club Exotism",
-    client: "Club Exotism — Flagship Gaming Sanctuary & Esports Arena (Thrissur, Kerala)",
+    client: "Club Exotism | Flagship Gaming Sanctuary & Esports Arena (Thrissur, Kerala)",
     kind: "Full Platform · Real-Time Engine · High-Octane Admin Suite",
     year: "2026",
     img: clubExotismImg,
@@ -81,18 +81,18 @@ const WORK = [
       "Hardware Capacity Matrix: Engineered custom zero-collision algorithms to resolve multi-console hardware conflicts across Sim Racing rigs, VR setups, and PS5 multiplayer hubs.",
     ],
     customerPartnership:
-      "We co-engineered this platform shoulder-to-shoulder with the founders and venue operators. No corporate fluff, no generic templates — pure, bespoke digital firepower tailored to dominate their local market.",
+      "We co-engineered this platform shoulder-to-shoulder with the founders and venue operators. No corporate fluff, no generic templates: pure, bespoke digital firepower tailored to dominate their local market.",
     challenge:
       "Club Exotism needed a beast of a booking platform capable of managing complex physical hardware inventory (PS5 consoles, VR rigs, Sim Racing cockpits) with real-time multi-player capacity logic, instant 1-tap WhatsApp checkout, and dominant #1 Google search ranking from day zero.",
     solution:
       "Architected a ultra-slick, dark-mode digital weapon featuring real-time bin-packing inventory calculations, instant pre-filled WhatsApp VIP booking checkout, an intuitive daily visual control panel for staff, and aggressive LocalBusiness schema SEO integration.",
     designIdentity: [
-      "The Cyber-Lounge Palette: Obsidian pitch-black base (#010102) fused with hyper-vibrant molten ember accents (#f58c04 / #e46417) — mimicking neon signs burning in a pitch-black arcade.",
+      "The Cyber-Lounge Palette: Obsidian pitch-black base (#010102) fused with hyper-vibrant molten ember accents (#f58c04 / #e46417) - mimicking neon signs burning in a pitch-black arcade.",
       "Poster-Grade Typography: Raw, ultra-bold Anton display typography paired with crisp Inter micro-type and massive background Japanese Katakana watermarks (レーシング, プレステ, ビリヤード).",
       "Tactile Glassmorphism: Translucent glass panels, heavy backdrop blur, and neon ember radiation glows (shadow-[0_0_25px_rgba(245,140,4,0.3)]) for an unmatched futuristic feel.",
     ],
     seoDiscoverability:
-      "Beyond the build, we handled the site's technical SEO foundation end-to-end: search engine crawlability, structured data so Google understands it as a real local business (hours, address, pricing), social share previews, and canonical domain configuration to keep ranking signal consolidated on one URL instead of split across variants. We also caught and fixed a cross-browser rendering bug affecting how the brand appeared in Safari — the kind of detail that's easy to miss without checking across real browsers, not just one.",
+      "Beyond the build, we handled the site's technical SEO foundation end-to-end: search engine crawlability, structured data so Google understands it as a real local business (hours, address, pricing), social share previews, and canonical domain configuration to keep ranking signal consolidated on one URL instead of split across variants. We also caught and fixed a cross-browser rendering bug affecting how the brand appeared in Safari - the kind of detail that's easy to miss without checking across real browsers, not just one.",
     problemsSolved: [
       "Bin-Packing Inventory Engine: Replaced primitive booking slots with real-time hardware capacity algorithms that mathematically prevent double-booking across shared physical equipment.",
       "WhatsApp Instant Conversion: Converted traditional payment drop-offs into high-converting 1-tap WhatsApp VIP confirmation streams.",

@@ -10,7 +10,7 @@ import clubExotismImg from "@/assets/clubexotism.png";
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "All Works — Summit Studio" },
+      { title: "All Works | Summit Studio" },
       {
         name: "description",
         content:
@@ -26,7 +26,7 @@ const ALL_WORK = [
     n: "01",
     slug: "club-exotism",
     name: "Club Exotism",
-    client: "Club Exotism — Flagship Gaming Sanctuary & Esports Arena",
+    client: "Club Exotism | Flagship Gaming Sanctuary & Esports Arena",
     kind: "Full Platform · Real-Time Engine · High-Octane Admin Suite",
     year: "2026",
     img: clubExotismImg,
@@ -204,7 +204,7 @@ function WorkPage() {
       <section className="border-b border-hairline px-6 py-20 md:px-16 md:py-28">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <span className="label-mono text-xs text-accent">[ Archive · 2024 — 2026 ]</span>
+            <span className="label-mono text-xs text-accent">[ Archive · 2024 - 2026 ]</span>
             <h1 className="display-tight mt-3 text-4xl font-normal tracking-tight text-foreground md:text-7xl">
               Selected Works<span className="text-accent">.</span>
             </h1>

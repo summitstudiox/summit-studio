@@ -11,7 +11,7 @@ export const Route = createFileRoute("/work_/$slug")({
     const project = PROJECTS_DATA[params.slug] || PROJECTS_DATA["club-exotism"];
     return {
       meta: [
-        { title: `${project.name} — Case Study | Summit Studio` },
+        { title: `${project.name} | Case Study | Summit Studio` },
         { name: "description", content: project.challenge },
       ],
     };
@@ -41,7 +41,7 @@ const PROJECTS_DATA: Record<
     n: "01",
     slug: "club-exotism",
     name: "Club Exotism",
-    client: "Club Exotism — Flagship Gaming Sanctuary & Esports Arena",
+    client: "Club Exotism | Flagship Gaming Sanctuary & Esports Arena",
     kind: "Full Platform · Real-Time Engine · High-Octane Admin Suite",
     year: "2026",
     img: clubExotismImg,
