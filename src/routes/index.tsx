@@ -830,7 +830,7 @@ function Index() {
                 </h2>
               </div>
 
-              <div className="flex min-h-[480px] items-center overflow-hidden rounded-2xl bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:min-h-[560px] md:p-16">
+              <div className="flex min-h-[480px] items-center overflow-hidden rounded-2xl border border-hairline bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:min-h-[560px] md:p-16">
                 <div className="grid w-full gap-10 md:grid-cols-12 md:gap-16">
                   {/* Badge / Stage Indicator */}
                   <div className="space-y-6 md:col-span-4 md:space-y-8">
