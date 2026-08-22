@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ThemeToggle } from "@/components/theme-toggle";
 import heroImg from "@/assets/hero.jpg";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
@@ -504,6 +505,8 @@ function Index() {
         </nav>
 
         <div className="flex items-center gap-4">
+          <ThemeToggle />
+
           <a
             href="#contact"
             className="label-mono border-b border-foreground pb-1 text-xs sm:text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
@@ -537,8 +540,9 @@ function Index() {
               </a>
             ))}
           </nav>
-          <div className="border-t border-hairline pt-6">
+          <div className="flex items-center justify-between border-t border-hairline pt-6">
             <p className="label-mono text-xs text-muted-foreground">© 2026 Summit Studio</p>
+            <ThemeToggle />
           </div>
         </div>
       )}
@@ -707,37 +711,18 @@ function Index() {
                     </div>
 
                     {isOpen && (
-                      <div className="mt-8 grid gap-8 md:grid-cols-12 md:items-center">
-                        <div className="md:col-span-6 md:pl-16 space-y-6">
-                          <p className="text-sm leading-relaxed text-foreground/80 md:text-base">
-                            {s.desc}
-                          </p>
-                          <div className="flex flex-wrap gap-2 pt-2">
-                            {s.tags.map((t) => (
-                              <span
-                                key={t}
-                                className="label-mono rounded-full border border-hairline bg-secondary/40 px-3.5 py-1.5 text-[0.68rem] text-foreground/90"
-                              >
-                                {t}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="flex gap-4 md:col-span-6 md:justify-end">
-                          {s.images.map((imgSrc, idx) => (
-                            <div
-                              key={idx}
-                              className={`relative h-28 w-28 shrink-0 overflow-hidden border border-hairline shadow-lg sm:h-36 sm:w-36 ${
-                                idx === 0 ? "rounded-full" : "rounded-2xl"
-                              }`}
+                      <div className="mt-8 max-w-2xl space-y-6 md:pl-16">
+                        <p className="text-sm leading-relaxed text-foreground/80 md:text-base">
+                          {s.desc}
+                        </p>
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {s.tags.map((t) => (
+                            <span
+                              key={t}
+                              className="label-mono rounded-full border border-hairline bg-secondary/40 px-3.5 py-1.5 text-[0.68rem] text-foreground/90"
                             >
-                              <img
-                                src={imgSrc}
-                                alt={`${s.title} preview ${idx}`}
-                                className="h-full w-full object-cover"
-                              />
-                            </div>
+                              {t}
+                            </span>
                           ))}
                         </div>
                       </div>
@@ -836,15 +821,15 @@ function Index() {
         <SectionHead n="03" label="Our Process" />
 
         <div className="px-6 py-16 md:px-16 md:py-24">
-          <div className="mb-12">
-            <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl xl:max-w-none xl:whitespace-nowrap">
-              Our Process Moves Like Production.
-            </h2>
-          </div>
-
           {/* Pin Window with height for scroll progress */}
           <div ref={processPinRef} className="relative min-h-[300vh]">
             <div className="sticky top-28 z-10 py-4">
+              <div className="mb-12">
+                <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl xl:max-w-none xl:whitespace-nowrap">
+                  Our Process Moves Like Production.
+                </h2>
+              </div>
+
               <div className="flex min-h-[480px] items-center overflow-hidden rounded-2xl bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:min-h-[560px] md:p-16">
                 <div className="grid w-full gap-10 md:grid-cols-12 md:gap-16">
                   {/* Badge / Stage Indicator */}
