@@ -11,13 +11,13 @@ import clubExotismImg from "@/assets/clubexotism.png";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Summit Studio | Branding, Web Design & Development" },
+      { title: "Summit Studio - Branding, Web Design & Development" },
       {
         name: "description",
         content:
           "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery.",
       },
-      { property: "og:title", content: "Summit Studio | Branding, Web Design & Development" },
+      { property: "og:title", content: "Summit Studio - Branding, Web Design & Development" },
       {
         property: "og:description",
         content:
@@ -69,7 +69,7 @@ const WORK = [
     n: "01",
     slug: "club-exotism",
     name: "Club Exotism",
-    client: "Club Exotism | Flagship Gaming Sanctuary & Esports Arena (Thrissur, Kerala)",
+    client: "Club Exotism - Flagship Gaming Sanctuary & Esports Arena (Thrissur, Kerala)",
     kind: "Full Platform · Real-Time Engine · High-Octane Admin Suite",
     year: "2026",
     img: clubExotismImg,

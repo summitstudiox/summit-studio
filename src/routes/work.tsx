@@ -10,7 +10,7 @@ import clubExotismImg from "@/assets/clubexotism.png";
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "All Works | Summit Studio" },
+      { title: "All Works - Summit Studio" },
       {
         name: "description",
         content:
@@ -26,7 +26,7 @@ const ALL_WORK = [
     n: "01",
     slug: "club-exotism",
     name: "Club Exotism",
-    client: "Club Exotism | Flagship Gaming Sanctuary & Esports Arena",
+    client: "Club Exotism - Flagship Gaming Sanctuary & Esports Arena",
     kind: "Full Platform · Real-Time Engine · High-Octane Admin Suite",
     year: "2026",
     img: clubExotismImg,
