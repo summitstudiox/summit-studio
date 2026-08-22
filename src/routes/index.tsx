@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ThemeToggle } from "@/components/theme-toggle";
 import heroImg from "@/assets/hero.jpg";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
@@ -367,8 +368,18 @@ function Index() {
     const RESUME_DELAY = 1800; // ms of quiet before auto-scroll resumes after user interaction
     const HOVER_MAX_PAUSE = 4500; // ms — resume even if the cursor never leaves, so it never looks frozen
 
+    // The track renders two identical copies of WORK back to back. Wrapping
+    // the scroll position by the width of one copy lands on a pixel-identical
+    // frame, so the carousel can loop forever in one direction instead of
+    // bouncing back once it hits an end.
+    let singleSetWidth = el.scrollWidth / 2;
+    const wrap = (value: number) => {
+      if (singleSetWidth <= 0) return value;
+      const wrapped = value % singleSetWidth;
+      return wrapped < 0 ? wrapped + singleSetWidth : wrapped;
+    };
+
     let rafId: number;
-    let dir = 1;
     let pos = el.scrollLeft;
     let lastFrameTime = performance.now();
     let isAutoScrolling = false;
@@ -377,18 +388,23 @@ function Index() {
     let isPointerDown = false;
     let lastInteraction = 0;
 
+    const onResize = () => {
+      singleSetWidth = el.scrollWidth / 2;
+    };
+
     const markInteraction = () => {
       lastInteraction = Date.now();
     };
     const onScroll = () => {
-      if (!isAutoScrolling) {
-        markInteraction();
-        const newPos = el.scrollLeft;
-        // Continue in whatever direction the user just scrolled, not
-        // whatever direction the animation happened to be going before.
-        if (newPos > pos) dir = 1;
-        else if (newPos < pos) dir = -1;
-        pos = newPos;
+      if (isAutoScrolling) return;
+      markInteraction();
+      pos = el.scrollLeft;
+      // A manual drag/fling past either end of a single copy — snap back
+      // into the equivalent spot in the other copy, invisibly.
+      if (singleSetWidth > 0 && (pos >= singleSetWidth || pos < 0)) {
+        isAutoScrolling = true;
+        pos = wrap(pos);
+        el.scrollLeft = pos;
       }
     };
     const onEnter = () => {
@@ -413,6 +429,7 @@ function Index() {
     el.addEventListener("mouseleave", onLeave);
     el.addEventListener("pointerdown", onPointerDown);
     window.addEventListener("pointerup", onPointerUp);
+    window.addEventListener("resize", onResize);
 
     let wasMoving = false;
 
@@ -436,16 +453,10 @@ function Index() {
           // jump hasn't dispatched yet and `pos` is stale.
           pos = el.scrollLeft;
         }
-        const maxScroll = el.scrollWidth - el.clientWidth;
-        if (maxScroll > 0) {
-          pos += ((SPEED * dt) / 1000) * dir;
-          if (pos >= maxScroll) {
-            pos = maxScroll;
-            dir = -1;
-          } else if (pos <= 0) {
-            pos = 0;
-            dir = 1;
-          }
+        if (singleSetWidth > 0) {
+          // Always forward, wrapping around the duplicated track — the
+          // carousel never has to reverse direction to avoid "ending".
+          pos = wrap(pos + (SPEED * dt) / 1000);
           isAutoScrolling = true;
           el.scrollLeft = pos;
         }
@@ -462,6 +473,7 @@ function Index() {
       el.removeEventListener("mouseleave", onLeave);
       el.removeEventListener("pointerdown", onPointerDown);
       window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -504,6 +516,8 @@ function Index() {
         </nav>
 
         <div className="flex items-center gap-4">
+          <ThemeToggle />
+
           <a
             href="#contact"
             className="label-mono border-b border-foreground pb-1 text-xs sm:text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
@@ -537,8 +551,9 @@ function Index() {
               </a>
             ))}
           </nav>
-          <div className="border-t border-hairline pt-6">
+          <div className="flex items-center justify-between border-t border-hairline pt-6">
             <p className="label-mono text-xs text-muted-foreground">© 2026 Summit Studio</p>
+            <ThemeToggle />
           </div>
         </div>
       )}
@@ -586,7 +601,7 @@ function Index() {
         <SectionHead n="01" label="About Company" />
         <div className="px-6 py-20 md:px-16">
           <div className="mb-12">
-            <h2 className="display-tight max-w-3xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+            <h2 className="display-tight max-w-3xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl xl:max-w-none xl:whitespace-nowrap">
               We Craft Digital Identities Built for Impact.
             </h2>
           </div>
@@ -707,37 +722,18 @@ function Index() {
                     </div>
 
                     {isOpen && (
-                      <div className="mt-8 grid gap-8 md:grid-cols-12 md:items-center">
-                        <div className="md:col-span-6 md:pl-16 space-y-6">
-                          <p className="text-sm leading-relaxed text-foreground/80 md:text-base">
-                            {s.desc}
-                          </p>
-                          <div className="flex flex-wrap gap-2 pt-2">
-                            {s.tags.map((t) => (
-                              <span
-                                key={t}
-                                className="label-mono rounded-full border border-hairline bg-secondary/40 px-3.5 py-1.5 text-[0.68rem] text-foreground/90"
-                              >
-                                {t}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-
-                        <div className="flex gap-4 md:col-span-6 md:justify-end">
-                          {s.images.map((imgSrc, idx) => (
-                            <div
-                              key={idx}
-                              className={`relative h-28 w-28 shrink-0 overflow-hidden border border-hairline shadow-lg sm:h-36 sm:w-36 ${
-                                idx === 0 ? "rounded-full" : "rounded-2xl"
-                              }`}
+                      <div className="mt-8 max-w-2xl space-y-6 md:pl-16">
+                        <p className="text-sm leading-relaxed text-foreground/80 md:text-base">
+                          {s.desc}
+                        </p>
+                        <div className="flex flex-wrap gap-2 pt-2">
+                          {s.tags.map((t) => (
+                            <span
+                              key={t}
+                              className="label-mono rounded-full border border-hairline bg-secondary/40 px-3.5 py-1.5 text-[0.68rem] text-foreground/90"
                             >
-                              <img
-                                src={imgSrc}
-                                alt={`${s.title} preview ${idx}`}
-                                className="h-full w-full object-cover"
-                              />
-                            </div>
+                              {t}
+                            </span>
                           ))}
                         </div>
                       </div>
@@ -759,8 +755,8 @@ function Index() {
             {/* Left Header Column */}
             <div className="flex flex-col justify-between space-y-10 md:col-span-4 md:sticky md:top-28">
               <div>
-                <h2 className="display-tight text-4xl font-normal leading-[1.1] tracking-tight text-foreground md:text-5xl md:leading-[1.08]">
-                  OUR WORK SPEAKS LOUDER THAN WORDS.
+                <h2 className="display-tight text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+                  Our Work Speaks Louder Than Words.
                 </h2>
                 <p className="mt-5 text-xs leading-relaxed text-foreground/70 md:text-sm font-normal">
                   A curated collection of digital weapons, bespoke platforms, and identity systems
@@ -801,9 +797,9 @@ function Index() {
               ref={workScrollRef}
               className="flex gap-4 md:gap-8 overflow-x-auto pb-8 md:col-span-8 no-scrollbar mask-edge-fade"
             >
-              {WORK.map((w) => (
+              {[...WORK, ...WORK].map((w, i) => (
                 <Link
-                  key={w.n}
+                  key={`${w.n}-${i}`}
                   to="/work/$slug"
                   params={{ slug: w.slug }}
                   className="group relative flex aspect-[4/3] sm:aspect-[16/10.5] w-[84vw] max-w-[780px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-xl md:rounded-2xl border border-hairline bg-card p-5 shadow-2xl transition-all duration-500 hover:border-accent/50 md:p-10"
@@ -833,19 +829,25 @@ function Index() {
 
       {/* PROCESS — Sticky Stacking Card Timeline */}
       <section id="process" className="border-t border-hairline">
-        <SectionHead n="03" label="Our Process" />
-
         <div className="px-6 py-16 md:px-16 md:py-24">
-          <div className="mb-12">
-            <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl xl:max-w-none xl:whitespace-nowrap">
-              Our Process Moves Like Production.
-            </h2>
-          </div>
-
           {/* Pin Window with height for scroll progress */}
           <div ref={processPinRef} className="relative min-h-[300vh]">
-            <div className="sticky top-28 z-10 py-4">
-              <div className="flex min-h-[480px] items-center overflow-hidden rounded-2xl bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:min-h-[560px] md:p-16">
+            <div className="sticky top-16 z-10">
+              <div className="-mx-6 -mt-16 md:-mx-16 md:-mt-24">
+                <SectionHead n="03" label="Our Process" />
+              </div>
+
+              <div className="mb-12 pt-8 md:pt-12">
+                <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl xl:max-w-none xl:whitespace-nowrap">
+                  A Clear Path From Idea to Launch.
+                </h2>
+                <p className="mt-5 text-xs leading-relaxed text-foreground/70 md:text-sm font-normal xl:whitespace-nowrap">
+                  Four stages, each with a clear goal, a defined deliverable, and no guesswork about
+                  what happens next.
+                </p>
+              </div>
+
+              <div className="flex min-h-[480px] items-center overflow-hidden rounded-2xl border border-hairline bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:min-h-[560px] md:p-16">
                 <div className="grid w-full gap-10 md:grid-cols-12 md:gap-16">
                   {/* Badge / Stage Indicator */}
                   <div className="space-y-6 md:col-span-4 md:space-y-8">
@@ -962,7 +964,9 @@ function Index() {
         <SectionHead n="05" label="Let's work together" />
         <div className="grid gap-16 px-6 py-20 md:grid-cols-2 md:px-16 md:py-40">
           <div>
-            <h2 className="display-tight text-5xl sm:text-[9vw] md:text-[5vw]">Contact us.</h2>
+            <h2 className="display-tight text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+              Contact us.
+            </h2>
             <p className="mt-6 max-w-md text-xs sm:text-sm leading-relaxed text-foreground/70">
               Ready to build something bold? We partner with ambitious brands to create digital
               experiences that leave a mark. Tell us what you're working on.

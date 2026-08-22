@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { ThemeToggle } from "@/components/theme-toggle";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
@@ -12,7 +13,8 @@ export const Route = createFileRoute("/work")({
       { title: "All Works — Summit Studio" },
       {
         name: "description",
-        content: "Explore all featured digital platforms and brand identities engineered by Summit Studio.",
+        content:
+          "Explore all featured digital platforms and brand identities engineered by Summit Studio.",
       },
     ],
   }),
@@ -22,6 +24,7 @@ export const Route = createFileRoute("/work")({
 const ALL_WORK = [
   {
     n: "01",
+    slug: "club-exotism",
     name: "Club Exotism",
     client: "Club Exotism — Flagship Gaming Sanctuary & Esports Arena",
     kind: "Full Platform · Real-Time Engine · High-Octane Admin Suite",
@@ -40,6 +43,7 @@ const ALL_WORK = [
   },
   {
     n: "02",
+    slug: "vanta-digital",
     name: "Vanta Digital",
     client: "Vanta Technologies",
     kind: "Web Design · High-Performance Engineering",
@@ -57,6 +61,7 @@ const ALL_WORK = [
   },
   {
     n: "03",
+    slug: "campus-connect",
     name: "Campus Connect",
     client: "Campus Connect Network",
     kind: "Brand Identity · Community Web App",
@@ -74,6 +79,7 @@ const ALL_WORK = [
   },
   {
     n: "04",
+    slug: "ascend",
     name: "Ascend",
     client: "Ascend Performance Lab",
     kind: "UI Design · Conversion Optimization",
@@ -108,12 +114,11 @@ const NAV = [
 ];
 
 function WorkPage() {
-  const [activeProject, setActiveProject] = useState<(typeof ALL_WORK)[number] | null>(null);
   const [activeFilter, setActiveFilter] = useState("ALL");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    if (activeProject || mobileMenuOpen) {
+    if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -121,7 +126,7 @@ function WorkPage() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [activeProject, mobileMenuOpen]);
+  }, [mobileMenuOpen]);
 
   const filteredWork = ALL_WORK.filter((w) => {
     if (activeFilter === "PLATFORM") return w.n === "01";
@@ -137,7 +142,7 @@ function WorkPage() {
         <Link to="/" className="text-lg font-semibold tracking-tight text-foreground">
           Summit Studio<span className="text-accent">.</span>
         </Link>
-        
+
         <nav className="hidden items-center gap-10 md:flex">
           {NAV.map((i) => (
             <Link
@@ -153,6 +158,8 @@ function WorkPage() {
         </nav>
 
         <div className="flex items-center gap-4">
+          <ThemeToggle />
+
           <Link
             to="/#contact"
             className="label-mono border-b border-foreground pb-1 text-xs sm:text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
@@ -188,96 +195,12 @@ function WorkPage() {
               </Link>
             ))}
           </nav>
-          <div className="border-t border-hairline pt-6">
+          <div className="flex items-center justify-between border-t border-hairline pt-6">
             <p className="label-mono text-xs text-muted-foreground">© 2026 Summit Studio</p>
+            <ThemeToggle />
           </div>
         </div>
       )}
-
-      {/* Case Study Live Modal */}
-      {activeProject && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-4 backdrop-blur-md md:p-8 animate-in fade-in duration-300"
-          onClick={() => setActiveProject(null)}
-        >
-          <div
-            className="relative flex h-full max-h-[92vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-hairline bg-card shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-hairline px-6 py-4">
-              <div>
-                <h3 className="display-tight text-xl font-medium text-foreground">{activeProject.name}</h3>
-                <p className="label-mono text-xs text-muted-foreground">{activeProject.kind}</p>
-              </div>
-              <div className="flex items-center gap-4">
-                {activeProject.url && (
-                  <a
-                    href={activeProject.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="label-mono inline-flex items-center gap-1.5 text-xs text-accent transition-colors hover:underline"
-                  >
-                    <span>Open Live Platform</span> ↗
-                  </a>
-                )}
-                <button
-                  onClick={() => setActiveProject(null)}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-sm text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
-                >
-                  ✕
-                </button>
-              </div>
-            </div>
-
-            <div className="grid flex-1 overflow-hidden md:grid-cols-12 min-h-0">
-              <div className="flex flex-col justify-between overflow-y-auto border-b border-hairline p-6 md:col-span-5 md:border-r md:border-b-0 md:p-8 space-y-6">
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="label-mono text-xs text-accent">[ Challenge & Scope ]</h4>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground/90">{activeProject.challenge}</p>
-                  </div>
-                  <div>
-                    <h4 className="label-mono text-xs text-accent">[ Strategic Execution ]</h4>
-                    <p className="mt-2 text-sm leading-relaxed text-foreground/80">{activeProject.solution}</p>
-                  </div>
-                </div>
-
-                <div className="border-t border-hairline pt-6">
-                  <h4 className="label-mono text-xs text-muted-foreground">[ Commercial Impact ]</h4>
-                  <div className="mt-4 grid grid-cols-3 gap-4">
-                    {activeProject.stats.map((s) => (
-                      <div key={s.k}>
-                        <p className="display-tight text-xl font-medium text-accent">{s.v}</p>
-                        <p className="label-mono text-[0.65rem] text-muted-foreground mt-1">{s.k}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative flex h-full flex-col bg-black md:col-span-7 overflow-hidden">
-                {activeProject.url ? (
-                  <iframe
-                    src={activeProject.url}
-                    title={`${activeProject.name} preview`}
-                    className="h-full w-full flex-1 border-0"
-                  />
-                ) : (
-                  <div className="h-full w-full overflow-y-auto p-4">
-                    <img
-                      src={activeProject.img}
-                      alt={`${activeProject.name} preview`}
-                      className="w-full rounded-lg object-cover shadow-2xl"
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Page Hero Banner */}
       <section className="border-b border-hairline px-6 py-20 md:px-16 md:py-28">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
@@ -287,7 +210,8 @@ function WorkPage() {
             </h1>
           </div>
           <p className="max-w-md text-xs leading-relaxed text-muted-foreground md:text-sm">
-            A comprehensive archive of custom web engines, digital platforms, and visual identity systems engineered for market leaders.
+            A comprehensive archive of custom web engines, digital platforms, and visual identity
+            systems engineered for market leaders.
           </p>
         </div>
 
@@ -316,10 +240,11 @@ function WorkPage() {
       <section className="px-6 py-16 md:px-16 md:py-24">
         <div className="grid gap-12 md:grid-cols-2 md:gap-16">
           {filteredWork.map((w) => (
-            <article
+            <Link
               key={w.n}
-              onClick={() => setActiveProject(w)}
-              className="group cursor-pointer space-y-6"
+              to="/work/$slug"
+              params={{ slug: w.slug }}
+              className="group cursor-pointer space-y-6 block"
             >
               {/* Image Frame */}
               <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-hairline bg-card shadow-2xl transition-all duration-500 hover:border-accent/60">
@@ -341,7 +266,7 @@ function WorkPage() {
 
                 {/* Preview Trigger Pill */}
                 <div className="absolute bottom-5 right-5 rounded-full border border-hairline bg-background/80 px-4 py-2 opacity-0 backdrop-blur-md transition-all duration-300 group-hover:opacity-100">
-                  <span className="label-mono text-xs text-foreground">Interactive Preview ↗</span>
+                  <span className="label-mono text-xs text-foreground">View Case Study ↗</span>
                 </div>
               </div>
 
@@ -349,7 +274,7 @@ function WorkPage() {
               <div className="space-y-3 px-1">
                 <div className="flex items-baseline justify-between gap-4">
                   <h3 className="display-tight text-2xl font-medium text-foreground transition-colors group-hover:text-accent md:text-3xl">
-                    {w.name} — {w.year}
+                    {w.name}
                   </h3>
                   <span className="label-mono text-xs text-muted-foreground group-hover:text-foreground">
                     Explore ↗
@@ -364,13 +289,17 @@ function WorkPage() {
                 <div className="flex items-center gap-6 border-t border-hairline/60 pt-4">
                   {w.stats.map((s) => (
                     <div key={s.k}>
-                      <span className="display-tight text-lg font-medium text-foreground">{s.v}</span>
-                      <span className="label-mono block text-[0.62rem] text-muted-foreground">{s.k}</span>
+                      <span className="display-tight text-lg font-medium text-foreground">
+                        {s.v}
+                      </span>
+                      <span className="label-mono block text-[0.62rem] text-muted-foreground">
+                        {s.k}
+                      </span>
                     </div>
                   ))}
                 </div>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
