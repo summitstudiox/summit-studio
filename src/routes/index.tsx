@@ -66,6 +66,7 @@ const FAQ_ITEMS = [
 const WORK = [
   {
     n: "01",
+    slug: "club-exotism",
     name: "Club Exotism",
     client: "Club Exotism — Flagship Gaming Sanctuary & Esports Arena (Thrissur, Kerala)",
     kind: "Full Platform · Real-Time Engine · High-Octane Admin Suite",
@@ -104,6 +105,7 @@ const WORK = [
   },
   {
     n: "02",
+    slug: "vanta-digital",
     name: "Vanta Digital",
     client: "Vanta Technologies",
     kind: "Web Design · High-Performance Engineering",
@@ -121,6 +123,7 @@ const WORK = [
   },
   {
     n: "03",
+    slug: "campus-connect",
     name: "Campus Connect",
     client: "Campus Connect Network",
     kind: "Brand Identity · Community Web App",
@@ -138,6 +141,7 @@ const WORK = [
   },
   {
     n: "04",
+    slug: "ascend",
     name: "Ascend",
     client: "Ascend Performance Lab",
     kind: "UI Design · Conversion Optimization",
@@ -191,25 +195,69 @@ const PROCESS = [
     n: "01",
     title: "Discover",
     sub: "We study the emotional position of your brand before touching visuals.",
-    offset: "0px",
+    details:
+      "Deep immersion into audience psychology, market position, and competitive gaps. We uncover core strategic insights that define your brand identity before writing a single line of code or designing a single frame.",
+    highlights: [
+      "Competitor & Market Dissection",
+      "Audience Persona Architecture",
+      "Brand Positioning Blueprint",
+    ],
+    cadence: [
+      "Scheduled kickoff call to gather requirements",
+      "Written discovery brief sent for your review",
+      "You sign off before anything gets locked in",
+    ],
   },
   {
     n: "02",
     title: "Construct",
     sub: "Narratives, systems, motion principles, and visual tension begin to take shape.",
-    offset: "36px",
+    details:
+      "Translating strategy into visual systems. We establish typography hierarchy, custom component tokens, motion guidelines, and layout grids built to scale seamlessly across all modern screen viewports.",
+    highlights: [
+      "Design System & Tokens",
+      "Modular Layout Wireframing",
+      "Motion & Interactive Prototypes",
+    ],
+    cadence: [
+      "Async previews as each system piece lands",
+      "No waiting for one big reveal",
+      "Scheduled review call before we move into build",
+    ],
   },
   {
     n: "03",
     title: "Direct",
     sub: "Every interaction is refined frame-by-frame like a digital film sequence.",
-    offset: "72px",
+    details:
+      "Full-stack digital engineering meets meticulous creative direction. Sub-second page performance, micro-interactions, responsive fluid math, and robust TanStack Start SSR web architecture.",
+    highlights: [
+      "High-Performance SSR Build",
+      "Micro-Interactions & Animation",
+      "Cross-Browser Edge Testing",
+    ],
+    cadence: [
+      "Weekly build sync calls",
+      "Live staging link to watch real progress",
+      "Flag changes early, before they ship",
+    ],
   },
   {
     n: "04",
     title: "Release",
     sub: "A polished experience engineered to feel timeless on launch day.",
-    offset: "108px",
+    details:
+      "Zero-downtime deployment to global edge CDN infrastructure. Complete with structured SEO schema metadata, analytics hooks, conversion tracking, and post-launch optimization.",
+    highlights: [
+      "Global Edge CDN Deployment",
+      "Schema & Technical SEO Suite",
+      "Analytics & Conversion Handoff",
+    ],
+    cadence: [
+      "Pre-launch walkthrough call",
+      "Scheduled deployment window, nothing goes live unannounced",
+      "Post-launch check-in to catch anything worth tuning",
+    ],
   },
 ];
 
@@ -221,12 +269,13 @@ const STATS = [
 
 function SectionHead({ n, label }: { n: string; label: string }) {
   return (
-    <div className="rule-top flex items-center justify-between px-4 py-5 md:grid md:grid-cols-3 md:px-8 md:py-6">
+    <div className="rule-top flex items-center justify-between px-4 py-5 md:px-8 md:py-6">
       <span className="label-mono text-muted-foreground text-[0.65rem] md:text-xs">
         <span className="text-accent">◆</span> [ {n} ]
       </span>
-      <span className="label-mono text-center text-[0.65rem] md:text-xs tracking-wider">{label}</span>
-      <span className="label-mono text-right text-muted-foreground hidden md:inline text-xs">© 2026</span>
+      <span className="label-mono text-right text-[0.65rem] md:text-xs tracking-wider">
+        {label}
+      </span>
     </div>
   );
 }
@@ -238,11 +287,76 @@ function Index() {
   const [activeProcessStep, setActiveProcessStep] = useState(0);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const workScrollRef = useRef<HTMLDivElement>(null);
+  const processPinRef = useRef<HTMLDivElement>(null);
   const activeProjectRef = useRef(activeProject);
 
   useEffect(() => {
     activeProjectRef.current = activeProject;
   }, [activeProject]);
+
+  // Switches the nav to its opaque/scrolled treatment once the page has
+  // moved down a bit.
+  useEffect(() => {
+    const onScroll = () => setIsScrolled(window.scrollY > 40);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Drives the pinned "Our Process" card: as the tall 300vh scroll canvas
+  // moves through the viewport, the active stage advances 0→3 in step with
+  // scroll position (rather than only via the pill clicks).
+  useEffect(() => {
+    const el = processPinRef.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    let ticking = false;
+    const computeStep = () => {
+      ticking = false;
+      const rect = el.getBoundingClientRect();
+      const totalScrollableDistance = rect.height - window.innerHeight;
+      if (totalScrollableDistance <= 0) return;
+      const scrolledAmount = -rect.top;
+      const progress = Math.min(Math.max(scrolledAmount / totalScrollableDistance, 0), 0.99);
+      const step = Math.min(3, Math.max(0, Math.floor(progress * 4)));
+      setActiveProcessStep((prev) => (prev === step ? prev : step));
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(computeStep);
+      }
+    };
+
+    computeStep();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  // Clicking a stage pill scrolls the pin canvas to that stage's window
+  // instead of just flipping local state, so it stays in sync with the
+  // scroll-driven progress above.
+  const scrollToProcessStep = (i: number) => {
+    const el = processPinRef.current;
+    if (!el) {
+      setActiveProcessStep(i);
+      return;
+    }
+    const rect = el.getBoundingClientRect();
+    const totalScrollableDistance = rect.height - window.innerHeight;
+    if (totalScrollableDistance <= 0) {
+      setActiveProcessStep(i);
+      return;
+    }
+    const targetProgress = (i + 0.15) / 4;
+    const targetY = window.scrollY + rect.top + targetProgress * totalScrollableDistance;
+    window.scrollTo({ top: targetY, behavior: "smooth" });
+  };
 
   useEffect(() => {
     const el = workScrollRef.current;
@@ -313,7 +427,8 @@ function Index() {
       lastFrameTime = now;
       const idleEnough = Date.now() - lastInteraction > RESUME_DELAY;
       const hoverBlocking = isHovering && Date.now() - hoverStart < HOVER_MAX_PAUSE;
-      const shouldMove = idleEnough && !hoverBlocking && !isPointerDown && !activeProjectRef.current;
+      const shouldMove =
+        idleEnough && !hoverBlocking && !isPointerDown && !activeProjectRef.current;
       if (shouldMove) {
         if (!wasMoving) {
           // Just resumed — trust the DOM's actual scroll position rather
@@ -351,7 +466,7 @@ function Index() {
   }, []);
 
   useEffect(() => {
-    if (activeProject || mobileMenuOpen) {
+    if (mobileMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -359,121 +474,12 @@ function Index() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [activeProject, mobileMenuOpen]);
+  }, [mobileMenuOpen]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 40);
-
-      // Scroll-jacked step tracking is tuned for the tall desktop timeline
-      // layout; the mobile accordion is much shorter, so skip it there and
-      // let taps drive the active step instead.
-      if (window.innerWidth < 768) return;
-
-      const processEl = document.getElementById("process");
-      if (processEl) {
-        const rect = processEl.getBoundingClientRect();
-        const totalScrollableDistance = rect.height - window.innerHeight;
-        
-        if (totalScrollableDistance > 0) {
-          const stickyHeaderHeight = 64;
-          const scrolledAmount = stickyHeaderHeight - rect.top;
-          const progress = Math.min(Math.max(scrolledAmount / totalScrollableDistance, 0), 0.99);
-          const step = Math.floor(progress * 4);
-          setActiveProcessStep(step);
-        }
-      }
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const activeStage = PROCESS[activeProcessStep] ?? PROCESS[0]!;
 
   return (
-    <main id="top" className="min-h-screen overflow-x-hidden bg-background text-foreground">
-      {/* IFRAME / CASE STUDY MODAL */}
-      {activeProject && (
-        <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-background/90 p-3 backdrop-blur-md md:p-8 animate-in fade-in duration-300"
-          onClick={() => setActiveProject(null)}
-        >
-          <div
-            className="relative flex h-full max-h-[95vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border border-hairline bg-card shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-hairline px-4 py-3.5 md:px-6 md:py-4">
-              <div className="max-w-[70%]">
-                <h3 className="display-tight truncate text-lg font-medium text-foreground md:text-xl">{activeProject.name}</h3>
-                <p className="label-mono truncate text-[0.65rem] text-muted-foreground md:text-xs">{activeProject.kind}</p>
-              </div>
-              <div className="flex items-center gap-3">
-                {activeProject.url && (
-                  <a
-                    href={activeProject.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="label-mono hidden text-xs text-accent transition-colors hover:underline sm:inline-flex"
-                  >
-                    Open site ↗
-                  </a>
-                )}
-                <button
-                  onClick={() => setActiveProject(null)}
-                  className="flex h-8 w-8 items-center justify-center rounded-full border border-hairline text-sm text-muted-foreground transition-colors hover:border-accent hover:text-foreground"
-                >
-                  ✕
-                </button>
-              </div>
-            </div>
-
-            <div className="grid flex-1 overflow-hidden md:grid-cols-12 min-h-0">
-              <div className="flex flex-col justify-between overflow-y-auto border-b border-hairline p-5 md:col-span-5 md:border-r md:border-b-0 md:p-8 space-y-6">
-                <div className="space-y-5">
-                  <div>
-                    <h4 className="label-mono text-xs text-accent">[ Challenge & Scope ]</h4>
-                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-foreground/90">{activeProject.challenge}</p>
-                  </div>
-                  <div>
-                    <h4 className="label-mono text-xs text-accent">[ Strategic Execution ]</h4>
-                    <p className="mt-2 text-xs sm:text-sm leading-relaxed text-foreground/80">{activeProject.solution}</p>
-                  </div>
-                </div>
-
-                <div className="border-t border-hairline pt-5">
-                  <h4 className="label-mono text-xs text-muted-foreground">[ Commercial Impact ]</h4>
-                  <div className="mt-3 grid grid-cols-3 gap-2 sm:gap-4">
-                    {activeProject.stats.map((s) => (
-                      <div key={s.k}>
-                        <p className="display-tight text-base sm:text-xl font-medium text-accent">{s.v}</p>
-                        <p className="label-mono text-[0.6rem] text-muted-foreground mt-0.5">{s.k}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative flex min-h-[260px] h-full flex-col bg-black md:col-span-7 overflow-hidden">
-                {activeProject.url ? (
-                  <iframe
-                    src={activeProject.url}
-                    title={`${activeProject.name} preview`}
-                    className="h-full w-full flex-1 border-0"
-                  />
-                ) : (
-                  <div className="h-full w-full overflow-y-auto p-3">
-                    <img
-                      src={activeProject.img}
-                      alt={`${activeProject.name} preview`}
-                      className="w-full rounded-lg object-cover shadow-2xl"
-                    />
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
+    <main id="top" className="min-h-screen overflow-x-clip bg-background text-foreground">
       {/* NAV */}
       <header
         className={`fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-4 transition-all duration-500 md:px-8 ${
@@ -555,8 +561,7 @@ function Index() {
               Blending in is expensive.
               <br />
               <span className="text-foreground/70">
-                Branding, website design and development for businesses that want to be
-                remembered.
+                Branding, website design and development for businesses that want to be remembered.
               </span>
             </h1>
             <a
@@ -580,48 +585,71 @@ function Index() {
       <section id="studio">
         <SectionHead n="01" label="About Company" />
         <div className="px-6 py-20 md:px-16">
+          <div className="mb-12">
+            <h2 className="display-tight max-w-3xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+              We Craft Digital Identities Built for Impact.
+            </h2>
+          </div>
 
           {/* 4-Card Bento Row (Stacked on Mobile, 2x2 on Tablet, 4-Cols on Desktop) */}
           <div className="grid gap-px bg-hairline grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
             {/* Card 1: Global Collaborations */}
             <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
               <div>
-                <span className="label-mono text-[0.65rem] sm:text-xs text-accent">[ Global Network ]</span>
+                <span className="label-mono text-[0.65rem] sm:text-xs text-accent">
+                  [ Global Network ]
+                </span>
                 <p className="mt-3 text-[0.68rem] sm:text-xs leading-relaxed text-foreground/75">
                   Partnering remotely with ambitious teams across major tech hubs.
                 </p>
               </div>
               <div className="mt-8 sm:mt-12">
-                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">48+</p>
-                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">Global Collaborations</p>
+                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">
+                  48+
+                </p>
+                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">
+                  Global Collaborations
+                </p>
               </div>
             </div>
 
             {/* Card 2: Industry Authority */}
             <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
               <div>
-                <span className="label-mono text-[0.65rem] sm:text-xs text-accent">[ Authority & Awards ]</span>
+                <span className="label-mono text-[0.65rem] sm:text-xs text-accent">
+                  [ Authority & Awards ]
+                </span>
                 <p className="mt-3 text-[0.68rem] sm:text-xs leading-relaxed text-foreground/75">
                   Featured and celebrated for high-octane engineering & positioning.
                 </p>
               </div>
               <div className="mt-8 sm:mt-12">
-                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">12+</p>
-                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">Industry Recognitions</p>
+                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">
+                  12+
+                </p>
+                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">
+                  Industry Recognitions
+                </p>
               </div>
             </div>
 
             {/* Card 3: Projects Delivered */}
             <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
               <div>
-                <span className="label-mono text-[0.65rem] sm:text-xs text-accent">[ Execution ]</span>
+                <span className="label-mono text-[0.65rem] sm:text-xs text-accent">
+                  [ Execution ]
+                </span>
                 <p className="mt-3 text-[0.68rem] sm:text-xs leading-relaxed text-foreground/75">
                   From emerging startups to market leaders, crafted as unique digital worlds.
                 </p>
               </div>
               <div className="mt-8 sm:mt-12">
-                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">150+</p>
-                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">Projects Delivered</p>
+                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">
+                  150+
+                </p>
+                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">
+                  Projects Delivered
+                </p>
               </div>
             </div>
 
@@ -634,8 +662,12 @@ function Index() {
                 </p>
               </div>
               <div className="mt-8 sm:mt-12">
-                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">14+</p>
-                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">Countries Reached</p>
+                <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">
+                  14+
+                </p>
+                <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">
+                  Countries Reached
+                </p>
               </div>
             </div>
           </div>
@@ -655,6 +687,7 @@ function Index() {
                   <div
                     key={s.n}
                     onMouseEnter={() => setOpenService(s.n)}
+                    onMouseLeave={() => setOpenService(null)}
                     className="py-8 transition-colors"
                   >
                     <div
@@ -730,7 +763,8 @@ function Index() {
                   OUR WORK SPEAKS LOUDER THAN WORDS.
                 </h2>
                 <p className="mt-5 text-xs leading-relaxed text-foreground/70 md:text-sm font-normal">
-                  A curated collection of digital weapons, bespoke platforms, and identity systems engineered for dominant commercial growth.
+                  A curated collection of digital weapons, bespoke platforms, and identity systems
+                  engineered for dominant commercial growth.
                 </p>
               </div>
 
@@ -747,12 +781,16 @@ function Index() {
                 <div className="flex items-center gap-8 border-t border-hairline/60 pt-8">
                   <div>
                     <span className="display-tight text-2xl font-medium text-foreground">04</span>
-                    <span className="label-mono mt-1 block text-[0.68rem] text-muted-foreground">Featured Cases</span>
+                    <span className="label-mono mt-1 block text-[0.68rem] text-muted-foreground">
+                      Featured Cases
+                    </span>
                   </div>
                   <div className="h-8 w-px bg-hairline/60" />
                   <div>
                     <span className="display-tight text-2xl font-medium text-accent">100%</span>
-                    <span className="label-mono mt-1 block text-[0.68rem] text-muted-foreground">Bespoke Build</span>
+                    <span className="label-mono mt-1 block text-[0.68rem] text-muted-foreground">
+                      Bespoke Build
+                    </span>
                   </div>
                 </div>
               </div>
@@ -764,9 +802,10 @@ function Index() {
               className="flex gap-4 md:gap-8 overflow-x-auto pb-8 md:col-span-8 no-scrollbar mask-edge-fade"
             >
               {WORK.map((w) => (
-                <article
+                <Link
                   key={w.n}
-                  onClick={() => setActiveProject(w)}
+                  to="/work/$slug"
+                  params={{ slug: w.slug }}
                   className="group relative flex aspect-[4/3] sm:aspect-[16/10.5] w-[84vw] max-w-[780px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-xl md:rounded-2xl border border-hairline bg-card p-5 shadow-2xl transition-all duration-500 hover:border-accent/50 md:p-10"
                 >
                   {/* Background Image */}
@@ -781,137 +820,108 @@ function Index() {
                   {/* Bottom Title overlay */}
                   <div className="relative z-10 space-y-2">
                     <h3 className="display-tight text-2xl font-medium text-white transition-colors group-hover:text-accent sm:text-3xl md:text-5xl">
-                      {w.name} — {w.year}
+                      {w.name}
                     </h3>
                     <p className="label-mono line-clamp-1 text-xs text-accent/90">{w.kind}</p>
                   </div>
-                </article>
+                </Link>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* PROCESS — Clean Production Grid Timeline */}
+      {/* PROCESS — Sticky Stacking Card Timeline */}
       <section id="process" className="border-t border-hairline">
         <SectionHead n="03" label="Our Process" />
-        <div className="px-6 py-20 md:px-16 md:py-28">
-          {/* Header */}
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-start">
-            <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+
+        <div className="px-6 py-16 md:px-16 md:py-24">
+          <div className="mb-12">
+            <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl xl:max-w-none xl:whitespace-nowrap">
               Our Process Moves Like Production.
             </h2>
-            <div className="flex items-center gap-4">
-              <span className="label-mono text-xs text-accent font-semibold">
-                STAGE 0{activeProcessStep + 1} OF 04
-              </span>
-              <div className="flex gap-1.5">
-                {[0, 1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className={`h-1.5 w-6 rounded-full transition-colors duration-500 ${
-                      i <= activeProcessStep ? "bg-accent" : "bg-hairline"
-                    }`}
-                  />
-                ))}
+          </div>
+
+          {/* Pin Window with height for scroll progress */}
+          <div ref={processPinRef} className="relative min-h-[300vh]">
+            <div className="sticky top-28 z-10 py-4">
+              <div className="flex min-h-[480px] items-center overflow-hidden rounded-2xl bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:min-h-[560px] md:p-16">
+                <div className="grid w-full gap-10 md:grid-cols-12 md:gap-16">
+                  {/* Badge / Stage Indicator */}
+                  <div className="space-y-6 md:col-span-4 md:space-y-8">
+                    <div className="inline-flex items-center gap-2 rounded-full border border-hairline bg-secondary/60 px-4 py-1.5 backdrop-blur-md">
+                      <span className="label-mono text-xs font-semibold text-accent">
+                        STAGE 0{activeProcessStep + 1} OF 04
+                      </span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
+                    </div>
+                    <h3 className="display-tight text-4xl font-medium tracking-tight text-foreground md:text-6xl transition-all duration-300">
+                      {activeStage.title}
+                    </h3>
+                    <p className="label-mono text-xs leading-relaxed text-accent/90 transition-all duration-300 md:text-sm">
+                      {activeStage.sub}
+                    </p>
+
+                    {/* Step Indicators */}
+                    <div className="flex gap-2 pt-2">
+                      {PROCESS.map((_, i) => (
+                        <button
+                          key={i}
+                          onClick={() => scrollToProcessStep(i)}
+                          className={`h-2 rounded-full transition-all duration-500 cursor-pointer ${
+                            i === activeProcessStep
+                              ? "w-8 bg-accent"
+                              : "w-2 bg-hairline hover:bg-muted-foreground"
+                          }`}
+                          aria-label={`Go to stage ${i + 1}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Detailed Description & Deliverables */}
+                  <div className="space-y-8 border-t border-hairline/60 pt-8 md:col-span-8 md:space-y-8 md:border-l md:border-t-0 md:pl-14 md:pt-0">
+                    <p className="text-base leading-relaxed text-foreground/85 md:text-lg font-normal transition-all duration-300">
+                      {activeStage.details}
+                    </p>
+
+                    <div className="border-t border-hairline/60 pt-6">
+                      <h4 className="label-mono text-xs text-muted-foreground mb-4">
+                        [ Stage Deliverables ]
+                      </h4>
+                      <div className="flex flex-wrap gap-3">
+                        {activeStage.highlights.map((h) => (
+                          <span
+                            key={h}
+                            className="label-mono rounded-lg border border-hairline/80 bg-background/80 px-4 py-2.5 text-xs text-foreground/90 shadow-sm transition-all duration-300"
+                          >
+                            ✓ {h}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="border-t border-hairline/60 pt-6">
+                      <h4 className="label-mono text-xs text-muted-foreground mb-4">
+                        [ How We'll Communicate ]
+                      </h4>
+                      <ul className="space-y-2.5">
+                        {activeStage.cadence.map((c) => (
+                          <li
+                            key={c}
+                            className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground/75 transition-all duration-300"
+                          >
+                            <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-accent" />
+                            {c}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-
-            {/* Production Timeline Cards */}
-            <div className="mt-10 space-y-4 md:mt-16 md:flex md:min-h-[calc(100vh+420px)] md:flex-col md:justify-center">
-              {/* Desktop 4-Column Timeline Ribbon */}
-              <div className="hidden md:block">
-                <div className="grid gap-px bg-hairline grid-cols-4">
-                  {PROCESS.map((p, idx) => {
-                    const isActive = idx <= activeProcessStep;
-                    const isCurrent = idx === activeProcessStep;
-                    return (
-                      <div
-                        key={p.n}
-                        onMouseEnter={() => setActiveProcessStep(idx)}
-                        onClick={() => setActiveProcessStep(idx)}
-                        className={`group relative flex h-80 cursor-pointer flex-col justify-between overflow-hidden p-8 transition-all duration-500 ${
-                          isCurrent
-                            ? "bg-secondary/90 ring-1 ring-accent scale-[1.01]"
-                            : isActive
-                            ? "bg-background/90"
-                            : "bg-background/40 opacity-40 hover:opacity-80"
-                        }`}
-                      >
-                        {/* Ghost step numeral fills the offset staircase's dead space */}
-                        <span
-                          aria-hidden="true"
-                          className={`display-tight pointer-events-none absolute -top-4 -right-3 text-[7rem] font-medium transition-colors duration-500 ${
-                            isCurrent ? "text-accent/10" : "text-foreground/[0.04]"
-                          }`}
-                        >
-                          {p.n}
-                        </span>
-
-                        <div
-                          className={`relative w-fit rounded px-4 py-3 text-xs font-medium tracking-wider transition-all duration-500 ${
-                            isCurrent
-                              ? "bg-accent text-accent-foreground shadow-xl scale-[1.02]"
-                              : isActive
-                              ? "bg-foreground text-background"
-                              : "bg-muted/80 text-muted-foreground"
-                          }`}
-                          style={{ marginTop: p.offset }}
-                        >
-                          {p.title}
-                        </div>
-
-                        <div className="relative space-y-3">
-                          <p className="text-xs leading-relaxed text-foreground/80">{p.sub}</p>
-                          <div className="flex items-center justify-between pt-1">
-                            <span className={`label-mono text-xs ${isCurrent ? "text-accent font-bold" : "text-muted-foreground"}`}>
-                              {p.n}
-                            </span>
-                            {isCurrent && (
-                              <span className="label-mono text-[0.65rem] text-accent animate-pulse">
-                                ● ACTIVE
-                              </span>
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Mobile Single Timeline Accordion List */}
-              <div className="block md:hidden divide-y divide-hairline border-t border-b border-hairline">
-                {PROCESS.map((p, idx) => {
-                  const isCurrent = idx === activeProcessStep;
-                  return (
-                    <div
-                      key={p.n}
-                      onClick={() => setActiveProcessStep(idx)}
-                      className={`cursor-pointer p-5 transition-all ${
-                        isCurrent ? "bg-secondary/80 border-l-2 border-accent" : "bg-background/40"
-                      }`}
-                    >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <span className="label-mono text-xs text-accent font-bold">[{p.n}]</span>
-                          <h3 className={`display-tight text-lg font-medium ${isCurrent ? "text-accent" : "text-foreground"}`}>
-                            {p.title}
-                          </h3>
-                        </div>
-                        {isCurrent && (
-                          <span className="label-mono text-[0.6rem] text-accent">● CURRENT STAGE</span>
-                        )}
-                      </div>
-                      <p className="mt-2 text-xs leading-relaxed text-foreground/75">
-                        {p.sub}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
         </div>
       </section>
 
@@ -919,6 +929,11 @@ function Index() {
       <section id="faq" className="border-t border-hairline">
         <SectionHead n="04" label="Frequently Asked Questions" />
         <div className="px-6 py-20 md:px-16">
+          <div className="mb-12">
+            <h2 className="display-tight max-w-3xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+              Answers to Common Questions.
+            </h2>
+          </div>
           <div className="w-full">
             <div className="w-full divide-y divide-hairline border-t border-b border-hairline">
               {FAQ_ITEMS.map((faq) => (
