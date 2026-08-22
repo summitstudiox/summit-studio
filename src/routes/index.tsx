@@ -7,6 +7,7 @@ import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
 import work4 from "@/assets/work-4.jpg";
 import clubExotismImg from "@/assets/clubexotism.png";
+import logoImg from "@/assets/logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -1038,8 +1039,14 @@ function Index() {
         </div>
 
         {/* Big Footer Brand Display */}
-        <div className="pt-24 pb-10">
-          <p className="display-tight w-full text-[10.4vw] leading-[0.8] tracking-tight whitespace-nowrap">
+        <div className="pt-24 pb-10 flex items-center gap-6">
+          {/* Logo mark beside the wordmark */}
+          <img
+            src={logoImg}
+            alt="Summit Studio logo mark"
+            className="h-[7.5vw] w-[7.5vw] shrink-0 mix-blend-multiply dark:mix-blend-normal dark:invert"
+          />
+          <p className="display-tight text-[8vw] leading-[0.85] tracking-tight whitespace-nowrap">
             Summit Studio<span className="text-accent">.</span>
           </p>
         </div>
