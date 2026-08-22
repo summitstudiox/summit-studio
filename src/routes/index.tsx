@@ -503,7 +503,7 @@ function Index() {
         <a href="#top" className="text-lg font-semibold tracking-tight">
           Summit Studio<span className="text-accent">.</span>
         </a>
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-10 lg:flex">
           {NAV.map((i) => (
             <a
               key={i.label}
@@ -516,7 +516,7 @@ function Index() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <ThemeToggle className="hidden md:flex" />
+          <ThemeToggle className="hidden lg:flex" />
 
           <a
             href="#contact"
@@ -525,10 +525,10 @@ function Index() {
             Talk to Us
           </a>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile/Tablet Hamburger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline text-foreground md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline text-foreground lg:hidden"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? "✕" : "☰"}
@@ -536,9 +536,9 @@ function Index() {
         </div>
       </header>
 
-      {/* Mobile Drawer Menu Overlay */}
+      {/* Mobile/Tablet Drawer Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col justify-between bg-background px-6 pt-28 pb-12 md:hidden animate-in fade-in duration-300">
+        <div className="fixed inset-0 z-40 flex flex-col justify-between bg-background px-6 pt-28 pb-12 lg:hidden animate-in fade-in duration-300">
           <nav className="flex flex-col space-y-6">
             {NAV.map((i) => (
               <a
@@ -751,9 +751,9 @@ function Index() {
         <SectionHead n="02" label="Selected Work" />
 
         <div className="px-6 py-20 md:px-16">
-          <div className="grid gap-12 md:grid-cols-12 md:items-start">
+          <div className="grid gap-12 md:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] md:items-start">
             {/* Left Header Column */}
-            <div className="flex flex-col justify-between space-y-10 md:col-span-4 md:sticky md:top-28">
+            <div className="flex flex-col justify-between space-y-10 md:sticky md:top-28">
               <div>
                 <h2 className="display-tight text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
                   Our Work Speaks Louder Than Words.
@@ -795,7 +795,7 @@ function Index() {
             {/* Full-Width Laptop Screen Widescreen Cards Carousel */}
             <div
               ref={workScrollRef}
-              className="flex gap-4 md:gap-8 overflow-x-auto pb-8 md:col-span-8 no-scrollbar mask-edge-fade"
+              className="flex min-w-0 gap-4 md:gap-8 overflow-x-auto pb-8 no-scrollbar mask-edge-fade"
             >
               {[...WORK, ...WORK].map((w, i) => (
                 <Link
@@ -848,16 +848,16 @@ function Index() {
               </div>
 
               <div className="flex min-h-[480px] items-center overflow-hidden rounded-2xl border border-hairline bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:min-h-[560px] md:p-16">
-                <div className="grid w-full gap-10 md:grid-cols-12 md:gap-16">
+                <div className="grid w-full gap-10 md:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] md:gap-16">
                   {/* Badge / Stage Indicator */}
-                  <div className="space-y-6 md:col-span-4 md:space-y-8">
+                  <div className="min-w-0 space-y-6 md:space-y-8">
                     <div className="inline-flex items-center gap-2 rounded-full border border-hairline bg-secondary/60 px-4 py-1.5 backdrop-blur-md">
                       <span className="label-mono text-xs font-semibold text-accent">
                         STAGE 0{activeProcessStep + 1} OF 04
                       </span>
                       <span className="h-1.5 w-1.5 rounded-full bg-accent animate-pulse" />
                     </div>
-                    <h3 className="display-tight text-4xl font-medium tracking-tight text-foreground md:text-6xl transition-all duration-300">
+                    <h3 className="display-tight text-4xl font-medium tracking-tight text-foreground md:text-5xl lg:text-6xl transition-all duration-300">
                       {activeStage.title}
                     </h3>
                     <p className="label-mono text-xs leading-relaxed text-accent/90 transition-all duration-300 md:text-sm">
@@ -882,7 +882,7 @@ function Index() {
                   </div>
 
                   {/* Detailed Description & Deliverables */}
-                  <div className="space-y-8 border-t border-hairline/60 pt-8 md:col-span-8 md:space-y-8 md:border-l md:border-t-0 md:pl-14 md:pt-0">
+                  <div className="min-w-0 space-y-8 border-t border-hairline/60 pt-8 md:space-y-8 md:border-l md:border-t-0 md:pl-14 md:pt-0">
                     <p className="text-base leading-relaxed text-foreground/85 md:text-lg font-normal transition-all duration-300">
                       {activeStage.details}
                     </p>
