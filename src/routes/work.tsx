@@ -158,7 +158,7 @@ function WorkPage() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <ThemeToggle />
+          <ThemeToggle className="hidden md:flex" />
 
           <Link
             to="/#contact"

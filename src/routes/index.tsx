@@ -516,7 +516,7 @@ function Index() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <ThemeToggle />
+          <ThemeToggle className="hidden md:flex" />
 
           <a
             href="#contact"
@@ -972,7 +972,7 @@ function Index() {
               experiences that leave a mark. Tell us what you're working on.
             </p>
             <a
-              href="mailto:hello@summitstudio.co"
+              href="mailto:summitstudiox@gmail.com"
               className="label-mono mt-10 flex w-full max-w-sm items-center justify-between border-b border-foreground pb-3 text-xs sm:text-sm transition-colors hover:border-accent hover:text-accent"
             >
               Send a message
@@ -981,9 +981,9 @@ function Index() {
           </div>
           <div className="md:pt-4">
             {[
-              ["Email", "hello@summitstudio.co"],
-              ["Instagram", "@summitstudios"],
-              ["Twitter / X", "@summitstudios"],
+              ["Email", "summitstudiox@gmail.com"],
+              ["Instagram", "@summitstudiox"],
+              ["Twitter / X", "@summitstudiox"],
               ["LinkedIn", "Summit Studio"],
             ].map(([k, v]) => (
               <div
