@@ -6,7 +6,11 @@ import reactRefresh from "eslint-plugin-react-refresh";
 import tseslint from "typescript-eslint";
 
 export default tseslint.config(
-  { ignores: ["dist", ".output", ".vinxi"] },
+  {
+    // Authored effect sources copied verbatim from @designcodeio/threeui —
+    // keep byte-identical for provenance, so lint/prettier must not touch them.
+    ignores: ["dist", ".output", ".vinxi", "src/components/effects/predictive-arc/sources/**"],
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended],
     files: ["**/*.{ts,tsx}"],
