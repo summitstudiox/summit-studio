@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
-import heroImg from "@/assets/hero.jpg";
+import { PredictiveArcCanvas } from "@/components/effects/predictive-arc/PredictiveArcCollection";
+import "@/components/effects/predictive-arc/styles.css";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
@@ -561,13 +562,16 @@ function Index() {
 
       {/* HERO */}
       <section className="relative min-h-[100svh] w-full overflow-hidden flex flex-col justify-between">
-        <img
-          src={heroImg}
-          alt="Blurred crimson city lights at night"
-          width={1920}
-          height={1280}
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+        {/* Predictive Arc (halftone-flow) authored background. pointer-events
+            stay off so wheel/touch scrolling over the iframe reaches the page. */}
+        <div className="absolute inset-0 pointer-events-none">
+          <PredictiveArcCanvas
+            variant="halftone-flow"
+            hue={-30}
+            saturation={2}
+            brightness={1.05}
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/20 to-background" />
         <div className="grain-overlay pointer-events-none absolute inset-0 opacity-40" />
 
