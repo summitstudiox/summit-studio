@@ -143,7 +143,7 @@ function WorkPage() {
           Summit Studio<span className="text-accent">.</span>
         </Link>
 
-        <nav className="hidden items-center gap-10 md:flex">
+        <nav className="hidden items-center gap-10 lg:flex">
           {NAV.map((i) => (
             <Link
               key={i.label}
@@ -158,7 +158,7 @@ function WorkPage() {
         </nav>
 
         <div className="flex items-center gap-4">
-          <ThemeToggle className="hidden md:flex" />
+          <ThemeToggle className="hidden lg:flex" />
 
           <Link
             to="/#contact"
@@ -167,10 +167,10 @@ function WorkPage() {
             Talk to Us
           </Link>
 
-          {/* Mobile Hamburger Button */}
+          {/* Mobile/Tablet Hamburger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline text-foreground md:hidden"
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline text-foreground lg:hidden"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? "✕" : "☰"}
@@ -178,9 +178,9 @@ function WorkPage() {
         </div>
       </header>
 
-      {/* Mobile Drawer Menu Overlay */}
+      {/* Mobile/Tablet Drawer Menu Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col justify-between bg-background px-6 pt-28 pb-12 md:hidden animate-in fade-in duration-300">
+        <div className="fixed inset-0 z-40 flex flex-col justify-between bg-background px-6 pt-28 pb-12 lg:hidden animate-in fade-in duration-300">
           <nav className="flex flex-col space-y-6">
             {NAV.map((i) => (
               <Link
