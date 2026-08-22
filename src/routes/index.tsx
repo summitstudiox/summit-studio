@@ -835,14 +835,16 @@ function Index() {
       {/* PROCESS — Sticky Stacking Card Timeline */}
       <section id="process" className="border-t border-hairline">
         <div className="px-6 py-16 md:px-16 md:py-24">
-          {/* Pin Window with height for scroll progress */}
-          <div ref={processPinRef} className="relative min-h-[300vh]">
-            <div className="sticky top-16 z-10">
+          {/* Pin Window with height for scroll progress. Desktop-only: on
+            small screens the card must grow with its content instead of
+            sticking in a viewport-height window where it clips. */}
+          <div ref={processPinRef} className="relative md:min-h-[300vh]">
+            <div className="z-10 md:sticky md:top-16">
               <div className="-mx-6 -mt-16 md:-mx-16 md:-mt-24">
                 <SectionHead n="03" label="Our Process" />
               </div>
 
-              <div className="mb-12 pt-8 md:pt-12">
+              <div className="mb-10 pt-8 md:mb-12 md:pt-12">
                 <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl xl:max-w-none xl:whitespace-nowrap">
                   A Clear Path From Idea to Launch.
                 </h2>
@@ -852,8 +854,45 @@ function Index() {
                 </p>
               </div>
 
-              <div className="flex min-h-[480px] items-center overflow-hidden rounded-2xl border border-hairline bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:min-h-[560px] md:p-16">
-                <div className="grid w-full gap-10 md:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] md:gap-16">
+              {/* MOBILE — compact stacked stages. No pinning, no
+                  interactive machinery: every stage is a small static card
+                  with just number, title, summary and deliverables. */}
+              <div className="grid gap-4 md:hidden">
+                {PROCESS.map((stage) => (
+                  <article
+                    key={stage.n}
+                    className="rounded-xl border border-hairline bg-card/95 p-5 shadow-sm backdrop-blur-xl"
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="label-mono text-[0.65rem] text-muted-foreground">
+                        [ {stage.n} ]
+                      </span>
+                      <span className="h-1 w-1 rounded-full bg-accent" />
+                    </div>
+                    <h3 className="display-tight mt-3 text-2xl font-medium tracking-tight text-foreground">
+                      {stage.title}
+                    </h3>
+                    <p className="mt-2 text-[0.7rem] leading-relaxed text-foreground/70">
+                      {stage.sub}
+                    </p>
+                    <ul className="mt-4 space-y-1.5 border-t border-hairline/60 pt-4">
+                      {stage.highlights.map((h) => (
+                        <li
+                          key={h}
+                          className="flex items-start gap-2 text-xs leading-relaxed text-foreground/80"
+                        >
+                          <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-accent" />
+                          {h}
+                        </li>
+                      ))}
+                    </ul>
+                  </article>
+                ))}
+              </div>
+
+              {/* DESKTOP — sticky stacking card timeline */}
+              <div className="hidden items-center overflow-hidden rounded-2xl border border-hairline bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:flex md:min-h-[560px] md:p-16">
+                <div className="grid w-full gap-8 md:grid-cols-[minmax(0,4fr)_minmax(0,8fr)] md:gap-16">
                   {/* Badge / Stage Indicator */}
                   <div className="min-w-0 space-y-6 md:space-y-8">
                     <div className="inline-flex items-center gap-2 rounded-full border border-hairline bg-secondary/60 px-4 py-1.5 backdrop-blur-md">
@@ -1056,9 +1095,11 @@ function Index() {
         </div>
 
         {/* Bottom Sub-bar without inner border line */}
-        <div className="label-mono flex flex-col gap-4 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <span>© 2026 Summit Studio. All rights reserved.</span>
-          <a href="#top" className="transition-colors hover:text-accent">
+        <div className="label-mono flex flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+          <span>
+            © 2026 Summit Studio.<span className="hidden sm:inline"> All rights reserved.</span>
+          </span>
+          <a href="#top" className="shrink-0 transition-colors hover:text-accent">
             Back to top ↑
           </a>
         </div>
