@@ -368,8 +368,18 @@ function Index() {
     const RESUME_DELAY = 1800; // ms of quiet before auto-scroll resumes after user interaction
     const HOVER_MAX_PAUSE = 4500; // ms — resume even if the cursor never leaves, so it never looks frozen
 
+    // The track renders two identical copies of WORK back to back. Wrapping
+    // the scroll position by the width of one copy lands on a pixel-identical
+    // frame, so the carousel can loop forever in one direction instead of
+    // bouncing back once it hits an end.
+    let singleSetWidth = el.scrollWidth / 2;
+    const wrap = (value: number) => {
+      if (singleSetWidth <= 0) return value;
+      const wrapped = value % singleSetWidth;
+      return wrapped < 0 ? wrapped + singleSetWidth : wrapped;
+    };
+
     let rafId: number;
-    let dir = 1;
     let pos = el.scrollLeft;
     let lastFrameTime = performance.now();
     let isAutoScrolling = false;
@@ -378,18 +388,23 @@ function Index() {
     let isPointerDown = false;
     let lastInteraction = 0;
 
+    const onResize = () => {
+      singleSetWidth = el.scrollWidth / 2;
+    };
+
     const markInteraction = () => {
       lastInteraction = Date.now();
     };
     const onScroll = () => {
-      if (!isAutoScrolling) {
-        markInteraction();
-        const newPos = el.scrollLeft;
-        // Continue in whatever direction the user just scrolled, not
-        // whatever direction the animation happened to be going before.
-        if (newPos > pos) dir = 1;
-        else if (newPos < pos) dir = -1;
-        pos = newPos;
+      if (isAutoScrolling) return;
+      markInteraction();
+      pos = el.scrollLeft;
+      // A manual drag/fling past either end of a single copy — snap back
+      // into the equivalent spot in the other copy, invisibly.
+      if (singleSetWidth > 0 && (pos >= singleSetWidth || pos < 0)) {
+        isAutoScrolling = true;
+        pos = wrap(pos);
+        el.scrollLeft = pos;
       }
     };
     const onEnter = () => {
@@ -414,6 +429,7 @@ function Index() {
     el.addEventListener("mouseleave", onLeave);
     el.addEventListener("pointerdown", onPointerDown);
     window.addEventListener("pointerup", onPointerUp);
+    window.addEventListener("resize", onResize);
 
     let wasMoving = false;
 
@@ -437,16 +453,10 @@ function Index() {
           // jump hasn't dispatched yet and `pos` is stale.
           pos = el.scrollLeft;
         }
-        const maxScroll = el.scrollWidth - el.clientWidth;
-        if (maxScroll > 0) {
-          pos += ((SPEED * dt) / 1000) * dir;
-          if (pos >= maxScroll) {
-            pos = maxScroll;
-            dir = -1;
-          } else if (pos <= 0) {
-            pos = 0;
-            dir = 1;
-          }
+        if (singleSetWidth > 0) {
+          // Always forward, wrapping around the duplicated track — the
+          // carousel never has to reverse direction to avoid "ending".
+          pos = wrap(pos + (SPEED * dt) / 1000);
           isAutoScrolling = true;
           el.scrollLeft = pos;
         }
@@ -463,6 +473,7 @@ function Index() {
       el.removeEventListener("mouseleave", onLeave);
       el.removeEventListener("pointerdown", onPointerDown);
       window.removeEventListener("pointerup", onPointerUp);
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -786,9 +797,9 @@ function Index() {
               ref={workScrollRef}
               className="flex gap-4 md:gap-8 overflow-x-auto pb-8 md:col-span-8 no-scrollbar mask-edge-fade"
             >
-              {WORK.map((w) => (
+              {[...WORK, ...WORK].map((w, i) => (
                 <Link
-                  key={w.n}
+                  key={`${w.n}-${i}`}
                   to="/work/$slug"
                   params={{ slug: w.slug }}
                   className="group relative flex aspect-[4/3] sm:aspect-[16/10.5] w-[84vw] max-w-[780px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-xl md:rounded-2xl border border-hairline bg-card p-5 shadow-2xl transition-all duration-500 hover:border-accent/50 md:p-10"
@@ -826,7 +837,7 @@ function Index() {
             <div className="sticky top-28 z-10 py-4">
               <div className="mb-12">
                 <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl xl:max-w-none xl:whitespace-nowrap">
-                  Our Process Moves Like Production.
+                  A Clear Path From Idea to Launch.
                 </h2>
               </div>
 
