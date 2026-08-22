@@ -351,9 +351,11 @@ function WorkPage() {
         </div>
 
         {/* Bottom Sub-bar */}
-        <div className="label-mono flex flex-col gap-4 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <span>© 2026 Summit Studio. All rights reserved.</span>
-          <a href="#top" className="transition-colors hover:text-accent">
+        <div className="label-mono flex flex-row items-center justify-between gap-4 text-xs text-muted-foreground">
+          <span>
+            © 2026 Summit Studio.<span className="hidden sm:inline"> All rights reserved.</span>
+          </span>
+          <a href="#top" className="shrink-0 transition-colors hover:text-accent">
             Back to top ↑
           </a>
         </div>
