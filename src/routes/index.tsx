@@ -601,7 +601,7 @@ function Index() {
         <SectionHead n="01" label="About Company" />
         <div className="px-6 py-20 md:px-16">
           <div className="mb-12">
-            <h2 className="display-tight max-w-3xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+            <h2 className="display-tight max-w-3xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl xl:max-w-none xl:whitespace-nowrap">
               We Craft Digital Identities Built for Impact.
             </h2>
           </div>
@@ -755,8 +755,8 @@ function Index() {
             {/* Left Header Column */}
             <div className="flex flex-col justify-between space-y-10 md:col-span-4 md:sticky md:top-28">
               <div>
-                <h2 className="display-tight text-4xl font-normal leading-[1.1] tracking-tight text-foreground md:text-5xl md:leading-[1.08]">
-                  OUR WORK SPEAKS LOUDER THAN WORDS.
+                <h2 className="display-tight text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+                  Our Work Speaks Louder Than Words.
                 </h2>
                 <p className="mt-5 text-xs leading-relaxed text-foreground/70 md:text-sm font-normal">
                   A curated collection of digital weapons, bespoke platforms, and identity systems
@@ -829,16 +829,22 @@ function Index() {
 
       {/* PROCESS — Sticky Stacking Card Timeline */}
       <section id="process" className="border-t border-hairline">
-        <SectionHead n="03" label="Our Process" />
-
         <div className="px-6 py-16 md:px-16 md:py-24">
           {/* Pin Window with height for scroll progress */}
           <div ref={processPinRef} className="relative min-h-[300vh]">
-            <div className="sticky top-28 z-10 py-4">
-              <div className="mb-12">
+            <div className="sticky top-16 z-10">
+              <div className="-mx-6 -mt-16 md:-mx-16 md:-mt-24">
+                <SectionHead n="03" label="Our Process" />
+              </div>
+
+              <div className="mb-12 pt-8 md:pt-12">
                 <h2 className="display-tight max-w-2xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl xl:max-w-none xl:whitespace-nowrap">
                   A Clear Path From Idea to Launch.
                 </h2>
+                <p className="mt-5 text-xs leading-relaxed text-foreground/70 md:text-sm font-normal xl:whitespace-nowrap">
+                  Four stages, each with a clear goal, a defined deliverable, and no guesswork about
+                  what happens next.
+                </p>
               </div>
 
               <div className="flex min-h-[480px] items-center overflow-hidden rounded-2xl border border-hairline bg-card/95 p-8 shadow-2xl backdrop-blur-xl md:min-h-[560px] md:p-16">
@@ -958,7 +964,9 @@ function Index() {
         <SectionHead n="05" label="Let's work together" />
         <div className="grid gap-16 px-6 py-20 md:grid-cols-2 md:px-16 md:py-40">
           <div>
-            <h2 className="display-tight text-5xl sm:text-[9vw] md:text-[5vw]">Contact us.</h2>
+            <h2 className="display-tight text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+              Contact us.
+            </h2>
             <p className="mt-6 max-w-md text-xs sm:text-sm leading-relaxed text-foreground/70">
               Ready to build something bold? We partner with ambitious brands to create digital
               experiences that leave a mark. Tell us what you're working on.
