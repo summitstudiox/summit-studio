@@ -84,11 +84,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Summit Studio — Branding, Web Design & Development" },
       { property: "og:title", content: "Summit Studio — Branding, Web Design & Development" },
       { name: "twitter:title", content: "Summit Studio — Branding, Web Design & Development" },
+      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
       { name: "description", content: "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery." },
       { property: "og:description", content: "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery." },
       { name: "twitter:description", content: "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery." },
     ],
     links: [
+      { rel: "canonical", href: "https://summitstdio.vercel.app/" },
       {
         rel: "stylesheet",
         href: appCss,
