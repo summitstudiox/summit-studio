@@ -10,11 +10,11 @@ import clubExotismImg from "@/assets/clubexotism.jpg";
 export const Route = createFileRoute("/work")({
   head: () => ({
     meta: [
-      { title: "All Works - Summit Studio" },
+      { title: "Our Work: Case Studies & Featured Projects - Summit Studio" },
       {
         name: "description",
         content:
-          "Explore all featured digital platforms and brand identities engineered by Summit Studio.",
+          "Explore case studies from Summit Studio: bespoke digital platforms, brand identities, and high-performance websites engineered for ambitious businesses.",
       },
       { property: "og:url", content: "https://summitstudio.in/work" },
     ],
