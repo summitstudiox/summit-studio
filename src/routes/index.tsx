@@ -23,7 +23,9 @@ export const Route = createFileRoute("/")({
         content:
           "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery.",
       },
+      { property: "og:url", content: "https://summitstudio.in/" },
     ],
+    links: [{ rel: "canonical", href: "https://summitstudio.in/" }],
   }),
   component: Index,
 });

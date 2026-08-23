@@ -18,6 +18,20 @@ import { ThemeProvider } from "@/hooks/use-theme";
 // paint — otherwise the page flashes the wrong theme on load.
 const themeInitScript = `(function(){try{var t=localStorage.getItem("theme");if(!t){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}if(t==="dark"){document.documentElement.classList.add("dark");}}catch(e){document.documentElement.classList.add("dark");}})();`;
 
+// Organization structured data, so search engines can resolve Summit Studio
+// as a known entity (logo/social profiles in results, not just a page title).
+const organizationJsonLd = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Summit Studio",
+  url: "https://summitstudio.in/",
+  logo: "https://summitstudio.in/apple-touch-icon.png",
+  description:
+    "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery.",
+  email: "summitstudiox@gmail.com",
+  sameAs: ["https://instagram.com/summitstudiox", "https://twitter.com/summitstudiox"],
+});
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -105,15 +119,13 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery.",
       },
-      { property: "og:url", content: "https://summitstudios.vercel.app/" },
-      { property: "og:image", content: "https://summitstudios.vercel.app/apple-touch-icon.png" },
+      { property: "og:image", content: "https://summitstudio.in/apple-touch-icon.png" },
       { property: "og:image:width", content: "180" },
       { property: "og:image:height", content: "180" },
       { property: "og:image:alt", content: "Summit Studio" },
-      { name: "twitter:image", content: "https://summitstudios.vercel.app/apple-touch-icon.png" },
+      { name: "twitter:image", content: "https://summitstudio.in/apple-touch-icon.png" },
     ],
     links: [
-      { rel: "canonical", href: "https://summitstudios.vercel.app/" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -146,6 +158,10 @@ function RootShell({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: organizationJsonLd }}
+        />
       </head>
       <body>
         {children}
