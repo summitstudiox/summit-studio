@@ -105,15 +105,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         content:
           "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery.",
       },
-      { property: "og:url", content: "https://summitstudios.vercel.app/" },
-      { property: "og:image", content: "https://summitstudios.vercel.app/apple-touch-icon.png" },
+      { property: "og:url", content: "https://summitstudio.in/" },
+      { property: "og:image", content: "https://summitstudio.in/apple-touch-icon.png" },
       { property: "og:image:width", content: "180" },
       { property: "og:image:height", content: "180" },
       { property: "og:image:alt", content: "Summit Studio" },
-      { name: "twitter:image", content: "https://summitstudios.vercel.app/apple-touch-icon.png" },
+      { name: "twitter:image", content: "https://summitstudio.in/apple-touch-icon.png" },
     ],
     links: [
-      { rel: "canonical", href: "https://summitstudios.vercel.app/" },
+      { rel: "canonical", href: "https://summitstudio.in/" },
       {
         rel: "stylesheet",
         href: appCss,

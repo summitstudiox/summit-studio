@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://summitstdio.vercel.app/sitemap.xml
+Sitemap: https://summitstudio.in/sitemap.xml
