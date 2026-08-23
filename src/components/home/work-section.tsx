@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { SectionHead } from "@/components/section-head";
-import work2 from "@/assets/work-2.jpg";
 import clubExotismImg from "@/assets/clubexotism.jpg";
 import ascendImg from "@/assets/ascend.jpg";
 import campusConnectImg from "@/assets/campus-connect.jpg";
@@ -14,13 +13,6 @@ const WORK = [
     name: "Club Exotism",
     kind: "Full Platform · Real-Time Engine · High-Octane Admin Suite",
     img: clubExotismImg,
-  },
-  {
-    n: "02",
-    slug: "vanta-digital",
-    name: "Vanta Digital",
-    kind: "Web Design · High-Performance Engineering",
-    img: work2,
   },
   {
     n: "03",
@@ -195,7 +187,7 @@ export function WorkSection() {
 
               <div className="flex items-center gap-8 border-t border-hairline/60 pt-8">
                 <div>
-                  <span className="display-tight text-2xl font-medium text-foreground">05</span>
+                  <span className="display-tight text-2xl font-medium text-foreground">04</span>
                   <span className="label-mono mt-1 block text-[0.68rem] text-muted-foreground">
                     Featured Cases
                   </span>

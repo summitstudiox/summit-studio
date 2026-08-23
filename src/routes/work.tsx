@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, type NavItem } from "@/components/site-header";
-import work2 from "@/assets/work-2.jpg";
 import clubExotismImg from "@/assets/clubexotism.jpg";
 import ascendImg from "@/assets/ascend.jpg";
 import campusConnectImg from "@/assets/campus-connect.jpg";
@@ -42,24 +41,6 @@ const ALL_WORK = [
       { k: "Slot Utilization", v: "100%" },
       { k: "Checkout Speed", v: "< 12s" },
       { k: "Local SEO Dominance", v: "#1 RANK" },
-    ],
-  },
-  {
-    n: "02",
-    slug: "vanta-digital",
-    name: "Vanta Digital",
-    client: "Vanta Technologies",
-    kind: "Web Design · High-Performance Engineering",
-    year: "2025",
-    img: work2,
-    challenge:
-      "Legacy website was suffering from slow load times, high drop-off rates on mobile, and outdated brand messaging that failed to convert enterprise leads.",
-    solution:
-      "Rebuilt the core architecture with modern SSR, sub-second global asset delivery, and an aggressive editorial visual identity.",
-    stats: [
-      { k: "Revenue Impact", v: "+140%" },
-      { k: "Page Load Speed", v: "0.4s" },
-      { k: "Lead Conversion", v: "+95%" },
     ],
   },
   {
@@ -122,9 +103,9 @@ const ALL_WORK = [
 ];
 
 const CATEGORIES = [
-  { id: "ALL", label: "All Projects", count: 5 },
+  { id: "ALL", label: "All Projects", count: 4 },
   { id: "PLATFORM", label: "Full Platform", count: 1 },
-  { id: "WEB", label: "Web Design", count: 3 },
+  { id: "WEB", label: "Web Design", count: 2 },
   { id: "SYSTEMS", label: "UI/UX Systems", count: 1 },
 ];
 
@@ -142,7 +123,7 @@ function WorkPage() {
 
   const filteredWork = ALL_WORK.filter((w) => {
     if (activeFilter === "PLATFORM") return w.n === "01";
-    if (activeFilter === "WEB") return w.n === "02" || w.n === "03" || w.n === "05";
+    if (activeFilter === "WEB") return w.n === "03" || w.n === "05";
     if (activeFilter === "SYSTEMS") return w.n === "04";
     return true;
   });

@@ -1,9 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
-import work1 from "@/assets/work-1.jpg";
-import work2 from "@/assets/work-2.jpg";
-import work3 from "@/assets/work-3.jpg";
-import work4 from "@/assets/work-4.jpg";
 import clubExotismImg from "@/assets/clubexotism.jpg";
 import ascendImg from "@/assets/ascend.jpg";
 import campusConnectImg from "@/assets/campus-connect.jpg";
@@ -69,26 +65,6 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
       { k: "Slot Utilization", v: "100%" },
       { k: "Checkout Speed", v: "< 12s" },
       { k: "Local SEO Dominance", v: "#1 RANK" },
-    ],
-  },
-  "vanta-digital": {
-    n: "02",
-    slug: "vanta-digital",
-    name: "Vanta Digital",
-    client: "Vanta Technologies",
-    kind: "Web Design · High-Performance Engineering",
-    year: "2025",
-    img: work2,
-    metaDescription:
-      "Summit Studio rebuilt Vanta Digital's website with modern SSR, sub-second global delivery, and a bold editorial identity that lifted revenue 140%.",
-    challenge:
-      "Legacy website was suffering from slow load times, high drop-off rates on mobile, and outdated brand messaging that failed to convert enterprise leads.",
-    solution:
-      "Rebuilt the core architecture with modern SSR, sub-second global asset delivery, and an aggressive editorial visual identity.",
-    stats: [
-      { k: "Revenue Impact", v: "+140%" },
-      { k: "Page Load Speed", v: "0.4s" },
-      { k: "Lead Conversion", v: "+95%" },
     ],
   },
   "campus-connect": {
