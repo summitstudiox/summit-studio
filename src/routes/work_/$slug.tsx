@@ -5,6 +5,8 @@ import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
 import work4 from "@/assets/work-4.jpg";
 import clubExotismImg from "@/assets/clubexotism.jpg";
+import ascendImg from "@/assets/ascend.jpg";
+import campusConnectImg from "@/assets/campus-connect.jpg";
 
 export const Route = createFileRoute("/work_/$slug")({
   head: ({ params }) => {
@@ -95,7 +97,8 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     client: "Campus Connect Network",
     kind: "Brand Identity · Community Web App",
     year: "2024",
-    img: work1,
+    img: campusConnectImg,
+    url: "https://campus-connect-six-pi.vercel.app",
     metaDescription:
       "Summit Studio unified Campus Connect's fragmented presence across 12 university hubs into one brand identity and student web platform.",
     challenge:
@@ -115,7 +118,8 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     client: "Ascend Performance Lab",
     kind: "UI Design · Conversion Optimization",
     year: "2024",
-    img: work3,
+    img: ascendImg,
+    url: "https://ascend-black.vercel.app",
     metaDescription:
       "Summit Studio redesigned Ascend's onboarding flow with clear value props and micro-interactions, boosting signups 112%.",
     challenge:
