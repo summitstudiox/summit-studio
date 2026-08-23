@@ -24,14 +24,14 @@ The dev server runs at `http://localhost:3000`.
 
 ## Scripts
 
-| Command             | Description                                   |
-| -------------------- | ---------------------------------------------- |
-| `bun run dev`         | Start the dev server                           |
-| `bun run build`       | Production build (also what Vercel runs)       |
-| `bun run preview`     | Preview a production build locally             |
-| `bun run lint`        | ESLint                                         |
-| `bun run format`      | Prettier — writes formatting fixes in place    |
-| `bunx tsc --noEmit`   | Type-check the whole project                   |
+| Command             | Description                                 |
+| ------------------- | ------------------------------------------- |
+| `bun run dev`       | Start the dev server                        |
+| `bun run build`     | Production build (also what Vercel runs)    |
+| `bun run preview`   | Preview a production build locally          |
+| `bun run lint`      | ESLint                                      |
+| `bun run format`    | Prettier — writes formatting fixes in place |
+| `bunx tsc --noEmit` | Type-check the whole project                |
 
 ## Project structure
 

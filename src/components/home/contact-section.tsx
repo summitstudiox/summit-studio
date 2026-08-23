@@ -24,7 +24,6 @@ export function ContactSection() {
       </Dialog>
 
       <div className="grid gap-16 px-6 py-20 md:grid-cols-2 md:px-16 md:py-40">
-
         {/* Left — Form */}
         <div>
           <h2 className="display-tight text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
@@ -49,7 +48,12 @@ export function ContactSection() {
                 placeholder="Your name"
                 className="w-full border-b border-foreground/30 bg-transparent pb-2 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-accent"
               />
-              <ValidationError field="name" prefix="Name" errors={state.errors} className="text-xs text-red-500" />
+              <ValidationError
+                field="name"
+                prefix="Name"
+                errors={state.errors}
+                className="text-xs text-red-500"
+              />
             </div>
 
             {/* Email */}
@@ -65,7 +69,12 @@ export function ContactSection() {
                 placeholder="your@email.com"
                 className="w-full border-b border-foreground/30 bg-transparent pb-2 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-accent"
               />
-              <ValidationError field="email" prefix="Email" errors={state.errors} className="text-xs text-red-500" />
+              <ValidationError
+                field="email"
+                prefix="Email"
+                errors={state.errors}
+                className="text-xs text-red-500"
+              />
             </div>
 
             {/* Message */}
@@ -81,7 +90,12 @@ export function ContactSection() {
                 placeholder="Tell us about your project..."
                 className="w-full resize-none border-b border-foreground/30 bg-transparent pb-2 text-sm text-foreground placeholder:text-muted-foreground/50 outline-none transition-colors focus:border-accent"
               />
-              <ValidationError field="message" prefix="Message" errors={state.errors} className="text-xs text-red-500" />
+              <ValidationError
+                field="message"
+                prefix="Message"
+                errors={state.errors}
+                className="text-xs text-red-500"
+              />
             </div>
 
             {/* Submit */}
@@ -97,7 +111,7 @@ export function ContactSection() {
         </div>
 
         {/* Right — Social links */}
-        <div className="md:pt-4">
+        <div className="md:self-center">
           {[
             ["Email", "summitstudiox@gmail.com"],
             ["Instagram", "@summitstudiox"],
@@ -113,7 +127,6 @@ export function ContactSection() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   );

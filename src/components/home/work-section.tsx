@@ -1,12 +1,10 @@
 import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { SectionHead } from "@/components/section-head";
-import work1 from "@/assets/work-1.jpg";
-import work2 from "@/assets/work-2.jpg";
-import work3 from "@/assets/work-3.jpg";
 import clubExotismImg from "@/assets/clubexotism.jpg";
 import ascendImg from "@/assets/ascend.jpg";
 import campusConnectImg from "@/assets/campus-connect.jpg";
+import sableEstatesImg from "@/assets/sable-estates.jpg";
 
 const WORK = [
   {
@@ -15,13 +13,6 @@ const WORK = [
     name: "Club Exotism",
     kind: "Full Platform · Real-Time Engine · High-Octane Admin Suite",
     img: clubExotismImg,
-  },
-  {
-    n: "02",
-    slug: "vanta-digital",
-    name: "Vanta Digital",
-    kind: "Web Design · High-Performance Engineering",
-    img: work2,
   },
   {
     n: "03",
@@ -36,6 +27,13 @@ const WORK = [
     name: "Ascend",
     kind: "UI Design · Conversion Optimization",
     img: ascendImg,
+  },
+  {
+    n: "05",
+    slug: "sable-estates",
+    name: "Sable Estates",
+    kind: "Web Design · Luxury Real Estate Marketing",
+    img: sableEstatesImg,
   },
 ];
 

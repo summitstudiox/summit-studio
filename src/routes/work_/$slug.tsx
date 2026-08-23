@@ -1,12 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
-import work1 from "@/assets/work-1.jpg";
-import work2 from "@/assets/work-2.jpg";
-import work3 from "@/assets/work-3.jpg";
-import work4 from "@/assets/work-4.jpg";
 import clubExotismImg from "@/assets/clubexotism.jpg";
 import ascendImg from "@/assets/ascend.jpg";
 import campusConnectImg from "@/assets/campus-connect.jpg";
+import sableEstatesImg from "@/assets/sable-estates.jpg";
 
 export const Route = createFileRoute("/work_/$slug")({
   head: ({ params }) => {
@@ -70,26 +67,6 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
       { k: "Local SEO Dominance", v: "#1 RANK" },
     ],
   },
-  "vanta-digital": {
-    n: "02",
-    slug: "vanta-digital",
-    name: "Vanta Digital",
-    client: "Vanta Technologies",
-    kind: "Web Design · High-Performance Engineering",
-    year: "2025",
-    img: work2,
-    metaDescription:
-      "Summit Studio rebuilt Vanta Digital's website with modern SSR, sub-second global delivery, and a bold editorial identity that lifted revenue 140%.",
-    challenge:
-      "Legacy website was suffering from slow load times, high drop-off rates on mobile, and outdated brand messaging that failed to convert enterprise leads.",
-    solution:
-      "Rebuilt the core architecture with modern SSR, sub-second global asset delivery, and an aggressive editorial visual identity.",
-    stats: [
-      { k: "Revenue Impact", v: "+140%" },
-      { k: "Page Load Speed", v: "0.4s" },
-      { k: "Lead Conversion", v: "+95%" },
-    ],
-  },
   "campus-connect": {
     n: "03",
     slug: "campus-connect",
@@ -130,6 +107,33 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
       { k: "Signup Rate", v: "+112%" },
       { k: "User Engagement", v: "+55%" },
       { k: "Time on Site", v: "+3.4m" },
+    ],
+  },
+  "sable-estates": {
+    n: "05",
+    slug: "sable-estates",
+    name: "Sable Estates",
+    client: "Sable Estates — Montecito, California",
+    kind: "Web Design · Luxury Real Estate Marketing",
+    year: "2026",
+    img: sableEstatesImg,
+    url: "https://sable-summit.vercel.app",
+    stack: "React · Vite · Vercel Edge",
+    metaDescription:
+      "Summit Studio built Sable Estates a full-bleed architectural showcase for a single Montecito property, designed to convert visitors into concierge inquiries.",
+    challenge:
+      "Sable Estates needed a digital presence as considered as the residence itself: a single-property showcase capable of conveying the scale, material craft, and quiet luxury of a Montecito estate without collapsing into a generic real estate template.",
+    solution:
+      "Designed a minimalist, full-bleed gallery experience built entirely around large-format architectural photography, a mix-blend-difference navigation bar that stays legible over any image, and an editorial pairing of serif display type with restrained sans-serif body copy — letting the architecture carry the page instead of competing with it.",
+    problemsSolved: [
+      "Image-First Architecture: Built the entire page around full-bleed photography with zero visual clutter, so every section reads like a page from an architecture monograph rather than a listing site.",
+      "Adaptive Contrast Navigation: A mix-blend-difference header stays legible in white or black text automatically regardless of what's behind it, so the nav never needs its own background.",
+      "Frictionless Inquiry Path: Collapsed the entire conversion funnel into a single concierge contact block, matching how ultra-high-end real estate actually closes — a phone call, not a lead form.",
+    ],
+    stats: [
+      { k: "Page Load Speed", v: "0.3s" },
+      { k: "Concept to Launch", v: "3 Weeks" },
+      { k: "Lighthouse Score", v: "98/100" },
     ],
   },
 };

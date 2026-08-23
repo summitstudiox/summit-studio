@@ -71,7 +71,10 @@ export function ProcessSection() {
       setActiveStep(Math.min(3, Math.floor(progress * 4)));
     };
     const onScroll = () => {
-      if (!ticking) { ticking = true; requestAnimationFrame(compute); }
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(compute);
+      }
     };
     compute();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -125,10 +128,8 @@ export function ProcessSection() {
       <div ref={pinRef} className="relative hidden pb-24 md:block md:min-h-[400vh]">
         <div className="sticky top-0 h-screen">
           <div className="grid h-full grid-cols-[minmax(0,5fr)_minmax(0,7fr)] border-t border-hairline">
-
             {/* LEFT — giant step number, fills the column */}
             <div className="relative flex flex-col justify-between border-r border-hairline px-10 py-14 overflow-hidden">
-
               {/* Foreground content */}
               <div className="relative z-10">
                 <span className="label-mono text-xs text-muted-foreground">
@@ -179,18 +180,13 @@ export function ProcessSection() {
 
             {/* RIGHT — details panel */}
             <div className="flex flex-col justify-center px-14 py-14 xl:px-20">
-              <div
-                key={stage.n + "-detail"}
-                className="space-y-10 transition-all duration-500"
-              >
+              <div key={stage.n + "-detail"} className="space-y-10 transition-all duration-500">
                 <p className="text-lg leading-relaxed text-foreground/80 font-normal xl:text-xl">
                   {stage.details}
                 </p>
 
                 <div className="border-t border-hairline/60 pt-8">
-                  <p className="label-mono mb-6 text-xs text-muted-foreground">
-                    [ Deliverables ]
-                  </p>
+                  <p className="label-mono mb-6 text-xs text-muted-foreground">[ Deliverables ]</p>
                   <ul className="space-y-4">
                     {stage.highlights.map((h, i) => (
                       <li key={h} className="flex items-center gap-4">
@@ -205,7 +201,6 @@ export function ProcessSection() {
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </div>
