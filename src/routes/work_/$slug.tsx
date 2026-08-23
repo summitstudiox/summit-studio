@@ -4,11 +4,11 @@ import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
 import work4 from "@/assets/work-4.jpg";
-import clubExotismImg from "@/assets/clubexotism.png";
+import clubExotismImg from "@/assets/clubexotism.jpg";
 
 export const Route = createFileRoute("/work_/$slug")({
   head: ({ params }) => {
-    const project = PROJECTS_DATA[params.slug] || PROJECTS_DATA["club-exotism"];
+    const project = PROJECTS_DATA[params.slug] ?? DEFAULT_PROJECT;
     return {
       meta: [
         { title: `${project.name} - Case Study - Summit Studio` },
@@ -19,24 +19,23 @@ export const Route = createFileRoute("/work_/$slug")({
   component: CaseStudyDetail,
 });
 
-const PROJECTS_DATA: Record<
-  string,
-  {
-    n: string;
-    slug: string;
-    name: string;
-    client: string;
-    kind: string;
-    year: string;
-    img: string;
-    url?: string;
-    stack?: string;
-    challenge: string;
-    solution: string;
-    problemsSolved?: string[];
-    stats: { k: string; v: string }[];
-  }
-> = {
+type ProjectData = {
+  n: string;
+  slug: string;
+  name: string;
+  client: string;
+  kind: string;
+  year: string;
+  img: string;
+  url?: string;
+  stack?: string;
+  challenge: string;
+  solution: string;
+  problemsSolved?: string[];
+  stats: { k: string; v: string }[];
+};
+
+const PROJECTS_DATA: Record<string, ProjectData> = {
   "club-exotism": {
     n: "01",
     slug: "club-exotism",
@@ -118,9 +117,12 @@ const PROJECTS_DATA: Record<
   },
 };
 
+// PROJECTS_DATA always defines "club-exotism" — safe fallback for an unknown slug.
+const DEFAULT_PROJECT: ProjectData = PROJECTS_DATA["club-exotism"]!;
+
 function CaseStudyDetail() {
   const { slug } = Route.useParams();
-  const project = PROJECTS_DATA[slug] || PROJECTS_DATA["club-exotism"];
+  const project = PROJECTS_DATA[slug] ?? DEFAULT_PROJECT;
 
   return (
     <main className="min-h-screen bg-background text-foreground">
