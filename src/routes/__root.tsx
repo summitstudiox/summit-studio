@@ -8,6 +8,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
 
 import appCss from "../styles.css?url";
 import { ThemeProvider } from "@/hooks/use-theme";
@@ -84,13 +85,34 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { title: "Summit Studio - Branding, Web Design & Development" },
       { property: "og:title", content: "Summit Studio - Branding, Web Design & Development" },
       { name: "twitter:title", content: "Summit Studio - Branding, Web Design & Development" },
-      { name: "robots", content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
-      { name: "description", content: "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery." },
-      { property: "og:description", content: "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery." },
-      { name: "twitter:description", content: "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery." },
+      {
+        name: "robots",
+        content: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+      },
+      {
+        name: "description",
+        content:
+          "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery.",
+      },
+      {
+        property: "og:description",
+        content:
+          "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery.",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Summit Studio builds branding, websites and development for ambitious businesses that refuse to blend in. Strategy, identity, design, delivery.",
+      },
+      { property: "og:url", content: "https://summitstudios.vercel.app/" },
+      { property: "og:image", content: "https://summitstudios.vercel.app/og-image.png" },
+      { property: "og:image:width", content: "512" },
+      { property: "og:image:height", content: "512" },
+      { property: "og:image:alt", content: "Summit Studio" },
+      { name: "twitter:image", content: "https://summitstudios.vercel.app/og-image.png" },
     ],
     links: [
-      { rel: "canonical", href: "https://summitstdio.vercel.app/" },
+      { rel: "canonical", href: "https://summitstudios.vercel.app/" },
       {
         rel: "stylesheet",
         href: appCss,
@@ -105,6 +127,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.png", type: "image/png" },
       { rel: "icon", href: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
       { rel: "icon", href: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { rel: "icon", href: "/android-chrome-192x192.png", type: "image/png", sizes: "192x192" },
+      { rel: "icon", href: "/android-chrome-512x512.png", type: "image/png", sizes: "512x512" },
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
     ],
   }),
@@ -124,6 +148,7 @@ function RootShell({ children }: { children: ReactNode }) {
       </head>
       <body>
         {children}
+        <Analytics />
         <Scripts />
       </body>
     </html>

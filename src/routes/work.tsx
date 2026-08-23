@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { track } from "@vercel/analytics";
 import { ThemeToggle } from "@/components/theme-toggle";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
@@ -162,6 +163,7 @@ function WorkPage() {
 
           <Link
             to="/#contact"
+            onClick={() => track("Talk to Us Clicked", { location: "nav" })}
             className="label-mono border-b border-foreground pb-1 text-xs sm:text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
           >
             Talk to Us

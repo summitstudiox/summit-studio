@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { track } from "@vercel/analytics";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { PredictiveArcCanvas } from "@/components/effects/predictive-arc/PredictiveArcCollection";
 import "@/components/effects/predictive-arc/styles.css";
@@ -522,6 +523,7 @@ function Index() {
 
           <a
             href="#contact"
+            onClick={() => track("Talk to Us Clicked", { location: "nav" })}
             className="label-mono border-b border-foreground pb-1 text-xs sm:text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
           >
             Talk to Us
@@ -565,12 +567,7 @@ function Index() {
         {/* Predictive Arc (halftone-flow) authored background. pointer-events
             stay off so wheel/touch scrolling over the iframe reaches the page. */}
         <div className="absolute inset-0 pointer-events-none">
-          <PredictiveArcCanvas
-            variant="halftone-flow"
-            hue={-30}
-            saturation={2}
-            brightness={1.05}
-          />
+          <PredictiveArcCanvas variant="halftone-flow" hue={-30} saturation={2} brightness={1.05} />
         </div>
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/20 to-background" />
         <div className="grain-overlay pointer-events-none absolute inset-0 opacity-40" />
@@ -1017,6 +1014,7 @@ function Index() {
             </p>
             <a
               href="mailto:summitstudiox@gmail.com"
+              onClick={() => track("Send a Message Clicked", { location: "contact-section" })}
               className="label-mono mt-10 flex w-full max-w-sm items-center justify-between border-b border-foreground pb-3 text-xs sm:text-sm transition-colors hover:border-accent hover:text-accent"
             >
               Send a message
