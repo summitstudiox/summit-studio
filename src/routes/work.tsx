@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { track } from "@vercel/analytics";
-import { ThemeToggle } from "@/components/theme-toggle";
+import { SiteHeader, type NavItem } from "@/components/site-header";
 import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
 import work4 from "@/assets/work-4.jpg";
-import clubExotismImg from "@/assets/clubexotism.png";
+import clubExotismImg from "@/assets/clubexotism.jpg";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
@@ -105,29 +104,17 @@ const CATEGORIES = [
   { id: "SYSTEMS", label: "UI/UX Systems", count: 1 },
 ];
 
-const NAV = [
-  { label: "Home", href: "/#top" },
-  { label: "Studio", href: "/#studio" },
-  { label: "Work", href: "/work" },
-  { label: "Process", href: "/#process" },
-  { label: "FAQ", href: "/#faq" },
-  { label: "Contact", href: "/#contact" },
+const NAV: NavItem[] = [
+  { label: "Home", hash: "top" },
+  { label: "Studio", hash: "studio" },
+  { label: "Work", to: "/work" },
+  { label: "Process", hash: "process" },
+  { label: "FAQ", hash: "faq" },
+  { label: "Contact", hash: "contact" },
 ];
 
 function WorkPage() {
   const [activeFilter, setActiveFilter] = useState("ALL");
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    if (mobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileMenuOpen]);
 
   const filteredWork = ALL_WORK.filter((w) => {
     if (activeFilter === "PLATFORM") return w.n === "01";
@@ -138,71 +125,7 @@ function WorkPage() {
 
   return (
     <main className="min-h-screen bg-background text-foreground">
-      {/* Top Navbar matching Home page layout */}
-      <header className="sticky top-0 z-50 flex items-center justify-between border-b border-hairline/60 bg-background/90 px-6 py-4 backdrop-blur-md md:px-16">
-        <Link to="/" className="text-lg font-semibold tracking-tight text-foreground">
-          Summit Studio<span className="text-accent">.</span>
-        </Link>
-
-        <nav className="hidden items-center gap-10 lg:flex">
-          {NAV.map((i) => (
-            <Link
-              key={i.label}
-              to={i.href}
-              className={`label-mono text-xs transition-colors hover:text-accent ${
-                i.label === "Work" ? "text-accent font-semibold" : "text-foreground/80"
-              }`}
-            >
-              {i.label}
-            </Link>
-          ))}
-        </nav>
-
-        <div className="flex items-center gap-4">
-          <ThemeToggle className="hidden lg:flex" />
-
-          <Link
-            to="/#contact"
-            onClick={() => track("Talk to Us Clicked", { location: "nav" })}
-            className="label-mono border-b border-foreground pb-1 text-xs sm:text-sm text-foreground transition-colors hover:border-accent hover:text-accent"
-          >
-            Talk to Us
-          </Link>
-
-          {/* Mobile/Tablet Hamburger Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-hairline text-foreground lg:hidden"
-            aria-label="Toggle navigation menu"
-          >
-            {mobileMenuOpen ? "✕" : "☰"}
-          </button>
-        </div>
-      </header>
-
-      {/* Mobile/Tablet Drawer Menu Overlay */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 flex flex-col justify-between bg-background px-6 pt-28 pb-12 lg:hidden animate-in fade-in duration-300">
-          <nav className="flex flex-col space-y-6">
-            {NAV.map((i) => (
-              <Link
-                key={i.label}
-                to={i.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={`display-tight text-3xl font-medium transition-colors hover:text-accent ${
-                  i.label === "Work" ? "text-accent" : "text-foreground"
-                }`}
-              >
-                {i.label}
-              </Link>
-            ))}
-          </nav>
-          <div className="flex items-center justify-between border-t border-hairline pt-6">
-            <p className="label-mono text-xs text-muted-foreground">© 2026 Summit Studio</p>
-            <ThemeToggle />
-          </div>
-        </div>
-      )}
+      <SiteHeader navItems={NAV} variant="page" activeLabel="Work" />
       <section className="border-b border-hairline px-6 py-20 md:px-16 md:py-28">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
@@ -326,17 +249,17 @@ function WorkPage() {
               <p className="label-mono text-xs font-semibold text-foreground">Studio</p>
               <ul className="label-mono space-y-2 text-xs text-muted-foreground">
                 <li>
-                  <Link to="/#work" className="transition-colors hover:text-accent">
+                  <Link to="/" hash="work" className="transition-colors hover:text-accent">
                     Work
                   </Link>
                 </li>
                 <li>
-                  <Link to="/#process" className="transition-colors hover:text-accent">
+                  <Link to="/" hash="process" className="transition-colors hover:text-accent">
                     Process
                   </Link>
                 </li>
                 <li>
-                  <Link to="/#studio" className="transition-colors hover:text-accent">
+                  <Link to="/" hash="studio" className="transition-colors hover:text-accent">
                     About
                   </Link>
                 </li>
