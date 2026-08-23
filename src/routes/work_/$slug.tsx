@@ -13,7 +13,7 @@ export const Route = createFileRoute("/work_/$slug")({
     return {
       meta: [
         { title: `${project.name} - Case Study - Summit Studio` },
-        { name: "description", content: project.challenge },
+        { name: "description", content: project.metaDescription },
         { property: "og:url", content: url },
       ],
       links: [{ rel: "canonical", href: url }],
@@ -32,6 +32,8 @@ type ProjectData = {
   img: string;
   url?: string;
   stack?: string;
+  /** Kept separate from `challenge` — that copy runs long on-page, too long for a search-result snippet. */
+  metaDescription: string;
   challenge: string;
   solution: string;
   problemsSolved?: string[];
@@ -49,6 +51,8 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     img: clubExotismImg,
     url: "https://clubexotism.com",
     stack: "React (TanStack Start) · Edge-State PostgreSQL · Vercel Global Edge",
+    metaDescription:
+      "Summit Studio built Club Exotism a real-time booking platform with hardware capacity logic, instant WhatsApp checkout, and #1 local search ranking.",
     challenge:
       "Club Exotism needed a beast of a booking platform capable of managing complex physical hardware inventory (PS5 consoles, VR rigs, Sim Racing cockpits) with real-time multi-player capacity logic, instant 1-tap WhatsApp checkout, and dominant #1 Google search ranking from day zero.",
     solution:
@@ -72,6 +76,8 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     kind: "Web Design · High-Performance Engineering",
     year: "2025",
     img: work2,
+    metaDescription:
+      "Summit Studio rebuilt Vanta Digital's website with modern SSR, sub-second global delivery, and a bold editorial identity that lifted revenue 140%.",
     challenge:
       "Legacy website was suffering from slow load times, high drop-off rates on mobile, and outdated brand messaging that failed to convert enterprise leads.",
     solution:
@@ -90,6 +96,8 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     kind: "Brand Identity · Community Web App",
     year: "2024",
     img: work1,
+    metaDescription:
+      "Summit Studio unified Campus Connect's fragmented presence across 12 university hubs into one brand identity and student web platform.",
     challenge:
       "Fragmented digital presence across 12 university hubs led to low community retention and confusing user onboarding.",
     solution:
@@ -108,6 +116,8 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     kind: "UI Design · Conversion Optimization",
     year: "2024",
     img: work3,
+    metaDescription:
+      "Summit Studio redesigned Ascend's onboarding flow with clear value props and micro-interactions, boosting signups 112%.",
     challenge:
       "SaaS product had strong top-of-funnel traffic but struggled with complex user onboarding and high signup drop-off.",
     solution:
