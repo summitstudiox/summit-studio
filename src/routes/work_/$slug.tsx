@@ -9,11 +9,14 @@ import clubExotismImg from "@/assets/clubexotism.jpg";
 export const Route = createFileRoute("/work_/$slug")({
   head: ({ params }) => {
     const project = PROJECTS_DATA[params.slug] ?? DEFAULT_PROJECT;
+    const url = `https://summitstudio.in/work/${project.slug}`;
     return {
       meta: [
         { title: `${project.name} - Case Study - Summit Studio` },
         { name: "description", content: project.challenge },
+        { property: "og:url", content: url },
       ],
+      links: [{ rel: "canonical", href: url }],
     };
   },
   component: CaseStudyDetail,

@@ -16,7 +16,9 @@ export const Route = createFileRoute("/work")({
         content:
           "Explore all featured digital platforms and brand identities engineered by Summit Studio.",
       },
+      { property: "og:url", content: "https://summitstudio.in/work" },
     ],
+    links: [{ rel: "canonical", href: "https://summitstudio.in/work" }],
   }),
   component: WorkPage,
 });
