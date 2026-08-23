@@ -163,7 +163,9 @@ function CaseStudyDetail() {
                 CASE STUDY [{project.n}] · {project.year}
               </span>
               <span className="text-muted-foreground text-xs">•</span>
-              <span className="label-mono text-[0.68rem] text-muted-foreground">{project.kind}</span>
+              <span className="label-mono text-[0.68rem] text-muted-foreground">
+                {project.kind}
+              </span>
             </div>
             <h1 className="display-tight mt-1 text-2xl font-medium tracking-tight text-foreground md:text-4xl">
               {project.name}
@@ -202,7 +204,9 @@ function CaseStudyDetail() {
 
             {project.problemsSolved && (
               <div>
-                <h3 className="label-mono text-xs text-accent">[ Key Engineering Breakthroughs ]</h3>
+                <h3 className="label-mono text-xs text-accent">
+                  [ Key Engineering Breakthroughs ]
+                </h3>
                 <ul className="mt-3 space-y-2.5">
                   {project.problemsSolved.map((item, idx) => (
                     <li key={idx} className="text-xs leading-relaxed text-foreground/75 md:text-sm">

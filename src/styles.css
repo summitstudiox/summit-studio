@@ -182,5 +182,11 @@
 
 @utility mask-edge-fade {
   mask-image: linear-gradient(to right, transparent 0%, black 6%, black 90%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 6%,
+    black 90%,
+    transparent 100%
+  );
 }
