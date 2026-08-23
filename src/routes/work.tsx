@@ -6,6 +6,9 @@ import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
 import work4 from "@/assets/work-4.jpg";
 import clubExotismImg from "@/assets/clubexotism.jpg";
+import ascendImg from "@/assets/ascend.jpg";
+import campusConnectImg from "@/assets/campus-connect.jpg";
+import logoImg from "@/assets/logo.png";
 
 export const Route = createFileRoute("/work")({
   head: () => ({
@@ -68,7 +71,8 @@ const ALL_WORK = [
     client: "Campus Connect Network",
     kind: "Brand Identity · Community Web App",
     year: "2024",
-    img: work1,
+    img: campusConnectImg,
+    url: "https://campus-connect-six-pi.vercel.app",
     challenge:
       "Fragmented digital presence across 12 university hubs led to low community retention and confusing user onboarding.",
     solution:
@@ -86,7 +90,8 @@ const ALL_WORK = [
     client: "Ascend Performance Lab",
     kind: "UI Design · Conversion Optimization",
     year: "2024",
-    img: work3,
+    img: ascendImg,
+    url: "https://ascend-black.vercel.app",
     challenge:
       "SaaS product had strong top-of-funnel traffic but struggled with complex user onboarding and high signup drop-off.",
     solution:
@@ -271,8 +276,13 @@ function WorkPage() {
         </div>
 
         {/* Big Footer Brand Display */}
-        <div className="pt-24 pb-10">
-          <p className="display-tight w-full text-[10.4vw] leading-[0.8] tracking-tight whitespace-nowrap">
+        <div className="pt-24 pb-10 flex items-center gap-6">
+          <img
+            src={logoImg}
+            alt="Summit Studio logo mark"
+            className="h-[7.5vw] w-[7.5vw] shrink-0 mix-blend-multiply dark:mix-blend-normal dark:invert"
+          />
+          <p className="display-tight text-[8vw] leading-[0.85] tracking-tight whitespace-nowrap">
             Summit Studio<span className="text-accent">.</span>
           </p>
         </div>

@@ -5,6 +5,8 @@ import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
 import work3 from "@/assets/work-3.jpg";
 import clubExotismImg from "@/assets/clubexotism.jpg";
+import ascendImg from "@/assets/ascend.jpg";
+import campusConnectImg from "@/assets/campus-connect.jpg";
 
 const WORK = [
   {
@@ -26,14 +28,14 @@ const WORK = [
     slug: "campus-connect",
     name: "Campus Connect",
     kind: "Brand Identity · Community Web App",
-    img: work1,
+    img: campusConnectImg,
   },
   {
     n: "04",
     slug: "ascend",
     name: "Ascend",
     kind: "UI Design · Conversion Optimization",
-    img: work3,
+    img: ascendImg,
   },
 ];
 
