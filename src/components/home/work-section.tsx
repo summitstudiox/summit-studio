@@ -1,12 +1,11 @@
 import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { SectionHead } from "@/components/section-head";
-import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
-import work3 from "@/assets/work-3.jpg";
 import clubExotismImg from "@/assets/clubexotism.jpg";
 import ascendImg from "@/assets/ascend.jpg";
 import campusConnectImg from "@/assets/campus-connect.jpg";
+import sableEstatesImg from "@/assets/sable-estates.jpg";
 
 const WORK = [
   {
@@ -36,6 +35,13 @@ const WORK = [
     name: "Ascend",
     kind: "UI Design · Conversion Optimization",
     img: ascendImg,
+  },
+  {
+    n: "05",
+    slug: "sable-estates",
+    name: "Sable Estates",
+    kind: "Web Design · Luxury Real Estate Marketing",
+    img: sableEstatesImg,
   },
 ];
 
@@ -189,7 +195,7 @@ export function WorkSection() {
 
               <div className="flex items-center gap-8 border-t border-hairline/60 pt-8">
                 <div>
-                  <span className="display-tight text-2xl font-medium text-foreground">04</span>
+                  <span className="display-tight text-2xl font-medium text-foreground">05</span>
                   <span className="label-mono mt-1 block text-[0.68rem] text-muted-foreground">
                     Featured Cases
                   </span>

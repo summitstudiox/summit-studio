@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, type NavItem } from "@/components/site-header";
-import work1 from "@/assets/work-1.jpg";
 import work2 from "@/assets/work-2.jpg";
-import work3 from "@/assets/work-3.jpg";
-import work4 from "@/assets/work-4.jpg";
 import clubExotismImg from "@/assets/clubexotism.jpg";
 import ascendImg from "@/assets/ascend.jpg";
 import campusConnectImg from "@/assets/campus-connect.jpg";
+import sableEstatesImg from "@/assets/sable-estates.jpg";
 import logoImg from "@/assets/logo.png";
 
 export const Route = createFileRoute("/work")({
@@ -102,12 +100,31 @@ const ALL_WORK = [
       { k: "Time on Site", v: "+3.4m" },
     ],
   },
+  {
+    n: "05",
+    slug: "sable-estates",
+    name: "Sable Estates",
+    client: "Sable Estates — Montecito, California",
+    kind: "Web Design · Luxury Real Estate Marketing",
+    year: "2026",
+    img: sableEstatesImg,
+    url: "https://sable-summit.vercel.app",
+    challenge:
+      "Sable Estates needed a digital presence as considered as the residence itself: a single-property showcase capable of conveying the scale, material craft, and quiet luxury of a Montecito estate without collapsing into a generic real estate template.",
+    solution:
+      "Designed a minimalist, full-bleed gallery experience built entirely around large-format architectural photography, a mix-blend-difference navigation bar that stays legible over any image, and an editorial pairing of serif display type with restrained sans-serif body copy — letting the architecture carry the page instead of competing with it.",
+    stats: [
+      { k: "Page Load Speed", v: "0.3s" },
+      { k: "Concept to Launch", v: "3 Weeks" },
+      { k: "Lighthouse Score", v: "98/100" },
+    ],
+  },
 ];
 
 const CATEGORIES = [
-  { id: "ALL", label: "All Projects", count: 4 },
+  { id: "ALL", label: "All Projects", count: 5 },
   { id: "PLATFORM", label: "Full Platform", count: 1 },
-  { id: "WEB", label: "Web Design", count: 2 },
+  { id: "WEB", label: "Web Design", count: 3 },
   { id: "SYSTEMS", label: "UI/UX Systems", count: 1 },
 ];
 
@@ -125,7 +142,7 @@ function WorkPage() {
 
   const filteredWork = ALL_WORK.filter((w) => {
     if (activeFilter === "PLATFORM") return w.n === "01";
-    if (activeFilter === "WEB") return w.n === "02" || w.n === "03";
+    if (activeFilter === "WEB") return w.n === "02" || w.n === "03" || w.n === "05";
     if (activeFilter === "SYSTEMS") return w.n === "04";
     return true;
   });
