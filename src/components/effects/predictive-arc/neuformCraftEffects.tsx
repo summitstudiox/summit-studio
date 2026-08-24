@@ -80,7 +80,7 @@ body[data-threeui-ready] > [data-threeui-role] { visibility: visible !important;
     document.body.setAttribute('data-threeui-ready', '');
     requestAnimationFrame(function () { window.dispatchEvent(new Event('resize')); });
   }
-  function scheduleIsolation() { setTimeout(isolate, 100); }
+  function scheduleIsolation() { setTimeout(isolate, 0); }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', scheduleIsolation, { once: true });
   else scheduleIsolation();
   window.addEventListener('load', isolate, { once: true });
