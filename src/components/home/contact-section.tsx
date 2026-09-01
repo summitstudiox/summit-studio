@@ -113,17 +113,40 @@ export function ContactSection() {
         {/* Right — Social links */}
         <div className="md:self-center">
           {[
-            ["Email", "summitstudiox@gmail.com"],
-            ["Instagram", "@summitstudiox"],
-            ["Twitter / X", "@summitstudiox"],
-            ["LinkedIn", "Summit Studio"],
-          ].map(([k, v]) => (
+            {
+              k: "Email",
+              v: "summitstudiox@gmail.com",
+              href: "mailto:summitstudiox@gmail.com",
+            },
+            {
+              k: "Instagram",
+              v: "@summitstudiox",
+              href: "https://instagram.com/summitstudiox",
+            },
+            {
+              k: "Twitter / X",
+              v: "@summitstudiox",
+              href: "https://x.com/summitstudiox",
+            },
+            { k: "LinkedIn", v: "Summit Studio", href: null },
+          ].map(({ k, v, href }) => (
             <div
               key={k}
               className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-hairline py-5 text-xs sm:text-sm"
             >
               <span className="label-mono text-muted-foreground">{k}</span>
-              <span className="text-foreground">{v}</span>
+              {href ? (
+                <a
+                  href={href}
+                  target={href.startsWith("mailto:") ? undefined : "_blank"}
+                  rel={href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                  className="text-foreground transition-colors hover:text-accent"
+                >
+                  {v}
+                </a>
+              ) : (
+                <span className="text-foreground">{v}</span>
+              )}
             </div>
           ))}
         </div>
