@@ -64,7 +64,7 @@ export function StudioSection() {
             </div>
             <div className="mt-8 sm:mt-12">
               <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">
-                48+
+                6+
               </p>
               <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">
                 Global Collaborations
@@ -84,7 +84,7 @@ export function StudioSection() {
             </div>
             <div className="mt-8 sm:mt-12">
               <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">
-                12+
+                3+
               </p>
               <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">
                 Industry Recognitions
@@ -104,7 +104,7 @@ export function StudioSection() {
             </div>
             <div className="mt-8 sm:mt-12">
               <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">
-                150+
+                10+
               </p>
               <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">
                 Projects Delivered
@@ -122,7 +122,7 @@ export function StudioSection() {
             </div>
             <div className="mt-8 sm:mt-12">
               <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">
-                14+
+                4+
               </p>
               <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">
                 Countries Reached
