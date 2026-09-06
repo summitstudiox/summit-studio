@@ -213,24 +213,14 @@ export function WorkSection() {
                 key={`${w.n}-${i}`}
                 to="/work/$slug"
                 params={{ slug: w.slug }}
-                className="group relative flex aspect-[4/3] sm:aspect-[16/10.5] w-[84vw] max-w-[780px] shrink-0 cursor-pointer flex-col justify-between overflow-hidden rounded-xl md:rounded-2xl border border-hairline bg-card p-5 shadow-2xl transition-all duration-500 hover:border-accent/50 md:p-10"
+                className="group relative flex aspect-[4/3] sm:aspect-[16/10.5] w-[84vw] max-w-[780px] shrink-0 cursor-pointer overflow-hidden rounded-xl md:rounded-2xl border border-hairline bg-card shadow-2xl transition-all duration-500 hover:border-accent/50"
               >
-                {/* Background Image */}
+                {/* Clean Website Screenshot */}
                 <img
                   src={w.img}
                   alt={`${w.name} project`}
-                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                  className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/35 to-black/15" />
-                <div className="grain-overlay pointer-events-none absolute inset-0 opacity-20" />
-
-                {/* Bottom Title overlay */}
-                <div className="relative z-10 space-y-2">
-                  <h3 className="display-tight text-2xl font-medium text-white transition-colors group-hover:text-accent sm:text-3xl md:text-5xl">
-                    {w.name}
-                  </h3>
-                  <p className="label-mono line-clamp-1 text-xs text-accent/90">{w.kind}</p>
-                </div>
               </Link>
             ))}
           </div>
