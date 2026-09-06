@@ -186,8 +186,7 @@ function WorkPage() {
                   height={900}
                   className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                <div className="grain-overlay pointer-events-none absolute inset-0 opacity-20" />
+                {/* Clean Image View */}
 
                 {/* Number Ribbon */}
                 <div className="absolute top-5 left-5 rounded-full border border-hairline bg-background/80 px-3.5 py-1.5 backdrop-blur-md">
