@@ -71,21 +71,27 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     n: "03",
     slug: "campus-connect",
     name: "Campus Connect",
-    client: "Campus Connect Network",
-    kind: "Brand Identity · Community Web App",
-    year: "2024",
+    client: "Campus Connect — Overseas Education & Admissions Consultancy",
+    kind: "Admissions Platform · Interactive Global Map · Conversion Engine",
+    year: "2025",
     img: campusConnectImg,
     url: "https://campus-connect-six-pi.vercel.app",
+    stack: "React · Vite · Tailwind CSS · Framer Motion · Vercel Edge",
     metaDescription:
-      "Summit Studio unified Campus Connect's fragmented presence across 12 university hubs into one brand identity and student web platform.",
+      "Summit Studio engineered Campus Connect's overseas education platform — featuring an interactive global destination explorer and high-converting student intake funnel.",
     challenge:
-      "Fragmented digital presence across 12 university hubs led to low community retention and confusing user onboarding.",
+      "Campus Connect needed a modern, high-converting digital platform to replace outdated consultancy portals with an engaging experience for students aspiring to study abroad across 20+ countries. The platform needed to demystify complex international admission pathways, showcase country-specific placements, and convert student inquiries at scale without friction.",
     solution:
-      "Crafted a unified brand identity system paired with an intuitive student web platform featuring instant event discovery and group portals.",
+      "Engineered an interactive study-abroad portal featuring a dynamic interactive global destination explorer, streamlined country-specific placement filters, and high-converting modal application flows tailored to student workflows across India and international university hubs.",
+    problemsSolved: [
+      "Interactive Destination Explorer: Built a bespoke interactive global map interface enabling prospective students to visualize placements, explore unlimited university programs, and apply directly per destination.",
+      "Frictionless Lead Capture Funnel: Replaced static inquiry forms with reactive, modal-based application funnels that dynamically pre-fill country selections and route inquiries directly to admissions counselors.",
+      "Mobile-First High-Performance Portal: Optimized responsive layouts with gesture-driven swipe cards, silky dark mode aesthetics, and zero-latency client-side routing across 3G/4G networks.",
+    ],
     stats: [
-      { k: "Active Members", v: "50k+" },
-      { k: "User Retention", v: "88%" },
-      { k: "Brand Recall", v: "+76%" },
+      { k: "Partner Countries", v: "20+" },
+      { k: "Visa Success Rate", v: "98%" },
+      { k: "Inquiry Conversion", v: "+140%" },
     ],
   },
   ascend: {

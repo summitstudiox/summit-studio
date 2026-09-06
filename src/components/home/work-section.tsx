@@ -25,7 +25,7 @@ const WORK = [
     n: "03",
     slug: "campus-connect",
     name: "Campus Connect",
-    kind: "Brand Identity · Community Web App",
+    kind: "Admissions Platform · Interactive Global Map · Conversion Engine",
     img: campusConnectImg,
   },
   {

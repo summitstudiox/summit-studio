@@ -47,19 +47,19 @@ const ALL_WORK = [
     n: "03",
     slug: "campus-connect",
     name: "Campus Connect",
-    client: "Campus Connect Network",
-    kind: "Brand Identity · Community Web App",
-    year: "2024",
+    client: "Campus Connect — Overseas Education & Admissions Consultancy",
+    kind: "Admissions Platform · Interactive Global Map · Conversion Engine",
+    year: "2025",
     img: campusConnectImg,
     url: "https://campus-connect-six-pi.vercel.app",
     challenge:
-      "Fragmented digital presence across 12 university hubs led to low community retention and confusing user onboarding.",
+      "Campus Connect needed a modern, high-converting digital platform to replace outdated consultancy portals with an engaging experience for students aspiring to study abroad across 20+ countries.",
     solution:
-      "Crafted a unified brand identity system paired with an intuitive student web platform featuring instant event discovery and group portals.",
+      "Engineered an interactive study-abroad portal featuring a dynamic interactive global destination explorer, streamlined country placement filters, and high-converting modal application flows.",
     stats: [
-      { k: "Active Members", v: "50k+" },
-      { k: "User Retention", v: "88%" },
-      { k: "Brand Recall", v: "+76%" },
+      { k: "Partner Countries", v: "20+" },
+      { k: "Visa Success Rate", v: "98%" },
+      { k: "Inquiry Conversion", v: "+140%" },
     ],
   },
   {
