@@ -15,6 +15,13 @@ const WORK = [
     img: clubExotismImg,
   },
   {
+    n: "05",
+    slug: "sable-estates",
+    name: "Sable Estates",
+    kind: "Web Design · Luxury Real Estate Marketing",
+    img: sableEstatesImg,
+  },
+  {
     n: "03",
     slug: "campus-connect",
     name: "Campus Connect",
@@ -27,13 +34,6 @@ const WORK = [
     name: "Ascend",
     kind: "UI Design · Conversion Optimization",
     img: ascendImg,
-  },
-  {
-    n: "05",
-    slug: "sable-estates",
-    name: "Sable Estates",
-    kind: "Web Design · Luxury Real Estate Marketing",
-    img: sableEstatesImg,
   },
 ];
 
