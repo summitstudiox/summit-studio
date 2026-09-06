@@ -66,19 +66,19 @@ const ALL_WORK = [
     n: "04",
     slug: "ascend",
     name: "Ascend",
-    client: "Ascend Performance Lab",
-    kind: "UI Design · Conversion Optimization",
-    year: "2024",
+    client: "Ascend — Minimalist Streetwear & Luxury Apparel",
+    kind: "E-Commerce Experience · Brand Identity · Editorial Storefront",
+    year: "2026",
     img: ascendImg,
     url: "https://ascend-black.vercel.app",
     challenge:
-      "SaaS product had strong top-of-funnel traffic but struggled with complex user onboarding and high signup drop-off.",
+      "Ascend needed a digital storefront that reflected its raw, minimalist streetwear ethos for Drop 001 (SS26). The challenge was delivering a high-fashion editorial experience with fluid scroll-driven micro-interactions and bold typography without compromising ecommerce conversion rates.",
     solution:
-      "Redesigned user flows with micro-interactions, clear value props, and a streamlined multi-step signup experience.",
+      "Designed and developed an editorial e-commerce platform built around monochrome minimalism, Neue Haas Grotesk typography, and cinematic hero reveals paired with zero-friction checkout flows.",
     stats: [
-      { k: "Signup Rate", v: "+112%" },
-      { k: "User Engagement", v: "+55%" },
-      { k: "Time on Site", v: "+3.4m" },
+      { k: "Mobile Conversion", v: "+85%" },
+      { k: "Page Load Speed", v: "0.4s" },
+      { k: "Lighthouse Score", v: "99/100" },
     ],
   },
   {

@@ -92,21 +92,27 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
     n: "04",
     slug: "ascend",
     name: "Ascend",
-    client: "Ascend Performance Lab",
-    kind: "UI Design · Conversion Optimization",
-    year: "2024",
+    client: "Ascend — Minimalist Streetwear & Luxury Apparel",
+    kind: "E-Commerce Experience · Brand Identity · Editorial Storefront",
+    year: "2026",
     img: ascendImg,
     url: "https://ascend-black.vercel.app",
+    stack: "Next.js · Tailwind CSS · Framer Motion · Vercel Edge",
     metaDescription:
-      "Summit Studio redesigned Ascend's onboarding flow with clear value props and micro-interactions, boosting signups 112%.",
+      "Summit Studio engineered Ascend's minimalist e-commerce storefront — pairing brutalist typography, micro-animated drop showcases, and frictionless checkout.",
     challenge:
-      "SaaS product had strong top-of-funnel traffic but struggled with complex user onboarding and high signup drop-off.",
+      "Ascend needed a digital storefront that reflected its raw, minimalist streetwear ethos for Drop 001 (SS26). The challenge was delivering a high-fashion editorial experience with fluid scroll-driven micro-interactions, bold typography, and instantaneous mobile navigation without compromising ecommerce conversion rates.",
     solution:
-      "Redesigned user flows with micro-interactions, clear value props, and a streamlined multi-step signup experience.",
+      "Designed and developed an editorial e-commerce platform built around monochrome minimalism, Neue Haas Grotesk typography, and cinematic hero reveals. Structured fluid product drop showcases with real-time stock indicators, intuitive sizing guides, and zero-friction cart-to-checkout flows.",
+    problemsSolved: [
+      "Cinematic Micro-Interactions: Built bespoke scroll-triggered stagger animations and fluid header transitions that deliver a luxury runway feel while maintaining 60 FPS performance across mobile devices.",
+      "Editorial Drop Showcase: Engineered high-impact product grids with oversized garment specs (240–260 GSM), instant variant selection, and automated inventory status badges.",
+      "Zero-Friction Mobile Commerce: Streamlined the path from lookbook exploration to checkout with sticky action bars, instant drawer cart previews, and optimized image preloading.",
+    ],
     stats: [
-      { k: "Signup Rate", v: "+112%" },
-      { k: "User Engagement", v: "+55%" },
-      { k: "Time on Site", v: "+3.4m" },
+      { k: "Mobile Conversion", v: "+85%" },
+      { k: "Page Load Speed", v: "0.4s" },
+      { k: "Lighthouse Score", v: "99/100" },
     ],
   },
   "sable-estates": {

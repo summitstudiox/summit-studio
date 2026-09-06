@@ -32,7 +32,7 @@ const WORK = [
     n: "04",
     slug: "ascend",
     name: "Ascend",
-    kind: "UI Design · Conversion Optimization",
+    kind: "E-Commerce Experience · Brand Identity · Editorial Storefront",
     img: ascendImg,
   },
 ];
