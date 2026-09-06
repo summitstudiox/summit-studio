@@ -51,7 +51,7 @@ export function StudioSection() {
         </div>
 
         {/* 4-Card Bento Row (Stacked on Mobile, 2x2 on Tablet, 4-Cols on Desktop) */}
-        <div className="grid gap-px bg-hairline grid-cols-1 sm:grid-cols-2 md:grid-cols-4">
+        <div className="grid gap-px bg-hairline grid-cols-1 sm:grid-cols-3">
           {/* Card 1: Global Collaborations */}
           <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
             <div>
@@ -72,27 +72,7 @@ export function StudioSection() {
             </div>
           </div>
 
-          {/* Card 2: Industry Authority */}
-          <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
-            <div>
-              <span className="label-mono text-[0.65rem] sm:text-xs text-accent">
-                [ Authority & Awards ]
-              </span>
-              <p className="mt-3 text-[0.68rem] sm:text-xs leading-relaxed text-foreground/75">
-                Featured and celebrated for high-octane engineering & positioning.
-              </p>
-            </div>
-            <div className="mt-8 sm:mt-12">
-              <p className="display-tight text-3xl sm:text-4xl md:text-5xl font-medium text-foreground">
-                3+
-              </p>
-              <p className="label-mono mt-1.5 text-[0.65rem] sm:text-xs text-muted-foreground">
-                Industry Recognitions
-              </p>
-            </div>
-          </div>
-
-          {/* Card 3: Projects Delivered */}
+          {/* Card 2: Projects Delivered */}
           <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
             <div>
               <span className="label-mono text-[0.65rem] sm:text-xs text-accent">
@@ -112,7 +92,7 @@ export function StudioSection() {
             </div>
           </div>
 
-          {/* Card 4: Countries Reached */}
+          {/* Card 3: Countries Reached */}
           <div className="group flex flex-col justify-between bg-background p-5 sm:p-6 md:p-8 transition-colors duration-300 hover:bg-secondary">
             <div>
               <span className="label-mono text-[0.65rem] sm:text-xs text-accent">[ Reach ]</span>

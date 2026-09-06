@@ -15,10 +15,10 @@ export function HeroSection() {
       <div className="relative flex min-h-[100svh] flex-col justify-between gap-12 px-5 pt-32 pb-8 md:px-8 md:pt-40 md:pb-12">
         <div className="rise ml-auto flex max-w-lg flex-col items-end text-right">
           <h1 className="text-sm leading-relaxed tracking-tight sm:text-base md:text-lg">
-            Blending in is expensive.
+            Nobody remembers ordinary.
             <br />
             <span className="text-foreground/70">
-              Branding, website design and development for businesses that want to be remembered.
+              We build brand, websites, and digital experiences engineered to be remembered.
             </span>
           </h1>
           <a

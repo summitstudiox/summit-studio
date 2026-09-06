@@ -16,7 +16,7 @@ import { ThemeProvider } from "@/hooks/use-theme";
 
 // Runs before hydration so the correct theme class is on <html> for first
 // paint — otherwise the page flashes the wrong theme on load.
-const themeInitScript = `(function(){try{var t=localStorage.getItem("theme");if(!t){t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";}if(t==="dark"){document.documentElement.classList.add("dark");}}catch(e){document.documentElement.classList.add("dark");}})();`;
+const themeInitScript = `(function(){try{var t=localStorage.getItem("theme");if(t!=="light"){document.documentElement.classList.add("dark");}}catch(e){document.documentElement.classList.add("dark");}})();`;
 
 // Organization structured data, so search engines can resolve Summit Studio
 // as a known entity (logo/social profiles in results, not just a page title).
