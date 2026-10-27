@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
 import clubExotismImg from "@/assets/clubexotism.jpg";
-import ascendImg from "@/assets/ascend.jpg";
+import monsoonCoffeeImg from "@/assets/monsoon-coffee.jpg";
 import campusConnectImg from "@/assets/campus-connect.jpg";
 import sableEstatesImg from "@/assets/sable-estates.jpg";
 
@@ -94,30 +94,57 @@ const PROJECTS_DATA: Record<string, ProjectData> = {
       { k: "Inquiry Conversion", v: "+140%" },
     ],
   },
-  ascend: {
+  "monsoon-coffee": {
     n: "04",
-    slug: "ascend",
-    name: "Ascend",
-    client: "Ascend — Minimalist Streetwear & Luxury Apparel",
-    kind: "E-Commerce Experience · Brand Identity · Editorial Storefront",
+    slug: "monsoon-coffee",
+    name: "Monsoon Coffee Co.",
+    client: "Monsoon Coffee Co. — Direct-from-Origin Speciality Coffee Roasters",
+    kind: "Speciality Coffee · D2C E-Commerce · Custom Conversion Engine",
     year: "2026",
-    img: ascendImg,
-    url: "https://ascend-black.vercel.app",
-    stack: "Next.js · Tailwind CSS · Framer Motion · Vercel Edge",
+    img: monsoonCoffeeImg,
+    url: "https://monsooncoffee.co/",
+    stack: "Next.js · Tailwind CSS · Custom D2C Engine · Payment Gateway · Edge CDN",
     metaDescription:
-      "Summit Studio engineered Ascend's minimalist e-commerce storefront — pairing brutalist typography, micro-animated drop showcases, and frictionless checkout.",
+      "Summit Studio engineered Monsoon Coffee Co.'s digital storefront — pairing warm artisanal design language, sub-second checkout, localized payment gateways, and live conversion.",
     challenge:
-      "Ascend needed a digital storefront that reflected its raw, minimalist streetwear ethos for Drop 001 (SS26). The challenge was delivering a high-fashion editorial experience with fluid scroll-driven micro-interactions, bold typography, and instantaneous mobile navigation without compromising ecommerce conversion rates.",
+      "Speciality coffee requires an experience as nuanced and deliberate as the cup itself. Monsoon Coffee Co. needed an elevated digital flagship to introduce rare origin varieties without falling into the trap of generic e-commerce templates. The core challenge was translating the tactile, sensory story of coffee—sourcing from origin, cherry processing, small-batch roasting, and precise brewing—into an evocative visual narrative while engineering high-speed checkout flows, robust payment gateway integration, and frictionless live conversion.",
     solution:
-      "Designed and developed an editorial e-commerce platform built around monochrome minimalism, Neue Haas Grotesk typography, and cinematic hero reveals. Structured fluid product drop showcases with real-time stock indicators, intuitive sizing guides, and zero-friction cart-to-checkout flows.",
+      "Crafted an earthy, editorial dark-mode storefront pairing tactile micro-imagery with an organic five-stage coffee narrative: Origin, Process, Roast, Craft, and Product Launch. Built high-octane conversion architecture featuring instant-load product showcases, integrated localized payment gateways (Razorpay & Stripe) for instant 1-tap checkout, and optimized mobile cart flows that reduced friction and accelerated purchase intent.",
     problemsSolved: [
-      "Cinematic Micro-Interactions: Built bespoke scroll-triggered stagger animations and fluid header transitions that deliver a luxury runway feel while maintaining 60 FPS performance across mobile devices.",
-      "Editorial Drop Showcase: Engineered high-impact product grids with oversized garment specs (240–260 GSM), instant variant selection, and automated inventory status badges.",
-      "Zero-Friction Mobile Commerce: Streamlined the path from lookbook exploration to checkout with sticky action bars, instant drawer cart previews, and optimized image preloading.",
+      "Artisanal Niche Design Language: Designed a distinctive sensory visual identity tailored for speciality coffee connoisseurs—combining dark-canvas warmth, tactile macro imagery, and an editorial 5-stage coffee journey from cherry to cup.",
+      "Frictionless Payment Gateway Integration: Integrated robust multi-currency payment infrastructure supporting UPI, credit cards, and Apple Pay with pre-filled mobile checkout that eliminated payment failure drop-offs.",
+      "Live Conversion & Product Drop Architecture: Engineered high-impact seasonal launch spotlights (e.g., Sproberries) featuring flavor-profile tasting notes, grind-size selection, and quick-add drawer carts resulting in direct sales spikes on drop day.",
     ],
     stats: [
-      { k: "Mobile Conversion", v: "+85%" },
-      { k: "Page Load Speed", v: "0.4s" },
+      { k: "Live Conversion", v: "+68%" },
+      { k: "Checkout Time", v: "< 14s" },
+      { k: "Lighthouse Score", v: "99/100" },
+    ],
+  },
+  ascend: {
+    n: "04",
+    slug: "monsoon-coffee",
+    name: "Monsoon Coffee Co.",
+    client: "Monsoon Coffee Co. — Direct-from-Origin Speciality Coffee Roasters",
+    kind: "Speciality Coffee · D2C E-Commerce · Custom Conversion Engine",
+    year: "2026",
+    img: monsoonCoffeeImg,
+    url: "https://monsooncoffee.co/",
+    stack: "Next.js · Tailwind CSS · Custom D2C Engine · Payment Gateway · Edge CDN",
+    metaDescription:
+      "Summit Studio engineered Monsoon Coffee Co.'s digital storefront — pairing warm artisanal design language, sub-second checkout, localized payment gateways, and live conversion.",
+    challenge:
+      "Speciality coffee requires an experience as nuanced and deliberate as the cup itself. Monsoon Coffee Co. needed an elevated digital flagship to introduce rare origin varieties without falling into the trap of generic e-commerce templates. The core challenge was translating the tactile, sensory story of coffee—sourcing from origin, cherry processing, small-batch roasting, and precise brewing—into an evocative visual narrative while engineering high-speed checkout flows, robust payment gateway integration, and frictionless live conversion.",
+    solution:
+      "Crafted an earthy, editorial dark-mode storefront pairing tactile micro-imagery with an organic five-stage coffee narrative: Origin, Process, Roast, Craft, and Product Launch. Built high-octane conversion architecture featuring instant-load product showcases, integrated localized payment gateways (Razorpay & Stripe) for instant 1-tap checkout, and optimized mobile cart flows that reduced friction and accelerated purchase intent.",
+    problemsSolved: [
+      "Artisanal Niche Design Language: Designed a distinctive sensory visual identity tailored for speciality coffee connoisseurs—combining dark-canvas warmth, tactile macro imagery, and an editorial 5-stage coffee journey from cherry to cup.",
+      "Frictionless Payment Gateway Integration: Integrated robust multi-currency payment infrastructure supporting UPI, credit cards, and Apple Pay with pre-filled mobile checkout that eliminated payment failure drop-offs.",
+      "Live Conversion & Product Drop Architecture: Engineered high-impact seasonal launch spotlights (e.g., Sproberries) featuring flavor-profile tasting notes, grind-size selection, and quick-add drawer carts resulting in direct sales spikes on drop day.",
+    ],
+    stats: [
+      { k: "Live Conversion", v: "+68%" },
+      { k: "Checkout Time", v: "< 14s" },
       { k: "Lighthouse Score", v: "99/100" },
     ],
   },
