@@ -6,7 +6,19 @@ import { SiteFooter } from "@/components/home/site-footer";
 import { Check } from "lucide-react";
 import { track } from "@vercel/analytics";
 
+type PricingSearch = {
+  currency?: "usd" | "inr";
+};
+
 export const Route = createFileRoute("/pricing")({
+  validateSearch: (search: Record<string, unknown>): PricingSearch => {
+    const currency =
+      typeof search.currency === "string" ? search.currency.toLowerCase() : undefined;
+    if (currency === "usd" || currency === "inr") {
+      return { currency };
+    }
+    return {};
+  },
   head: () => ({
     meta: [
       { title: "Pricing & Investment Packages - Summit Studio" },
@@ -132,10 +144,36 @@ const PRICING_FAQS = [
 ];
 
 function PricingPage() {
-  const [isIndia, setIsIndia] = useState<boolean>(true);
+  const search = Route.useSearch();
+
+  const [isIndia, setIsIndia] = useState<boolean>(() => {
+    if (search.currency === "usd") return false;
+    if (search.currency === "inr") return true;
+    return true;
+  });
 
   useEffect(() => {
+    if (search.currency === "usd") {
+      setIsIndia(false);
+      return;
+    }
+    if (search.currency === "inr") {
+      setIsIndia(true);
+      return;
+    }
+
     try {
+      const params = new URLSearchParams(window.location.search);
+      const paramCurrency = params.get("currency")?.toLowerCase();
+      if (paramCurrency === "usd") {
+        setIsIndia(false);
+        return;
+      }
+      if (paramCurrency === "inr") {
+        setIsIndia(true);
+        return;
+      }
+
       const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
       const isIndianTz = tz.includes("Calcutta") || tz.includes("Kolkata") || tz.includes("India");
       const lang = navigator.language || "";
@@ -144,7 +182,7 @@ function PricingPage() {
     } catch {
       setIsIndia(true);
     }
-  }, []);
+  }, [search.currency]);
 
   return (
     <main className="min-h-screen bg-background text-foreground">
