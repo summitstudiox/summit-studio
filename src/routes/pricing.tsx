@@ -59,7 +59,6 @@ type PackageTier = {
   description: string;
   deliverables: string[];
   recommended?: boolean;
-  tierParam: string;
 };
 
 const PACKAGES: PackageTier[] = [
@@ -79,7 +78,6 @@ const PACKAGES: PackageTier[] = [
       "Basic SEO",
     ],
     recommended: false,
-    tierParam: "starter",
   },
   {
     n: "02",
@@ -98,7 +96,6 @@ const PACKAGES: PackageTier[] = [
       "Analytics integration",
     ],
     recommended: true,
-    tierParam: "business",
   },
   {
     n: "03",
@@ -120,7 +117,6 @@ const PACKAGES: PackageTier[] = [
       "Post-launch support",
     ],
     recommended: false,
-    tierParam: "signature",
   },
 ];
 
@@ -188,193 +184,203 @@ function PricingPage() {
     <main className="min-h-screen bg-background text-foreground">
       <SiteHeader navItems={NAV} variant="page" activeLabel="Pricing" />
 
-      {/* Hero Intro Header */}
-      <section className="border-b border-hairline px-6 py-20 md:px-16 md:py-28">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+      {/* Hero Intro Header - Calibrated proportions for laptops & mobile */}
+      <section className="border-b border-hairline px-5 py-12 sm:px-8 sm:py-14 md:px-12 md:py-16 lg:px-16 lg:py-20">
+        <div className="mx-auto max-w-7xl flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="label-mono text-xs text-accent">[ Scope &amp; Investment ]</span>
-            <h1 className="display-tight mt-3 text-4xl font-normal tracking-tight text-foreground md:text-7xl">
+            <span className="label-mono text-[0.68rem] text-accent font-semibold tracking-wider sm:text-xs">
+              [ SCOPE &amp; INVESTMENT ]
+            </span>
+            <h1 className="display-tight mt-2 text-2xl font-normal tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-[3.5rem] xl:text-6xl">
               Built for where your brand is going<span className="text-accent">.</span>
             </h1>
           </div>
-          <div className="max-w-md space-y-4">
-            <p className="text-xs leading-relaxed text-muted-foreground md:text-sm">
+          <div className="max-w-md space-y-2.5 sm:space-y-3">
+            <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
               Not every business needs the same website. Some need a strong place to start. Some are
               ready to grow. And some are ready to build something people remember.
             </p>
-            <p className="label-mono text-xs text-foreground/80">
+            <p className="label-mono text-[0.68rem] text-foreground/80 sm:text-xs">
               Choose the starting point that fits your ambition.
             </p>
           </div>
         </div>
       </section>
 
-      {/* 3 Core Packages Grid */}
-      <section className="px-6 py-16 md:px-16 md:py-24">
-        <div className="grid gap-8 lg:grid-cols-3">
-          {PACKAGES.map((pkg) => (
-            <div
-              key={pkg.n}
-              className={`relative flex flex-col justify-between rounded-2xl border p-8 md:p-10 transition-all duration-500 ${
-                pkg.recommended
-                  ? "border-accent/40 bg-card shadow-2xl ring-1 ring-accent/20"
-                  : "border-hairline bg-card hover:border-foreground/30"
-              }`}
-            >
-              {/* Optional Recommended Badge */}
-              {pkg.recommended && (
-                <div className="absolute -top-3.5 right-6 rounded-full bg-accent px-3.5 py-1">
-                  <span className="label-mono text-[0.62rem] font-semibold text-accent-foreground tracking-widest">
-                    Recommended
-                  </span>
-                </div>
-              )}
-
-              <div>
-                {/* Header Block */}
-                <div className="border-b border-hairline pb-6">
-                  <div className="flex items-center justify-between">
-                    <span className="label-mono text-xs text-muted-foreground">[{pkg.n}]</span>
-                    <span className="label-mono text-[0.65rem] text-muted-foreground uppercase tracking-widest">
-                      Package
+      {/* 3 Core Packages Grid - Tightened card padding & balanced typography */}
+      <section className="px-5 py-10 sm:px-8 sm:py-12 md:px-12 md:py-14 lg:px-16 lg:py-16">
+        <div className="mx-auto max-w-7xl">
+          <div className="grid gap-6 md:gap-5 lg:gap-6 lg:grid-cols-3">
+            {PACKAGES.map((pkg) => (
+              <div
+                key={pkg.n}
+                className={`relative flex flex-col justify-between rounded-2xl border p-6 sm:p-7 lg:p-7 xl:p-8 transition-all duration-300 ${
+                  pkg.recommended
+                    ? "border-accent/40 bg-card shadow-2xl ring-1 ring-accent/20"
+                    : "border-hairline bg-card hover:border-foreground/30"
+                }`}
+              >
+                {/* Recommended Badge */}
+                {pkg.recommended && (
+                  <div className="absolute -top-3 right-5 sm:right-6 rounded-full bg-accent px-3 py-0.5 shadow-md">
+                    <span className="label-mono text-[0.6rem] font-semibold text-accent-foreground tracking-widest">
+                      RECOMMENDED
                     </span>
                   </div>
+                )}
 
-                  <h2 className="display-tight mt-4 text-2xl font-normal tracking-tight text-foreground md:text-3xl">
-                    {pkg.name}
-                  </h2>
+                <div>
+                  {/* Header Block */}
+                  <div className="border-b border-hairline pb-4 sm:pb-5">
+                    <div className="flex items-center justify-between">
+                      <span className="label-mono text-[0.65rem] text-muted-foreground sm:text-xs">
+                        [{pkg.n}]
+                      </span>
+                      <span className="label-mono text-[0.62rem] text-muted-foreground uppercase tracking-widest">
+                        Package
+                      </span>
+                    </div>
 
-                  <div className="mt-4 flex items-baseline gap-2">
-                    <span className="display-tight text-3xl font-medium tracking-tight text-foreground md:text-4xl">
-                      {isIndia ? pkg.priceInr : pkg.priceUsd}
-                    </span>
+                    <h2 className="display-tight mt-3 text-xl font-normal tracking-tight text-foreground sm:text-2xl">
+                      {pkg.name}
+                    </h2>
+
+                    <div className="mt-2.5 flex items-baseline gap-2">
+                      <span className="display-tight text-2xl font-medium tracking-tight text-foreground sm:text-3xl lg:text-[1.85rem] xl:text-[2.1rem]">
+                        {isIndia ? pkg.priceInr : pkg.priceUsd}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Narrative & Tagline */}
+                  <div className="py-4 sm:py-5 space-y-1.5">
+                    <p className="text-xs sm:text-sm font-medium text-foreground">{pkg.tagline}</p>
+                    <p className="text-xs leading-relaxed text-muted-foreground">
+                      {pkg.description}
+                    </p>
+                  </div>
+
+                  {/* Deliverables */}
+                  <div className="border-t border-hairline pt-4 sm:pt-5">
+                    <p className="label-mono mb-3 text-[0.62rem] text-muted-foreground uppercase tracking-widest">
+                      Included Scope
+                    </p>
+                    <ul className="space-y-2 sm:space-y-2.5">
+                      {pkg.deliverables.map((item) => (
+                        <li
+                          key={item}
+                          className="flex items-start gap-2.5 text-xs text-foreground/90 sm:text-sm"
+                        >
+                          <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent" />
+                          <span className="leading-snug">{item}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
 
-                {/* Narrative & Tagline */}
-                <div className="py-6 space-y-2">
-                  <p className="text-sm font-medium text-foreground">{pkg.tagline}</p>
-                  <p className="text-xs leading-relaxed text-muted-foreground">{pkg.description}</p>
-                </div>
-
-                {/* Deliverables */}
-                <div className="border-t border-hairline pt-6">
-                  <p className="label-mono mb-4 text-[0.68rem] text-muted-foreground uppercase tracking-widest">
-                    Included Scope
-                  </p>
-                  <ul className="space-y-3">
-                    {pkg.deliverables.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-start gap-3 text-xs md:text-sm text-foreground/90"
-                      >
-                        <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-accent" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
+                {/* Action Button */}
+                <div className="mt-6 border-t border-hairline pt-5 sm:mt-8">
+                  <Link
+                    to="/"
+                    hash="contact"
+                    onClick={() => track("Pricing Tier Selected", { tier: pkg.name })}
+                    className={`label-mono flex min-h-[42px] w-full items-center justify-between rounded-lg border px-4 py-2.5 text-xs transition-all ${
+                      pkg.recommended
+                        ? "border-accent bg-accent text-accent-foreground hover:bg-accent/90"
+                        : "border-hairline bg-secondary/30 text-foreground hover:border-foreground/40 hover:text-accent"
+                    }`}
+                  >
+                    <span>Select {pkg.name}</span>
+                    <span>↗</span>
+                  </Link>
                 </div>
               </div>
+            ))}
+          </div>
 
-              {/* Action Button */}
-              <div className="mt-8 border-t border-hairline pt-6">
+          {/* CUSTOM Banner (Full Width) */}
+          <div className="mt-8 sm:mt-10 lg:mt-12 rounded-2xl border border-hairline bg-card p-6 sm:p-8 lg:p-10 transition-all hover:border-foreground/30">
+            <div className="grid gap-6 lg:grid-cols-12 lg:items-center">
+              <div className="space-y-3 sm:space-y-3.5 lg:col-span-7">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <span className="label-mono text-[0.65rem] text-accent sm:text-xs">
+                    [ Custom Engineering ]
+                  </span>
+                  <span className="text-muted-foreground text-xs">•</span>
+                  <span className="label-mono text-[0.65rem] text-muted-foreground sm:text-xs">
+                    Custom scope &amp; pricing
+                  </span>
+                </div>
+
+                <h2 className="display-tight text-xl font-normal tracking-tight text-foreground sm:text-2xl md:text-3xl">
+                  Your idea. Built without a template<span className="text-accent">.</span>
+                </h2>
+
+                <p className="text-xs sm:text-sm font-medium text-foreground">
+                  Some projects don’t belong in a package.
+                </p>
+
+                <p className="text-xs leading-relaxed text-muted-foreground sm:text-sm">
+                  Whether you’re imagining an e-commerce experience, booking platform, dashboard,
+                  web application, or something entirely new, we’ll work with you to shape the idea
+                  and build what it needs.
+                </p>
+              </div>
+
+              <div className="space-y-5 lg:col-span-5 lg:border-l lg:border-hairline lg:pl-8 xl:pl-10">
+                <div>
+                  <p className="label-mono mb-2.5 text-[0.62rem] text-muted-foreground uppercase tracking-widest">
+                    Specialized Capabilities
+                  </p>
+                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    {[
+                      "E-Commerce Experiences",
+                      "Booking Platforms",
+                      "SaaS & Dashboards",
+                      "Web Applications",
+                      "Custom APIs & DB",
+                      "Bespoke Architecture",
+                    ].map((cap) => (
+                      <span
+                        key={cap}
+                        className="label-mono rounded-md border border-hairline bg-secondary/40 px-2.5 py-1 text-[0.62rem] text-foreground/80 sm:text-[0.65rem]"
+                      >
+                        {cap}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
                 <Link
                   to="/"
                   hash="contact"
-                  onClick={() => track("Pricing Tier Selected", { tier: pkg.name })}
-                  className={`label-mono flex w-full items-center justify-between rounded-lg border px-5 py-3 text-xs transition-all ${
-                    pkg.recommended
-                      ? "border-accent bg-accent text-accent-foreground hover:bg-accent/90"
-                      : "border-hairline bg-secondary/30 text-foreground hover:border-foreground/40 hover:text-accent"
-                  }`}
+                  onClick={() => track("Custom Project Inquired", { location: "pricing-banner" })}
+                  className="label-mono flex min-h-[42px] w-full items-center justify-between rounded-lg border border-hairline bg-secondary/40 px-4 py-2.5 text-xs text-foreground transition-all hover:border-accent hover:text-accent"
                 >
-                  <span>Select {pkg.name}</span>
+                  <span>Discuss Custom Scope</span>
                   <span>↗</span>
                 </Link>
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* CUSTOM Banner (Full Width) */}
-        <div className="mt-12 rounded-2xl border border-hairline bg-card p-8 md:p-12 transition-all hover:border-foreground/30">
-          <div className="grid gap-8 lg:grid-cols-12 lg:items-center">
-            <div className="space-y-4 lg:col-span-7">
-              <div className="flex items-center gap-3">
-                <span className="label-mono text-xs text-accent">[ Custom Engineering ]</span>
-                <span className="text-muted-foreground text-xs">•</span>
-                <span className="label-mono text-xs text-muted-foreground">
-                  Custom scope &amp; pricing
-                </span>
-              </div>
-
-              <h2 className="display-tight text-2xl font-normal tracking-tight text-foreground md:text-4xl">
-                Your idea. Built without a template<span className="text-accent">.</span>
-              </h2>
-
-              <p className="text-sm font-medium text-foreground">
-                Some projects don’t belong in a package.
-              </p>
-
-              <p className="text-xs leading-relaxed text-muted-foreground md:text-sm">
-                Whether you’re imagining an e-commerce experience, booking platform, dashboard, web
-                application, or something entirely new, we’ll work with you to shape the idea and
-                build what it needs.
-              </p>
-            </div>
-
-            <div className="lg:col-span-5 space-y-6 lg:border-l lg:border-hairline lg:pl-10">
-              <div>
-                <p className="label-mono mb-3 text-[0.68rem] text-muted-foreground uppercase tracking-widest">
-                  Specialized Capabilities
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {[
-                    "E-Commerce Experiences",
-                    "Booking Platforms",
-                    "SaaS & Dashboards",
-                    "Web Applications",
-                    "Custom APIs & DB",
-                    "Bespoke Architecture",
-                  ].map((cap) => (
-                    <span
-                      key={cap}
-                      className="label-mono rounded-md border border-hairline bg-secondary/40 px-3 py-1.5 text-[0.65rem] text-foreground/80"
-                    >
-                      {cap}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <Link
-                to="/"
-                hash="contact"
-                onClick={() => track("Custom Project Inquired", { location: "pricing-banner" })}
-                className="label-mono flex w-full items-center justify-between rounded-lg border border-hairline bg-secondary/40 px-5 py-3 text-xs text-foreground transition-all hover:border-accent hover:text-accent"
-              >
-                <span>Discuss Custom Scope</span>
-                <span>↗</span>
-              </Link>
-            </div>
           </div>
-        </div>
 
-        {/* Separate Costs Notice */}
-        <div className="mt-8 rounded-xl border border-hairline bg-secondary/15 px-6 py-4 text-xs text-muted-foreground">
-          <p>
-            <span className="font-medium text-foreground">Note:</span> Domain, hosting, and
-            deployment costs are separate and handled by the client.
-          </p>
+          {/* Separate Costs Notice */}
+          <div className="mt-6 rounded-xl border border-hairline bg-secondary/15 px-5 py-3.5 text-[0.75rem] text-muted-foreground sm:text-xs">
+            <p>
+              <span className="font-medium text-foreground">Note:</span> Domain, hosting, and
+              deployment costs are separate and handled by the client.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Pricing FAQ Section */}
       <section className="border-t border-hairline">
         <SectionHead n="05" label="Frequently Asked Questions" />
-        <div className="px-6 py-20 md:px-16">
-          <div className="mb-12">
-            <h2 className="display-tight max-w-3xl text-3xl font-normal leading-snug tracking-tight text-foreground md:text-5xl">
+        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-14 md:px-12 md:py-16 lg:px-16">
+          <div className="mb-8 sm:mb-10">
+            <h2 className="display-tight max-w-3xl text-2xl font-normal leading-snug tracking-tight text-foreground sm:text-3xl md:text-4xl">
               Common Questions on Scope &amp; Pricing<span className="text-accent">.</span>
             </h2>
           </div>
@@ -383,15 +389,17 @@ function PricingPage() {
             {PRICING_FAQS.map((faq) => (
               <details
                 key={faq.q}
-                className="group py-6 [&_summary::-webkit-details-marker]:hidden"
+                className="group py-4 sm:py-5 [&_summary::-webkit-details-marker]:hidden"
               >
                 <summary className="flex cursor-pointer items-center justify-between font-medium text-foreground transition-colors group-hover:text-accent">
-                  <span className="display-tight text-base md:text-lg font-normal">{faq.q}</span>
+                  <span className="display-tight text-sm font-normal sm:text-base md:text-lg">
+                    {faq.q}
+                  </span>
                   <span className="label-mono ml-4 text-xs text-muted-foreground transition-transform duration-300 group-open:rotate-45">
                     +
                   </span>
                 </summary>
-                <p className="mt-4 max-w-4xl text-sm leading-relaxed text-foreground/75 md:text-base">
+                <p className="mt-3 max-w-4xl text-xs leading-relaxed text-foreground/75 sm:text-sm md:text-base">
                   {faq.a}
                 </p>
               </details>
@@ -401,25 +409,27 @@ function PricingPage() {
       </section>
 
       {/* Direct Contact CTA Strip */}
-      <section className="border-t border-hairline px-6 py-20 md:px-16 md:py-28">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+      <section className="border-t border-hairline px-5 py-12 sm:px-8 sm:py-14 md:px-12 md:py-16 lg:px-16">
+        <div className="mx-auto max-w-7xl flex flex-col justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="label-mono text-xs text-accent">[ Get in Touch ]</span>
-            <h2 className="display-tight mt-3 text-3xl font-normal tracking-tight text-foreground md:text-5xl">
+            <span className="label-mono text-[0.68rem] text-accent font-semibold tracking-wider sm:text-xs">
+              [ GET IN TOUCH ]
+            </span>
+            <h2 className="display-tight mt-2 text-2xl font-normal tracking-tight text-foreground sm:text-3xl md:text-4xl">
               Ready to build something unforgettable<span className="text-accent">?</span>
             </h2>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-3">
             <Link
               to="/"
               hash="contact"
-              className="label-mono inline-flex items-center justify-center rounded-lg border border-accent bg-accent px-6 py-3 text-xs font-semibold text-accent-foreground transition-all hover:bg-accent/90"
+              className="label-mono inline-flex min-h-[42px] items-center justify-center rounded-lg border border-accent bg-accent px-5 py-2.5 text-xs font-semibold text-accent-foreground transition-all hover:bg-accent/90"
             >
               Start a Conversation ↗
             </Link>
             <a
               href="mailto:summitstudiox@gmail.com"
-              className="label-mono inline-flex items-center justify-center rounded-lg border border-hairline bg-secondary/30 px-6 py-3 text-xs text-foreground transition-all hover:border-foreground/40 hover:text-accent"
+              className="label-mono inline-flex min-h-[42px] items-center justify-center rounded-lg border border-hairline bg-secondary/30 px-5 py-2.5 text-xs text-foreground transition-all hover:border-foreground/40 hover:text-accent"
             >
               summitstudiox@gmail.com
             </a>
