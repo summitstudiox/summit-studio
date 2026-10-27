@@ -113,6 +113,7 @@ const NAV: NavItem[] = [
   { label: "Home", hash: "top" },
   { label: "Studio", hash: "studio" },
   { label: "Work", to: "/work" },
+  { label: "Pricing", to: "/pricing" },
   { label: "Process", hash: "process" },
   { label: "FAQ", hash: "faq" },
   { label: "Contact", hash: "contact" },

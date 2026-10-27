@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { track } from "@vercel/analytics";
 
-export type NavItem = { label: string; hash?: string; to?: "/" | "/work" };
+export type NavItem = { label: string; hash?: string; to?: "/" | "/work" | "/pricing" };
 
 export function SiteHeader({
   navItems,
