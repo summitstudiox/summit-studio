@@ -2,7 +2,7 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader, type NavItem } from "@/components/site-header";
 import clubExotismImg from "@/assets/clubexotism.jpg";
-import ascendImg from "@/assets/ascend.jpg";
+import monsoonCoffeeImg from "@/assets/monsoon-coffee.jpg";
 import campusConnectImg from "@/assets/campus-connect.jpg";
 import sableEstatesImg from "@/assets/sable-estates.jpg";
 import logoImg from "@/assets/logo.png";
@@ -64,20 +64,20 @@ const ALL_WORK = [
   },
   {
     n: "04",
-    slug: "ascend",
-    name: "Ascend",
-    client: "Ascend — Minimalist Streetwear & Luxury Apparel",
-    kind: "E-Commerce Experience · Brand Identity · Editorial Storefront",
+    slug: "monsoon-coffee",
+    name: "Monsoon Coffee Co.",
+    client: "Monsoon Coffee Co. — Direct-from-Origin Speciality Coffee Roasters",
+    kind: "Speciality Coffee · D2C E-Commerce · Custom Conversion Engine",
     year: "2026",
-    img: ascendImg,
-    url: "https://ascend-black.vercel.app",
+    img: monsoonCoffeeImg,
+    url: "https://monsooncoffee.co/",
     challenge:
-      "Ascend needed a digital storefront that reflected its raw, minimalist streetwear ethos for Drop 001 (SS26). The challenge was delivering a high-fashion editorial experience with fluid scroll-driven micro-interactions and bold typography without compromising ecommerce conversion rates.",
+      "Speciality coffee requires an experience as nuanced and deliberate as the cup itself. Monsoon Coffee Co. needed an elevated digital flagship to introduce rare origin varieties without falling into the trap of generic e-commerce templates. The challenge was articulating the sensory story of small-batch roasting while engineering sub-second page loads, multi-currency payment gateway checkout, and frictionless live conversion.",
     solution:
-      "Designed and developed an editorial e-commerce platform built around monochrome minimalism, Neue Haas Grotesk typography, and cinematic hero reveals paired with zero-friction checkout flows.",
+      "Crafted an earthy, editorial dark-mode storefront pairing tactile micro-imagery with an organic five-stage coffee narrative: Origin, Process, Roast, Craft, and Product Drops. Engineered high-converting quick-order drawers, direct payment gateway integration with Razorpay and Stripe, and streamlined mobile checkout.",
     stats: [
-      { k: "Mobile Conversion", v: "+85%" },
-      { k: "Page Load Speed", v: "0.4s" },
+      { k: "Live Conversion", v: "+68%" },
+      { k: "Checkout Time", v: "< 14s" },
       { k: "Lighthouse Score", v: "99/100" },
     ],
   },

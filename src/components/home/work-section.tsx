@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { Link } from "@tanstack/react-router";
 import { SectionHead } from "@/components/section-head";
 import clubExotismImg from "@/assets/clubexotism.jpg";
-import ascendImg from "@/assets/ascend.jpg";
+import monsoonCoffeeImg from "@/assets/monsoon-coffee.jpg";
 import campusConnectImg from "@/assets/campus-connect.jpg";
 import sableEstatesImg from "@/assets/sable-estates.jpg";
 
@@ -30,10 +30,10 @@ const WORK = [
   },
   {
     n: "04",
-    slug: "ascend",
-    name: "Ascend",
-    kind: "E-Commerce Experience · Brand Identity · Editorial Storefront",
-    img: ascendImg,
+    slug: "monsoon-coffee",
+    name: "Monsoon Coffee Co.",
+    kind: "Speciality Coffee · D2C E-Commerce · Custom Conversion Engine",
+    img: monsoonCoffeeImg,
   },
 ];
 
