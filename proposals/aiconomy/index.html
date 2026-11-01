@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIconomy | Project Proposal &amp; Cost Breakdown | Summit Studio</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  @page { size: A4; margin: 0; }
+
+  :root {
+    --bg: #010101;
+    --fg: #F8F8F8;
+    --muted: #8C8484;
+    --accent: #E60016;
+    --border: rgba(255, 255, 255, 0.12);
+    --hairline: rgba(255, 255, 255, 0.16);
+    --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: var(--font-display);
+    color: var(--fg);
+    font-size: 10pt;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    background: var(--bg);
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .page:last-of-type { page-break-after: auto; break-after: auto; }
+
+  .pad {
+    position: absolute;
+    inset: 0;
+    padding: 14mm 16mm 24mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 7.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
+  .muted { color: var(--muted); }
+  .accent { color: var(--accent); }
+
+  .dot { color: var(--accent); }
+
+  .display {
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    margin: 0;
+  }
+
+  .wordmark {
+    font-size: 11.5pt;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  /* ---------- running header / footer ---------- */
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 3.5mm;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .foot {
+    position: absolute;
+    left: 16mm;
+    right: 16mm;
+    bottom: 9mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid var(--border);
+    padding-top: 3mm;
+  }
+
+  /* ---------- section heads ---------- */
+
+  .sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid var(--hairline);
+    padding-top: 4mm;
+    margin-top: 11mm;
+  }
+
+  .sec-head:first-of-type { margin-top: 8mm; }
+
+  /* ---------- workstream block ---------- */
+
+  .work-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10mm;
+    margin-top: 7mm;
+  }
+
+  .work-title {
+    font-size: 25pt;
+    font-weight: 500;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin: 0;
+  }
+
+  .fee { text-align: right; flex-shrink: 0; }
+
+  .fee .amount {
+    font-family: var(--font-mono);
+    font-size: 13pt;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    line-height: 1;
+  }
+
+  .fee .meta {
+    font-family: var(--font-mono);
+    font-size: 6.8pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2.5mm;
+    line-height: 1.5;
+  }
+
+  /* ---------- ledger tables ---------- */
+
+  table.ledger {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 7mm;
+  }
+
+  .ledger th {
+    font-family: var(--font-mono);
+    font-size: 6.8pt;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0 0 2.5mm;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .ledger th.num, .ledger td.num { text-align: right; }
+
+  .ledger td {
+    padding: 3.1mm 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 9.6pt;
+    color: rgba(248, 248, 248, 0.92);
+    line-height: 1.3;
+  }
+
+  .ledger td.num {
+    font-family: var(--font-mono);
+    font-size: 8.8pt;
+    letter-spacing: -0.01em;
+    color: var(--fg);
+    white-space: nowrap;
+  }
+
+  .ledger tr.sub td {
+    border-bottom: none;
+    border-top: 1px solid var(--hairline);
+    padding-top: 3mm;
+    padding-bottom: 0;
+    font-family: var(--font-mono);
+    font-size: 7.2pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .ledger tr.sub td.num {
+    font-size: 10pt;
+    color: var(--fg);
+    letter-spacing: 0;
+  }
+
+  .tag {
+    display: inline-block;
+    margin-left: 2.5mm;
+    padding: 0.8mm 2mm;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: 5.8pt;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    vertical-align: 1.2mm;
+  }
+
+  /* ---------- notes / callouts ---------- */
+
+  .note {
+    margin-top: 5mm;
+    border-left: 1px solid var(--accent);
+    padding-left: 4mm;
+    font-size: 8.4pt;
+    line-height: 1.65;
+    color: var(--muted);
+    max-width: 150mm;
+  }
+
+  .note .mono {
+    display: block;
+    margin-bottom: 1.5mm;
+    color: var(--accent);
+    font-size: 6.6pt;
+  }
+
+  .note .mono ~ .mono { margin-top: 3mm; }
+
+  /* ---------- page 2 ---------- */
+
+  .page-title {
+    font-size: 31pt;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    margin: 9mm 0 0;
+  }
+
+  .lede {
+    margin: 7mm 0 0;
+    max-width: 152mm;
+    font-size: 10.6pt;
+    line-height: 1.65;
+    color: rgba(248, 248, 248, 0.8);
+  }
+
+  .label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 12mm;
+  }
+
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    margin-top: 6mm;
+    padding-top: 5mm;
+  }
+
+  .total-row .label {
+    font-family: var(--font-mono);
+    font-size: 8pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--fg);
+  }
+
+  .total-row .value {
+    font-family: var(--font-mono);
+    font-size: 16pt;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+  }
+
+  .params {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr 1.1fr;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .param {
+    padding: 6mm 5mm 6.5mm;
+    border-left: 1px solid var(--border);
+  }
+
+  .param:first-child { border-left: none; padding-left: 0; }
+
+  .param .mono {
+    display: block;
+    color: var(--accent);
+    font-size: 6.8pt;
+    margin-bottom: 2.5mm;
+  }
+
+  .param p {
+    margin: 0;
+    font-size: 8.6pt;
+    line-height: 1.6;
+    color: rgba(248, 248, 248, 0.78);
+  }
+
+  /* ---------- page 4 KPI strip ---------- */
+
+  .kpis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-top: 16mm;
+  }
+
+  .kpi { padding: 6mm 5mm 6.5mm; border-left: 1px solid var(--border); }
+  .kpi:first-child { border-left: none; padding-left: 0; }
+
+  .kpi .big {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 18pt;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--fg);
+  }
+
+  .kpi .big.accent { color: var(--accent); }
+
+  .kpi .cap {
+    font-family: var(--font-mono);
+    font-size: 6.6pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2.5mm;
+  }
+
+  /* ---------- page 5 price block ---------- */
+
+  .price-block {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.2fr;
+    align-items: end;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-top: 7mm;
+  }
+
+  .price-cell { padding: 6mm 5mm 6.5mm; border-left: 1px solid var(--border); }
+  .price-cell:first-child { border-left: none; padding-left: 0; }
+
+  .price-cell .mono {
+    display: block;
+    font-size: 6.6pt;
+    color: var(--muted);
+    margin-bottom: 2.5mm;
+  }
+
+  .price-cell .val {
+    font-family: var(--font-mono);
+    font-size: 12pt;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    color: var(--muted);
+    text-decoration: line-through;
+    text-decoration-color: rgba(140, 132, 132, 0.6);
+  }
+
+  .price-cell .val.neg { text-decoration: none; color: rgba(248, 248, 248, 0.85); }
+
+  .price-cell.final .mono { color: var(--accent); }
+
+  .price-cell.final .val {
+    text-decoration: none;
+    color: var(--accent);
+    font-size: 22pt;
+    font-weight: 500;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm;
+    margin-top: 5mm;
+  }
+
+  .pill {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 1.7mm 3.4mm;
+    font-family: var(--font-mono);
+    font-size: 6.6pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(248, 248, 248, 0.88);
+  }
+
+  /* ---------- page 6 ---------- */
+
+  .terms-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.35fr;
+    gap: 12mm;
+    margin-top: 10mm;
+  }
+
+  .terms-grid h3 {
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 3mm;
+  }
+
+  .terms-grid p {
+    margin: 0;
+    font-size: 9.4pt;
+    line-height: 1.65;
+    color: rgba(248, 248, 248, 0.8);
+  }
+
+  .pay-table { width: 100%; border-collapse: collapse; }
+
+  .pay-table th {
+    font-family: var(--font-mono);
+    font-size: 6.6pt;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0 0 2.2mm;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .pay-table td {
+    padding: 2.4mm 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 9.2pt;
+    color: rgba(248, 248, 248, 0.9);
+  }
+
+  .pay-table td.num {
+    font-family: var(--font-mono);
+    font-size: 8.4pt;
+    text-align: right;
+    color: var(--fg);
+    white-space: nowrap;
+  }
+
+  .pay-table th.num { text-align: right; }
+
+  .scope-list {
+    list-style: none;
+    margin: 5mm 0 0;
+    padding: 0;
+  }
+
+  .scope-list li {
+    position: relative;
+    padding-left: 6mm;
+    margin-bottom: 4.4mm;
+    font-size: 9pt;
+    line-height: 1.6;
+    color: rgba(248, 248, 248, 0.78);
+  }
+
+  .scope-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.55em;
+    width: 3mm;
+    height: 1px;
+    background: var(--accent);
+  }
+
+  .end-tagline {
+    margin-top: auto;
+    padding-top: 8mm;
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .page-tight .ledger { margin-top: 5.5mm; }
+  .page-tight .ledger td { padding: 2.5mm 0; }
+  .page-tight .sec-head { margin-top: 9mm; }
+  .page-tight .work-head { margin-top: 5.5mm; }
+  .page-tight .work-title { font-size: 24pt; }
+  .page-tight .note { margin-top: 4mm; }
+
+  .page-numeral {
+    position: absolute;
+    right: 12mm;
+    bottom: 24mm;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 168pt;
+    line-height: 0.75;
+    letter-spacing: -0.06em;
+    color: rgba(248, 248, 248, 0.03);
+    pointer-events: none;
+  }
+
+  /* ---------- cover ---------- */
+
+  .cover .pad { padding-bottom: 12mm; }
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-left { display: flex; align-items: center; gap: 3mm; }
+
+  .logo { width: 8.5mm; height: 8.5mm; filter: invert(1); }
+
+  .cover-main { margin-top: 44mm; }
+
+  .cover-prepared {
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cover-client {
+    font-size: 19pt;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-top: 3.5mm;
+  }
+
+  .cover-title {
+    font-size: 56pt;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 0.92;
+    margin: 11mm 0 0;
+  }
+
+  .cover-sub {
+    margin: 7mm 0 0;
+    max-width: 122mm;
+    font-size: 12pt;
+    line-height: 1.55;
+    color: rgba(248, 248, 248, 0.72);
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr 1.2fr;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-top: auto;
+  }
+
+  .cover-meta .cell { padding: 5mm 5mm 5.5mm; border-left: 1px solid var(--border); }
+  .cover-meta .cell:first-child { border-left: none; padding-left: 0; }
+
+  .cover-meta .mono {
+    display: block;
+    font-size: 6.6pt;
+    color: var(--muted);
+    margin-bottom: 2.5mm;
+  }
+
+  .cover-meta .val {
+    font-family: var(--font-mono);
+    font-size: 11pt;
+    letter-spacing: -0.01em;
+    color: var(--fg);
+    line-height: 1.2;
+  }
+
+  .cover-meta .val.accent { color: var(--accent); font-size: 14pt; font-weight: 500; }
+
+  .cover-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 5mm;
+    margin-top: 9mm;
+  }
+
+  .cover-wordmark .logo { width: 13mm; height: 13mm; }
+
+  .cover-wordmark .display {
+    font-size: 38pt;
+    letter-spacing: -0.045em;
+    white-space: nowrap;
+  }
+
+  /* ---------- preview-only ---------- */
+
+  html[data-preview-page] .page { display: none; }
+  html[data-preview-page="1"] .page:nth-of-type(1),
+  html[data-preview-page="2"] .page:nth-of-type(2),
+  html[data-preview-page="3"] .page:nth-of-type(3),
+  html[data-preview-page="4"] .page:nth-of-type(4),
+  html[data-preview-page="5"] .page:nth-of-type(5),
+  html[data-preview-page="6"] .page:nth-of-type(6) { display: block; }
+</style>
+</head>
+<body>
+<script>
+  (function () {
+    var p = new URLSearchParams(location.search).get("page");
+    if (p) document.documentElement.setAttribute("data-preview-page", p);
+  })();
+</script>
+
+<!-- 01 — COVER -->
+<section class="page cover">
+  <div class="pad">
+    <div class="cover-top">
+      <div class="brand-left">
+        <img class="logo" src="assets/logo.png" alt="Summit Studio">
+        <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      </div>
+      <span class="mono muted">Project Proposal / Cost Breakdown</span>
+    </div>
+
+    <div class="cover-main">
+      <div class="cover-prepared">[ Prepared for ]</div>
+      <div class="cover-client">AIconomy</div>
+      <h1 class="cover-title">Launch Package<span class="dot">.</span></h1>
+      <p class="cover-sub">Brand identity, brand deck and a website.</p>
+    </div>
+
+    <div class="cover-meta">
+      <div class="cell">
+        <span class="mono">Issued</span>
+        <div class="val">01 Nov 2026</div>
+      </div>
+      <div class="cell">
+        <span class="mono">Total project fee</span>
+        <div class="val accent">₹1,00,000</div>
+      </div>
+      <div class="cell">
+        <span class="mono">Timeline</span>
+        <div class="val">2 weeks</div>
+      </div>
+    </div>
+
+    <div class="cover-wordmark">
+      <img class="logo" src="assets/logo.png" alt="">
+      <span class="display">Summit Studio<span class="dot">.</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 — OVERVIEW -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Project Proposal / Cost Breakdown</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 00 ]</span>
+      <span class="mono muted">Project Overview</span>
+    </div>
+
+    <h2 class="page-title">The Scope<span class="dot">.</span></h2>
+    <p class="lede">Establish a coherent identity for AIconomy Institute and its flagship event, World AIconomy Forum, supported by a presentation deck and a baseline website. Existing discovery and research are treated as completed inputs; this scope includes only focused positioning refinement needed to guide design.</p>
+
+    <table class="ledger">
+      <thead>
+        <tr><th>Workstream</th><th class="num">Fee</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>01 &nbsp;&nbsp; Brand identity</td><td class="num">₹52,000</td></tr>
+        <tr><td>02 &nbsp;&nbsp; Brand guidelines</td><td class="num">₹8,000</td></tr>
+        <tr><td>03 &nbsp;&nbsp; Brand deck <span class="muted">(10–12 slides)</span></td><td class="num">₹15,000</td></tr>
+        <tr><td>04 &nbsp;&nbsp; Website</td><td class="num">₹45,000</td></tr>
+        <tr><td>05 &nbsp;&nbsp; Website discount</td><td class="num">−₹20,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="total-row">
+      <span class="label">Total package price</span>
+      <span class="value">₹1,00,000</span>
+    </div>
+
+    <div class="label-row">
+      <span class="mono muted">Delivery parameters</span>
+    </div>
+
+    <div class="params">
+      <div class="param">
+        <span class="mono">Timeline</span>
+        <p>2 weeks from kickoff, subject to timely client inputs and approvals.</p>
+      </div>
+      <div class="param">
+        <span class="mono">Revisions</span>
+        <p>Up to two consolidated revision rounds for the agreed identity and applications.</p>
+      </div>
+      <div class="param">
+        <span class="mono">Website</span>
+        <p>Custom design, responsive development, CMS and third-party integrations, basic SEO and a 2-week build.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Project Cost Breakdown <span class="accent">/ 02</span></span>
+  </footer>
+</section>
+
+<!-- 03 — BRAND SYSTEM + GUIDELINES -->
+<section class="page page-tight">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Project Proposal / Cost Breakdown</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 01 ]</span>
+      <span class="mono muted">Brand System</span>
+    </div>
+
+    <div class="work-head">
+      <h2 class="work-title">Brand identity</h2>
+      <div class="fee">
+        <div class="amount">₹52,000</div>
+        <div class="meta">Workstream fee</div>
+      </div>
+    </div>
+
+    <table class="ledger">
+      <thead>
+        <tr><th>Task</th><th class="num">Cost</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Creative direction and visual exploration</td><td class="num">₹9,000</td></tr>
+        <tr><td>Primary logo design</td><td class="num">₹16,000</td></tr>
+        <tr><td>Secondary logo configuration and variations</td><td class="num">₹6,500</td></tr>
+        <tr><td>Colour palette and typography system</td><td class="num">₹6,500</td></tr>
+        <tr><td>Supporting graphic elements and visual language</td><td class="num">₹7,000</td></tr>
+        <tr><td>Light/dark variations and final logo exports</td><td class="num">₹5,500</td></tr>
+        <tr><td>Event announcement graphic</td><td class="num">₹1,500</td></tr>
+        <tr class="sub"><td>Subtotal</td><td class="num">₹52,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 02 ]</span>
+      <span class="mono muted">Brand Guidelines</span>
+    </div>
+
+    <div class="work-head">
+      <h2 class="work-title">Brand guidelines</h2>
+      <div class="fee">
+        <div class="amount">₹8,000</div>
+        <div class="meta">Concise 6–8 page PDF</div>
+      </div>
+    </div>
+
+    <table class="ledger">
+      <thead>
+        <tr><th>Task</th><th class="num">Cost</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Guideline document structure and layout</td><td class="num">₹1,800</td></tr>
+        <tr><td>Logo usage and spacing rules</td><td class="num">₹1,300</td></tr>
+        <tr><td>Colour and typography specifications</td><td class="num">₹1,300</td></tr>
+        <tr><td>Graphic elements and layout principles</td><td class="num">₹1,300</td></tr>
+        <tr><td>Brand application examples</td><td class="num">₹2,300</td></tr>
+        <tr class="sub"><td>Subtotal</td><td class="num">₹8,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="note">
+      <span class="mono">[ Included application ]</span>
+      One event announcement graphic is included in the identity workstream; it is not billed as a separate collateral package.
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Project Cost Breakdown <span class="accent">/ 03</span></span>
+  </footer>
+</section>
+
+<!-- 04 — PRESENTATION -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Project Proposal / Cost Breakdown</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 03 ]</span>
+      <span class="mono muted">Presentation</span>
+    </div>
+
+    <div class="work-head">
+      <h2 class="work-title">Brand deck</h2>
+      <div class="fee">
+        <div class="amount">₹15,000</div>
+        <div class="meta">Up to 10–12 slides · Client-provided content</div>
+      </div>
+    </div>
+
+    <table class="ledger">
+      <thead>
+        <tr><th>Task</th><th class="num">Cost</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Presentation visual direction</td><td class="num">₹1,800</td></tr>
+        <tr><td>Cover and section divider layouts</td><td class="num">₹1,800</td></tr>
+        <tr><td>Core content slide layouts</td><td class="num">₹3,600</td></tr>
+        <tr><td>Quote, data and key-message slides</td><td class="num">₹2,600</td></tr>
+        <tr><td>Application to remaining agreed slides</td><td class="num">₹3,600</td></tr>
+        <tr><td>Branded launch / announcement slide</td><td class="num">₹1,600</td></tr>
+        <tr class="sub"><td>Subtotal</td><td class="num">₹15,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="kpis">
+      <div class="kpi">
+        <div class="big">10–12</div>
+        <div class="cap">Slide cap</div>
+      </div>
+      <div class="kpi">
+        <div class="big">06</div>
+        <div class="cap">Task lines</div>
+      </div>
+      <div class="kpi">
+        <div class="big accent">₹15,000</div>
+        <div class="cap">Workstream fee</div>
+      </div>
+    </div>
+
+    <div class="note">
+      <span class="mono">[ Content note ]</span>
+      Client supplies final copy, facts, images and data. The deck is built within the 10–12 slide cap and up to two consolidated revision rounds.
+    </div>
+  </div>
+
+  <span class="page-numeral" aria-hidden="true">03</span>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Project Cost Breakdown <span class="accent">/ 04</span></span>
+  </footer>
+</section>
+
+<!-- 05 — WEBSITE -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Project Proposal / Cost Breakdown</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 04 ]</span>
+      <span class="mono muted">Website</span>
+    </div>
+
+    <div class="work-head">
+      <h2 class="work-title">Website</h2>
+      <div class="fee">
+        <div class="meta">CMS · Third-party integrations · Bespoke UI · 2-week build</div>
+      </div>
+    </div>
+
+    <div class="price-block">
+      <div class="price-cell">
+        <span class="mono">Usual price</span>
+        <div class="val">₹45,000</div>
+      </div>
+      <div class="price-cell">
+        <span class="mono">Discount</span>
+        <div class="val neg">−₹20,000</div>
+      </div>
+      <div class="price-cell final">
+        <span class="mono">Final fee</span>
+        <div class="val">₹25,000</div>
+      </div>
+    </div>
+
+    <table class="ledger">
+      <thead>
+        <tr><th>Task</th><th class="num">Cost</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Sitemap and page structure</td><td class="num">₹2,000</td></tr>
+        <tr><td>Bespoke UI design and visual direction</td><td class="num">₹10,000</td></tr>
+        <tr><td>Responsive development</td><td class="num">₹12,000</td></tr>
+        <tr><td>CMS setup and content structure</td><td class="num">₹5,500</td></tr>
+        <tr><td>Third-party integrations <span class="muted">(forms, social, analytics)</span></td><td class="num">₹3,500</td></tr>
+        <tr><td>Performance and basic SEO setup</td><td class="num">₹4,000</td></tr>
+        <tr><td>Testing, deployment and handover</td><td class="num">₹4,500</td></tr>
+        <tr><td>Post-launch support <span class="muted">(30 days)</span></td><td class="num">₹3,500</td></tr>
+        <tr class="sub"><td>Usual charge</td><td class="num">₹45,000</td></tr>
+      </tbody>
+    </table>
+
+    <div class="label-row">
+      <span class="mono muted">Suggested pages</span>
+    </div>
+    <div class="pills">
+      <span class="pill">Home</span>
+      <span class="pill">About AIconomy Institute</span>
+      <span class="pill">World AIconomy Forum</span>
+      <span class="pill">Insights / News</span>
+      <span class="pill">Contact</span>
+    </div>
+
+    <div class="note">
+      <span class="mono">[ Included at no extra cost ]</span>
+      CMS and third-party integrations are carried over from our Signature-tier build, trimmed down to what this project needs, and covered within the discounted website fee at no extra cost.
+      <span class="mono">[ Exclusions ]</span>
+      Domain and hosting, paid third-party services and subscriptions, custom CMS development beyond the included setup, extensive copywriting, ongoing maintenance and future content production are excluded and borne directly by the client.
+    </div>
+  </div>
+
+  <span class="page-numeral" aria-hidden="true">04</span>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Project Cost Breakdown <span class="accent">/ 05</span></span>
+  </footer>
+</section>
+
+<!-- 06 — DELIVERY & TERMS -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Project Proposal / Cost Breakdown</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 05 ]</span>
+      <span class="mono muted">Delivery &amp; Terms</span>
+    </div>
+
+    <h2 class="page-title">Project terms<span class="dot">.</span></h2>
+
+    <div class="terms-grid">
+      <div>
+        <h3>Timeline</h3>
+        <p>Target delivery is 2 weeks from kickoff, subject to timely receipt of client content, approvals and consolidated feedback.</p>
+      </div>
+      <div>
+        <h3>Payment schedule</h3>
+        <table class="pay-table">
+          <thead>
+            <tr><th>Milestone</th><th class="num">%</th><th class="num">Amount</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Project kickoff</td><td class="num">50%</td><td class="num">₹50,000</td></tr>
+            <tr><td>Identity approval</td><td class="num">30%</td><td class="num">₹30,000</td></tr>
+            <tr><td>Before final handover</td><td class="num">20%</td><td class="num">₹20,000</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ Scope boundaries ]</span>
+      <span class="mono muted">What is included</span>
+    </div>
+
+    <ul class="scope-list">
+      <li>Website development is limited to the agreed pages, the CMS setup and the website features listed above.</li>
+      <li>Brand deck design is capped at 10–12 slides. Client supplies final copy, facts, images and data.</li>
+      <li>Up to two consolidated revision rounds are included for the agreed work. Additional revisions or new directions may be quoted separately.</li>
+      <li>Full event production graphics (stage backdrops, signage, badges), full press-kit production, multiple social campaigns, research-report layouts, motion/video and ongoing content management are excluded.</li>
+      <li>Domain registration, hosting, paid third-party services and subscriptions, and other external costs are excluded from this fee and are borne directly by the client.</li>
+    </ul>
+
+    <div class="total-row">
+      <span class="label">Total package price</span>
+      <span class="value">₹1,00,000</span>
+    </div>
+
+    <div class="end-tagline">Nobody remembers ordinary<span class="accent">.</span></div>
+  </div>
+
+  <span class="page-numeral" aria-hidden="true">05</span>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Project Cost Breakdown <span class="accent">/ 06</span></span>
+  </footer>
+</section>
+
+</body>
+</html>

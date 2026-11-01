@@ -1,0 +1,1441 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIconomy | Brand Vision &amp; Creative Direction | Summit Studio</title>
+<link rel="stylesheet" href="fonts/fonts.css">
+<style>
+  @page { size: A4; margin: 0; }
+
+  :root {
+    --bg: #010101;
+    --fg: #F8F8F8;
+    --muted: #8C8484;
+    --accent: #E60016;
+    --border: rgba(255, 255, 255, 0.12);
+    --hairline: rgba(255, 255, 255, 0.16);
+    --font-display: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--bg);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    font-family: var(--font-display);
+    color: var(--fg);
+    font-size: 10pt;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    background: var(--bg);
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .page:last-of-type { page-break-after: auto; break-after: auto; }
+
+  .pad {
+    position: absolute;
+    inset: 0;
+    padding: 14mm 16mm 24mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 7.5pt;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+
+  .muted { color: var(--muted); }
+  .accent { color: var(--accent); }
+  .dot { color: var(--accent); }
+
+  .display {
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 0.95;
+    margin: 0;
+  }
+
+  .wordmark {
+    font-size: 11.5pt;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+  }
+
+  /* ---------- header / footer ---------- */
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding-bottom: 3.5mm;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .foot {
+    position: absolute;
+    left: 16mm;
+    right: 16mm;
+    bottom: 9mm;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid var(--border);
+    padding-top: 3mm;
+  }
+
+  .page-numeral {
+    position: absolute;
+    right: 12mm;
+    bottom: 24mm;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 168pt;
+    line-height: 0.8;
+    letter-spacing: -0.05em;
+    color: rgba(255, 255, 255, 0.025);
+    pointer-events: none;
+  }
+
+  /* ---------- section scaffolding ---------- */
+
+  .sec-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-top: 1px solid var(--hairline);
+    padding-top: 4mm;
+    margin-top: 8mm;
+  }
+
+  .sec-head:first-of-type { margin-top: 8mm; }
+
+  .page-title {
+    font-size: 30pt;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+    line-height: 1;
+    margin: 5mm 0 0;
+    max-width: 160mm;
+  }
+
+  .lede {
+    margin: 4mm 0 0;
+    max-width: 158mm;
+    font-size: 10pt;
+    line-height: 1.55;
+    color: rgba(248, 248, 248, 0.82);
+  }
+
+  .lede + .lede { margin-top: 3mm; }
+
+  .label-row { margin-top: 5.5mm; }
+
+  /* ---------- cover ---------- */
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-left {
+    display: flex;
+    align-items: center;
+    gap: 3mm;
+  }
+
+  .brand-left .logo { width: 7mm; height: 7mm; }
+
+  .cover-main { margin-top: 28mm; }
+
+  .cover-prepared {
+    font-family: var(--font-mono);
+    font-size: 6.8pt;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .cover-client {
+    margin-top: 2.5mm;
+    font-size: 19pt;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .cover-title {
+    font-size: 50pt;
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    line-height: 0.94;
+    margin: 10mm 0 0;
+    max-width: 165mm;
+  }
+
+  .cover-sub {
+    margin: 7mm 0 0;
+    max-width: 132mm;
+    font-size: 12pt;
+    line-height: 1.55;
+    color: rgba(248, 248, 248, 0.72);
+  }
+
+  .cover-note {
+    margin: 8mm 0 0;
+    max-width: 132mm;
+    font-size: 9.4pt;
+    line-height: 1.6;
+    color: var(--muted);
+  }
+
+  .cover-meta {
+    display: grid;
+    grid-template-columns: 1fr 2.3fr;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-top: auto;
+  }
+
+  .cover-meta .cell { padding: 5mm 5mm 5.5mm; border-left: 1px solid var(--border); }
+  .cover-meta .cell:first-child { border-left: none; padding-left: 0; }
+
+  .cover-meta .mono {
+    display: block;
+    font-size: 6.6pt;
+    color: var(--muted);
+    margin-bottom: 2.5mm;
+  }
+
+  .cover-meta .val {
+    font-family: var(--font-mono);
+    font-size: 9.6pt;
+    letter-spacing: -0.01em;
+    color: var(--fg);
+    line-height: 1.35;
+  }
+
+  .cover-wordmark {
+    display: flex;
+    align-items: center;
+    gap: 5mm;
+    margin-top: 9mm;
+  }
+
+  .cover-wordmark .logo { width: 13mm; height: 13mm; }
+  .cover-wordmark .display { font-size: 38pt; letter-spacing: -0.045em; white-space: nowrap; }
+
+  /* ---------- at a glance ---------- */
+
+  .tri {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-top: 8mm;
+  }
+
+  .tri .cell {
+    padding: 5.5mm 5mm 6mm;
+    border-left: 1px solid var(--border);
+  }
+
+  .tri .cell:first-child { border-left: none; padding-left: 0; }
+
+  .tri .mono { color: var(--accent); font-size: 6.8pt; }
+
+  .tri p {
+    margin: 2.5mm 0 0;
+    font-size: 9pt;
+    line-height: 1.58;
+    color: rgba(248, 248, 248, 0.8);
+  }
+
+  .contents {
+    margin: 7mm 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contents li {
+    display: flex;
+    align-items: baseline;
+    gap: 5mm;
+    padding: 2.6mm 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 9.2pt;
+    color: rgba(248, 248, 248, 0.82);
+  }
+
+  .contents li .idx {
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    min-width: 9mm;
+  }
+
+  /* ---------- notes ---------- */
+
+  .note {
+    margin-top: 6mm;
+    border-left: 1px solid var(--accent);
+    padding-left: 4mm;
+    font-size: 8.4pt;
+    line-height: 1.65;
+    color: var(--muted);
+    max-width: 152mm;
+  }
+
+  .note .mono {
+    display: block;
+    margin-bottom: 1.5mm;
+    color: var(--accent);
+    font-size: 6.6pt;
+  }
+
+  /* ---------- statement quote ---------- */
+
+  .statement {
+    margin-top: 6mm;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding: 5mm 0;
+  }
+
+  .statement .mono { color: var(--muted); font-size: 6.8pt; }
+
+  .statement p {
+    margin: 3mm 0 0;
+    font-size: 13.5pt;
+    line-height: 1.42;
+    letter-spacing: -0.015em;
+    max-width: 168mm;
+    color: var(--fg);
+  }
+
+  /* ---------- architecture ---------- */
+
+  .arch {
+    margin-top: 4mm;
+    display: grid;
+    gap: 3mm;
+  }
+
+  .arch-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+  }
+
+  .arch-box {
+    border: 1px solid var(--hairline);
+    padding: 3.4mm 4.5mm;
+  }
+
+  .arch-box.parent { border-color: var(--accent); }
+
+  .arch-box .mono { font-size: 6.4pt; color: var(--muted); }
+
+  .arch-box .name {
+    margin-top: 1.4mm;
+    font-size: 11pt;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+
+  .arch-box p {
+    margin: 1.2mm 0 0;
+    font-size: 8pt;
+    line-height: 1.45;
+    color: var(--muted);
+  }
+
+  /* ---------- attribute list ---------- */
+
+  .attr-list { margin-top: 4mm; }
+
+  .attr-list .row {
+    display: flex;
+    align-items: baseline;
+    gap: 5mm;
+    padding: 2.9mm 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 9pt;
+    color: rgba(248, 248, 248, 0.85);
+  }
+
+  .attr-list .row .idx {
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    min-width: 8mm;
+  }
+
+  /* ---------- references table ---------- */
+
+  table.refs {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 5mm;
+    table-layout: fixed;
+  }
+
+  .refs th {
+    font-family: var(--font-mono);
+    font-size: 6.4pt;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-align: left;
+    padding: 0 4mm 2mm 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .refs td {
+    padding: 2.2mm 4mm 2.2mm 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 7.5pt;
+    line-height: 1.45;
+    color: rgba(248, 248, 248, 0.78);
+    vertical-align: top;
+  }
+
+  .refs td:last-child, .refs th:last-child { padding-right: 0; }
+
+  .refs td .name { color: var(--fg); font-weight: 500; font-size: 8.1pt; }
+
+  .refs .role { color: var(--muted); font-size: 7.3pt; }
+
+  /* ---------- takeaways ---------- */
+
+  .takeaways {
+    margin-top: 5mm;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5mm 8mm;
+  }
+
+  .takeaways .item {
+    display: flex;
+    gap: 4mm;
+    align-items: baseline;
+    font-size: 8.2pt;
+    line-height: 1.5;
+    color: rgba(248, 248, 248, 0.8);
+  }
+
+  .takeaways .item .idx {
+    font-family: var(--font-mono);
+    font-size: 6.8pt;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+  }
+
+  /* ---------- card grids ---------- */
+
+  .grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin-top: 6mm;
+  }
+
+  .grid-4 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4mm;
+    margin-top: 6mm;
+  }
+
+  .card {
+    border: 1px solid var(--hairline);
+    padding: 5mm 5.5mm 5.5mm;
+  }
+
+  .card .mono { color: var(--accent); font-size: 6.6pt; }
+
+  .card h4 {
+    margin: 2.2mm 0 0;
+    font-size: 11.5pt;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
+  }
+
+  .card p {
+    margin: 2mm 0 0;
+    font-size: 8.6pt;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  /* ---------- deliverable list ---------- */
+
+  .deliverables {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 10mm;
+    margin-top: 6mm;
+  }
+
+  .deliverable {
+    display: flex;
+    gap: 4mm;
+    padding: 4mm 0;
+    border-bottom: 1px solid var(--border);
+    break-inside: avoid;
+  }
+
+  .deliverable .num {
+    font-family: var(--font-mono);
+    font-size: 7pt;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    padding-top: 0.6mm;
+    min-width: 8mm;
+  }
+
+  .deliverable h4 {
+    margin: 0;
+    font-size: 10pt;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .deliverable p {
+    margin: 1.3mm 0 0;
+    font-size: 8.2pt;
+    line-height: 1.52;
+    color: var(--muted);
+  }
+
+  /* ---------- design system list ---------- */
+
+  .system {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 10mm;
+    margin-top: 6mm;
+  }
+
+  .system .item { padding: 3.2mm 0; border-bottom: 1px solid var(--border); }
+  .system .item .mono { color: var(--muted); font-size: 6.4pt; }
+  .system .item h4 {
+    margin: 1.4mm 0 0;
+    font-size: 9.4pt;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+  .system .item p {
+    margin: 1.2mm 0 0;
+    font-size: 7.8pt;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
+  /* ---------- applications ---------- */
+
+  .apps { margin-top: 6mm; }
+
+  .apps .row {
+    display: grid;
+    grid-template-columns: 52mm 1fr;
+    gap: 6mm;
+    padding: 3.4mm 0;
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+
+  .apps .row .name {
+    font-size: 9.6pt;
+    font-weight: 500;
+  }
+
+  .apps .row .name .mono {
+    display: block;
+    font-size: 6.2pt;
+    font-weight: 400;
+    color: var(--accent);
+    margin-bottom: 1mm;
+  }
+
+  .apps .row p {
+    margin: 0;
+    padding-top: 4.2mm;
+    font-size: 8.6pt;
+    line-height: 1.55;
+    color: var(--muted);
+  }
+
+  .pills { display: flex; flex-wrap: wrap; gap: 2.5mm; margin-top: 4mm; }
+
+  .pill {
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 1.6mm 3.6mm;
+    font-family: var(--font-mono);
+    font-size: 6.6pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(248, 248, 248, 0.82);
+  }
+
+  /* ---------- steps ---------- */
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    margin-top: 6mm;
+  }
+
+  .steps .step {
+    padding: 7mm 4.5mm 7.5mm;
+    border-left: 1px solid var(--border);
+  }
+
+  .steps .step:first-child { border-left: none; padding-left: 0; }
+
+  .steps .step .mono { color: var(--accent); font-size: 6.6pt; }
+
+  .steps .step h4 {
+    margin: 2.4mm 0 0;
+    font-size: 11.5pt;
+    font-weight: 500;
+    letter-spacing: -0.015em;
+  }
+
+  .steps .step p {
+    margin: 2mm 0 0;
+    font-size: 8.2pt;
+    line-height: 1.52;
+    color: var(--muted);
+  }
+
+  .closing p { font-size: 15pt; line-height: 1.45; }
+
+  /* ---------- appendix refs ---------- */
+
+  .reflist { margin-top: 6mm; }
+
+  .reflist .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 8mm;
+    padding: 3.2mm 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .reflist .name { font-size: 9.4pt; font-weight: 500; }
+
+  .reflist .org {
+    font-family: var(--font-mono);
+    font-size: 6.4pt;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 0.8mm;
+  }
+
+  .reflist .url {
+    font-family: var(--font-mono);
+    font-size: 6.8pt;
+    letter-spacing: 0.02em;
+    color: rgba(248, 248, 248, 0.55);
+    text-align: right;
+    max-width: 95mm;
+    overflow-wrap: anywhere;
+    line-height: 1.5;
+  }
+
+  /* ---------- preview-only ---------- */
+
+  html[data-preview-page] .page { display: none; }
+  html[data-preview-page="1"] .page:nth-of-type(1),
+  html[data-preview-page="2"] .page:nth-of-type(2),
+  html[data-preview-page="3"] .page:nth-of-type(3),
+  html[data-preview-page="4"] .page:nth-of-type(4),
+  html[data-preview-page="5"] .page:nth-of-type(5),
+  html[data-preview-page="6"] .page:nth-of-type(6),
+  html[data-preview-page="7"] .page:nth-of-type(7),
+  html[data-preview-page="8"] .page:nth-of-type(8),
+  html[data-preview-page="9"] .page:nth-of-type(9),
+  html[data-preview-page="10"] .page:nth-of-type(10),
+  html[data-preview-page="11"] .page:nth-of-type(11) { display: block; }
+</style>
+</head>
+<body>
+<script>
+  (function () {
+    var p = new URLSearchParams(location.search).get("page");
+    if (p) document.documentElement.setAttribute("data-preview-page", p);
+  })();
+</script>
+
+<!-- 01 — COVER -->
+<section class="page cover">
+  <div class="pad">
+    <div class="cover-top">
+      <div class="brand-left">
+        <img class="logo" src="assets/logo-light.png" alt="Summit Studio">
+        <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      </div>
+      <span class="mono muted">Brand vision &amp; creative direction / Discussion document</span>
+    </div>
+
+    <div class="cover-main">
+      <div class="cover-prepared">[ Prepared for ]</div>
+      <div class="cover-client">AIconomy Institute</div>
+      <h1 class="cover-title">Brand direction<span class="dot">.</span></h1>
+      <p class="cover-sub">Building an institution around the forces shaping the AI economy.</p>
+      <p class="cover-note">An initial point of view from Summit Studio: bringing together our understanding of the opportunity, an early landscape review and the areas we propose to develop through the brand identity process.</p>
+    </div>
+
+    <div class="cover-meta">
+      <div class="cell">
+        <span class="mono">Issued</span>
+        <div class="val">01 Nov 2026</div>
+      </div>
+      <div class="cell">
+        <span class="mono">Status</span>
+        <div class="val">Hypotheses for alignment, not final brand decisions</div>
+      </div>
+    </div>
+
+    <div class="cover-wordmark">
+      <img class="logo" src="assets/logo-light.png" alt="">
+      <span class="display">Summit Studio<span class="dot">.</span></span>
+    </div>
+  </div>
+</section>
+
+<!-- 02 — AT A GLANCE -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Brand Vision &amp; Creative Direction</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 00 ]</span>
+      <span class="mono muted">At a glance</span>
+    </div>
+
+    <h2 class="page-title">The thinking in brief<span class="dot">.</span></h2>
+
+    <p class="lede">AIconomy Institute has the opportunity to establish a lasting institutional presence around the economic consequences of artificial intelligence. The World AIconomy Forum can act as its flagship convening platform, while the Institute provides continuity and a year-round voice.</p>
+
+    <div class="tri">
+      <div class="cell">
+        <span class="mono">The context</span>
+        <p>AI and technology convenings are already an active and visible space in India and internationally.</p>
+      </div>
+      <div class="cell">
+        <span class="mono">The opportunity</span>
+        <p>Move beyond an event-led identity towards a clear institutional role and an identifiable economic lens.</p>
+      </div>
+      <div class="cell">
+        <span class="mono">The direction</span>
+        <p>Build an authoritative, contemporary and globally relevant brand rooted in an Indian perspective.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <span class="mono">[ Purpose of this document ]</span>
+      To create a shared starting point for discussion. The observations and positioning territories in this document are hypotheses for alignment, not final or approved brand decisions.
+    </div>
+
+    <div class="label-row">
+      <span class="mono muted">What this document covers</span>
+    </div>
+
+    <ul class="contents">
+      <li><span class="idx">01</span> The opportunity and initial positioning hypothesis</li>
+      <li><span class="idx">02</span> A selected review of the institutional and event landscape</li>
+      <li><span class="idx">03</span> Strategic implications and a potential point of difference</li>
+      <li><span class="idx">04</span> The ten core brand identity deliverables and supporting design system</li>
+      <li><span class="idx">05</span> An initial creative territory and key brand touchpoints</li>
+    </ul>
+
+    <div class="note">
+      <span class="mono">[ A note on the research ]</span>
+      This is a focused first-pass review of selected reference organisations and platforms, not an exhaustive competitor audit. The examples include direct category context, ecosystem participants and broader creative or institutional benchmarks; they should not be read as a list of like-for-like competitors.
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Brand Vision &amp; Creative Direction <span class="accent">/ 02</span></span>
+  </footer>
+</section>
+
+<!-- 03 — THE OPPORTUNITY -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Brand Vision &amp; Creative Direction</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 01 ]</span>
+      <span class="mono muted">The opportunity</span>
+    </div>
+
+    <h2 class="page-title">More than a forum. An institution<span class="dot">.</span></h2>
+
+    <p class="lede">AIconomy Institute has the opportunity to build a recognisable institutional voice around how artificial intelligence is changing economies, industries, institutions and the way value is created.</p>
+    <p class="lede">The World AIconomy Forum can serve as its flagship convening platform, bringing together leaders and perspectives, while the Institute provides continuity, a point of view and a platform for ideas beyond a single event.</p>
+
+    <div class="statement">
+      <span class="mono">[ A possible positioning ]</span>
+      <p>An India-founded, globally oriented institution exploring how artificial intelligence is reshaping the economy, and bringing together the people, ideas and perspectives needed to navigate that transformation.</p>
+    </div>
+
+    <div class="label-row">
+      <span class="mono muted">A possible brand architecture</span>
+    </div>
+
+    <div class="arch">
+      <div class="arch-box parent">
+        <span class="mono">Parent institution</span>
+        <div class="name">AIconomy Institute</div>
+        <p>Continuity, point of view and a platform for ideas beyond a single event.</p>
+      </div>
+      <div class="arch-row">
+        <div class="arch-box">
+          <span class="mono">Flagship platform</span>
+          <div class="name">World AIconomy Forum</div>
+          <p>The convening platform, bringing together leaders and perspectives.</p>
+        </div>
+        <div class="arch-box">
+          <span class="mono">As confirmed</span>
+          <div class="name">Future initiatives</div>
+          <p>Research, programmes and initiatives brought under the same brand system as they are confirmed.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="label-row">
+      <span class="mono muted">Initial brand attributes</span>
+    </div>
+
+    <div class="attr-list">
+      <div class="row"><span class="idx">01</span> Authoritative, but not intimidating.</div>
+      <div class="row"><span class="idx">02</span> Intellectual, but not overly academic.</div>
+      <div class="row"><span class="idx">03</span> Global in outlook, with a clear perspective from India.</div>
+      <div class="row"><span class="idx">04</span> Forward-looking, without relying on AI hype.</div>
+      <div class="row"><span class="idx">05</span> Institutional and enduring, rather than event-led or trend-driven.</div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Brand Vision &amp; Creative Direction <span class="accent">/ 03</span></span>
+  </footer>
+</section>
+
+<!-- 04 — LANDSCAPE REVIEW -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Brand Vision &amp; Creative Direction</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 02 ]</span>
+      <span class="mono muted">Landscape review</span>
+    </div>
+
+    <h2 class="page-title">A landscape of conveners and agenda-setters<span class="dot">.</span></h2>
+
+    <p class="lede">Our initial scan suggests AIconomy Institute would enter an active ecosystem. Existing platforms already bring together government, industry, researchers and global stakeholders around AI, technology policy and the future of innovation. The question is therefore not simply who else hosts an AI event, but what distinct institutional role AIconomy can credibly own.</p>
+
+    <table class="refs">
+      <colgroup>
+        <col style="width: 23%">
+        <col style="width: 17%">
+        <col style="width: 35%">
+        <col style="width: 25%">
+      </colgroup>
+      <thead>
+        <tr><th>Reference</th><th>Role</th><th>What it signals</th><th>Relevance</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="name">India AI Impact Summit 2026</span></td>
+          <td class="role">Ecosystem / national convening</td>
+          <td>A government-led platform framing AI through people, planet and progress: economic growth, access, inclusion, safety, talent and science.</td>
+          <td>Important ecosystem context; not a like-for-like competitor.</td>
+        </tr>
+        <tr>
+          <td><span class="name">Carnegie India, Global Technology Summit</span></td>
+          <td class="role">Convening / agenda-setting</td>
+          <td>A flagship forum co-hosted with India’s Ministry of External Affairs, examining technology and geopolitics.</td>
+          <td>A benchmark for thematic clarity, credibility and convening.</td>
+        </tr>
+        <tr>
+          <td><span class="name">Observer Research Foundation</span></td>
+          <td class="role">Research / convening</td>
+          <td>Combines policy research, public commentary and convening, extending dialogue into analysis and public output.</td>
+          <td>A reference for connecting dialogue with ongoing research.</td>
+        </tr>
+        <tr>
+          <td><span class="name">Inc42 AI Summit / ET Edge AI Summit</span></td>
+          <td class="role">Industry-event landscape</td>
+          <td>Examples of the wider commercial event space, showing that AI-focused conferences are already common.</td>
+          <td>Reinforces the need for an enduring purpose beyond a one-off event.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="label-row">
+      <span class="mono muted">What we take from the landscape</span>
+    </div>
+
+    <div class="takeaways">
+      <div class="item"><span class="idx">01</span><span>Convening alone may not be sufficiently distinctive; the market already has established AI and technology forums.</span></div>
+      <div class="item"><span class="idx">02</span><span>Credibility comes from a clear institutional point of view, credible voices and consistency, not just event scale.</span></div>
+      <div class="item"><span class="idx">03</span><span>Research, public communication and convening reinforce one another when connected by a clear theme.</span></div>
+      <div class="item"><span class="idx">04</span><span>An India-rooted perspective can be globally relevant when it addresses questions of wider economic and policy significance.</span></div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Brand Vision &amp; Creative Direction <span class="accent">/ 04</span></span>
+  </footer>
+</section>
+
+<!-- 05 — STRATEGIC OPPORTUNITY -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Brand Vision &amp; Creative Direction</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 03 ]</span>
+      <span class="mono muted">Strategic opportunity</span>
+    </div>
+
+    <h2 class="page-title">Where AIconomy creates distinction<span class="dot">.</span></h2>
+
+    <p class="lede">A potential point of difference is to focus on the economic transformation driven by AI, not AI as a technology category alone. This creates a more specific lens through which the Institute can frame its conversations and public identity.</p>
+
+    <div class="grid-4">
+      <div class="card">
+        <span class="mono">01</span>
+        <h4>Economic transformation</h4>
+        <p>Productivity, work, value creation and the changing structure of industries.</p>
+      </div>
+      <div class="card">
+        <span class="mono">02</span>
+        <h4>Capital &amp; competitiveness</h4>
+        <p>Investment, infrastructure, markets and the competitive position of economies.</p>
+      </div>
+      <div class="card">
+        <span class="mono">03</span>
+        <h4>Policy &amp; governance</h4>
+        <p>Regulation, institutions, public policy and responsible adoption.</p>
+      </div>
+      <div class="card">
+        <span class="mono">04</span>
+        <h4>Global collaboration</h4>
+        <p>Connecting Indian and international perspectives across sectors and geographies.</p>
+      </div>
+    </div>
+
+    <div class="label-row">
+      <span class="mono muted">A potential institutional model</span>
+    </div>
+
+    <div class="grid-4" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="card">
+        <span class="mono">Convene</span>
+        <h4>Bring together</h4>
+        <p>Relevant leaders, practitioners, researchers and policymakers.</p>
+      </div>
+      <div class="card">
+        <span class="mono">Interpret</span>
+        <h4>Develop a view</h4>
+        <p>A clear perspective on the economic and societal implications of AI.</p>
+      </div>
+      <div class="card">
+        <span class="mono">Amplify</span>
+        <h4>Carry ideas forward</h4>
+        <p>Into research, insight and public communication beyond the flagship forum.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <span class="mono">[ A hypothesis for discussion ]</span>
+      This model connects three mutually reinforcing roles. The Institute’s actual programmes, research capabilities and publishing commitments should be confirmed before they are presented as established activities.
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Brand Vision &amp; Creative Direction <span class="accent">/ 05</span></span>
+  </footer>
+</section>
+
+<!-- 06 — BRAND IDENTITY SCOPE -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Brand Vision &amp; Creative Direction</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 04 ]</span>
+      <span class="mono muted">Proposed brand identity scope</span>
+    </div>
+
+    <h2 class="page-title">The ten core deliverables<span class="dot">.</span></h2>
+
+    <p class="lede">These ten workstreams form the proposed scope of the brand identity engagement. Each will be developed through discussion, exploration and approval; the descriptions outline intended areas of work rather than predetermined outcomes.</p>
+
+    <div class="deliverables">
+      <div class="deliverable">
+        <span class="num">01</span>
+        <div>
+          <h4>Brand ideology &amp; vision</h4>
+          <p>Define the underlying belief, purpose and long-term ambition: what the Institute exists to contribute and the change it hopes to influence.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="num">02</span>
+        <div>
+          <h4>Brand strategy &amp; positioning</h4>
+          <p>Establish the Institute’s role, differentiation, value proposition and relationship with the World AIconomy Forum.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="num">03</span>
+        <div>
+          <h4>Competitor research &amp; analysis</h4>
+          <p>Review relevant institutions, conveners and platforms to identify positioning opportunities and avoid a generic category identity.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="num">04</span>
+        <div>
+          <h4>Target audience &amp; brand personality</h4>
+          <p>Clarify priority audiences and the qualities, tone and character the brand should consistently express.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="num">05</span>
+        <div>
+          <h4>Brand story &amp; messaging</h4>
+          <p>The core narrative: how the Institute introduces itself, explains its relevance and communicates its work.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="num">06</span>
+        <div>
+          <h4>Logo design</h4>
+          <p>A distinctive primary identity, with supporting configurations for institutional and Forum use.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="num">07</span>
+        <div>
+          <h4>Colour palette &amp; typography</h4>
+          <p>A considered colour and type direction supporting recognition, legibility and a consistent institutional presence.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="num">08</span>
+        <div>
+          <h4>Visual identity &amp; design language</h4>
+          <p>The wider visual system: graphic elements, layout principles, imagery direction and flexibility across formats.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="num">09</span>
+        <div>
+          <h4>Brand applications &amp; reusable pitch decks</h4>
+          <p>How the identity translates into key touchpoints, including presentation layouts and reusable deck components.</p>
+        </div>
+      </div>
+      <div class="deliverable">
+        <span class="num">10</span>
+        <div>
+          <h4>Brand guidelines &amp; identity manual</h4>
+          <p>A practical guide bringing the approved identity together, covering its core elements and consistent application.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Brand Vision &amp; Creative Direction <span class="accent">/ 06</span></span>
+  </footer>
+</section>
+
+<!-- 07 — CREATIVE TERRITORY -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Brand Vision &amp; Creative Direction</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 05 ]</span>
+      <span class="mono muted">Initial creative territory</span>
+    </div>
+
+    <h2 class="page-title">Institutional intelligence<span class="dot">.</span></h2>
+
+    <p class="lede">Our initial creative territory is a visual identity that combines the confidence of a global institution with the clarity and energy of a modern platform for ideas.</p>
+
+    <div class="label-row">
+      <span class="mono muted">What this could look and feel like</span>
+    </div>
+
+    <div class="attr-list">
+      <div class="row"><span class="idx">01</span> A confident, typographic identity with a distinctive and flexible logo system.</div>
+      <div class="row"><span class="idx">02</span> A restrained, contemporary colour direction with a memorable accent.</div>
+      <div class="row"><span class="idx">03</span> Structured layouts informed by editorial design, research and data communication.</div>
+      <div class="row"><span class="idx">04</span> Graphic elements that suggest systems, connections, exchange and economic networks.</div>
+      <div class="row"><span class="idx">05</span> A visual language that works across the Institute, the Forum and future initiatives.</div>
+    </div>
+
+    <div class="note">
+      <span class="mono">[ What we would avoid ]</span>
+      Predictable AI clichés: robot imagery, glowing brains, generic circuit-board graphics and overused futuristic effects. The aim is to build a more ownable and enduring institutional language.
+    </div>
+
+    <div class="label-row">
+      <span class="mono muted">The intended balance</span>
+    </div>
+
+    <div class="grid-4" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="card">
+        <span class="mono">Institutional</span>
+        <h4>Credible and composed</h4>
+        <p>Enduring, considered and appropriate to an institution with a long-term role.</p>
+      </div>
+      <div class="card">
+        <span class="mono">Contemporary</span>
+        <h4>Clear and flexible</h4>
+        <p>Relevant across digital and physical touchpoints as the platform grows.</p>
+      </div>
+      <div class="card">
+        <span class="mono">Intelligent</span>
+        <h4>Editorial and grounded</h4>
+        <p>Evidence-aware and rooted in ideas rather than visual effects.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Brand Vision &amp; Creative Direction <span class="accent">/ 07</span></span>
+  </footer>
+</section>
+
+<!-- 08 — DESIGN SYSTEM -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Brand Vision &amp; Creative Direction</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 05A ]</span>
+      <span class="mono muted">The design system</span>
+    </div>
+
+    <h2 class="page-title">A practical system, not a collection of assets<span class="dot">.</span></h2>
+
+    <p class="lede">The identity should be supported by a reusable design system: a set of visual rules, components and templates that helps the Institute and its Forum communicate consistently as their activities grow. It translates the approved brand direction into repeatable decisions across digital, presentation and communication formats.</p>
+
+    <div class="system">
+      <div class="item">
+        <span class="mono">01 / Foundations</span>
+        <h4>Core elements</h4>
+        <p>Colour tokens and usage rules; typography hierarchy; spacing and sizing scale; grid and layout principles; shape, line and graphic treatments; iconography; image direction; contrast and legibility guidance.</p>
+      </div>
+      <div class="item">
+        <span class="mono">02 / Identity behaviour</span>
+        <h4>Logo system</h4>
+        <p>Primary and secondary configurations; clear space and minimum sizes; light and dark applications; placement principles; guidance for how the Institute and Forum identities work together.</p>
+      </div>
+      <div class="item">
+        <span class="mono">03 / Graphic language</span>
+        <h4>Data visualisation</h4>
+        <p>A consistent approach to diagrams, charts, data callouts, maps, timelines, quote treatments and other information-led graphics, particularly relevant to economic and technology themes.</p>
+      </div>
+      <div class="item">
+        <span class="mono">04 / Composition</span>
+        <h4>Layout and grids</h4>
+        <p>Page and screen grids, alignment, hierarchy, whitespace, section structures, title treatments, content modules and repeatable editorial layouts for short- and long-form communication.</p>
+      </div>
+      <div class="item">
+        <span class="mono">05 / Digital</span>
+        <h4>Components</h4>
+        <p>Reusable website patterns (navigation, buttons, links, cards, content sections, calls to action, forms) and responsive behaviour across desktop, tablet and mobile.</p>
+      </div>
+      <div class="item">
+        <span class="mono">06 / Applications</span>
+        <h4>Templates</h4>
+        <p>Reusable presentation and pitch-deck layouts, social and announcement formats, document covers, insight and report layouts, and selected Forum communication applications within scope.</p>
+      </div>
+      <div class="item">
+        <span class="mono">07 / Motion</span>
+        <h4>Interaction principles</h4>
+        <p>Where needed, a restrained approach to transitions, animation and interactive states, so digital experiences feel consistent with the brand. Motion supports clarity rather than decoration.</p>
+      </div>
+      <div class="item">
+        <span class="mono">08 / Accessibility</span>
+        <h4>Consistency</h4>
+        <p>Practical rules for readable type sizes, sufficient colour contrast, clear interaction states and consistent component behaviour. Final implementation requirements confirmed during design and development.</p>
+      </div>
+    </div>
+
+    <div class="note">
+      <span class="mono">[ How it connects to the ten deliverables ]</span>
+      The design system is not an unrelated eleventh deliverable. It is the working structure created through colour and typography, visual identity, logo design and brand applications, then documented within the brand guidelines. It ensures the identity can be reused consistently rather than recreated for every new asset.
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Brand Vision &amp; Creative Direction <span class="accent">/ 08</span></span>
+  </footer>
+</section>
+
+<!-- 09 — BRAND IN USE -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Brand Vision &amp; Creative Direction</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 06 ]</span>
+      <span class="mono muted">Brand in use</span>
+    </div>
+
+    <h2 class="page-title">One coherent identity. Multiple touchpoints<span class="dot">.</span></h2>
+
+    <p class="lede">The identity should be designed as a flexible system so that the Institute feels consistent wherever its audiences encounter it. A supporting design system will define the reusable rules and components behind those applications.</p>
+
+    <div class="label-row">
+      <span class="mono muted">Priority applications</span>
+    </div>
+
+    <div class="apps">
+      <div class="row">
+        <div class="name"><span class="mono">01</span>Institutional presence</div>
+        <p>Website and core digital touchpoints introducing the Institute and its purpose.</p>
+      </div>
+      <div class="row">
+        <div class="name"><span class="mono">02</span>Presentations</div>
+        <p>Reusable pitch-deck layouts for introductions, partnerships and institutional communication.</p>
+      </div>
+      <div class="row">
+        <div class="name"><span class="mono">03</span>Public visibility</div>
+        <p>Social and announcement graphics that build recognition and consistency.</p>
+      </div>
+      <div class="row">
+        <div class="name"><span class="mono">04</span>Forum presence</div>
+        <p>Event-facing applications that connect clearly to the parent institution.</p>
+      </div>
+      <div class="row">
+        <div class="name"><span class="mono">05</span>Core documents</div>
+        <p>A consistent visual language for official and institutional materials.</p>
+      </div>
+    </div>
+
+    <div class="label-row">
+      <span class="mono muted">Initial website thought</span>
+    </div>
+
+    <p class="lede" style="margin-top: 4mm;">The website should act as the Institute’s primary public reference point: concise, confident and easy to navigate. A focused first version could include:</p>
+
+    <div class="pills">
+      <span class="pill">Home</span>
+      <span class="pill">About the Institute</span>
+      <span class="pill">World AIconomy Forum</span>
+      <span class="pill">Insights / Updates</span>
+      <span class="pill">Contact</span>
+    </div>
+
+    <div class="note">
+      <span class="mono">[ To be confirmed ]</span>
+      The final sitemap and content structure can be confirmed together during the identity and website phases.
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Brand Vision &amp; Creative Direction <span class="accent">/ 09</span></span>
+  </footer>
+</section>
+
+<!-- 10 — NEXT STEPS -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Brand Vision &amp; Creative Direction</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ 07 ]</span>
+      <span class="mono muted">Next steps</span>
+    </div>
+
+    <h2 class="page-title">How we propose to move forward<span class="dot">.</span></h2>
+
+    <div class="steps">
+      <div class="step">
+        <span class="mono">Align</span>
+        <h4>Refine</h4>
+        <p>The institutional story, vision, audiences and positioning.</p>
+      </div>
+      <div class="step">
+        <span class="mono">Explore</span>
+        <h4>Develop</h4>
+        <p>Creative routes for the logo and wider visual identity.</p>
+      </div>
+      <div class="step">
+        <span class="mono">Establish</span>
+        <h4>Build</h4>
+        <p>Select a direction and build the approved core identity system and messaging.</p>
+      </div>
+      <div class="step">
+        <span class="mono">Apply</span>
+        <h4>Extend</h4>
+        <p>Translate the identity into agreed applications and the reusable pitch-deck system.</p>
+      </div>
+    </div>
+
+    <div class="label-row">
+      <span class="mono muted">What needs alignment before visual exploration begins</span>
+    </div>
+
+    <div class="attr-list">
+      <div class="row"><span class="idx">01</span> The Institute’s primary ambition and intended long-term role.</div>
+      <div class="row"><span class="idx">02</span> Priority audiences and the relationship with the World AIconomy Forum.</div>
+      <div class="row"><span class="idx">03</span> Approved programmes, research capabilities and publishing commitments.</div>
+      <div class="row"><span class="idx">04</span> The messages, affiliations and partnerships that can be publicly stated.</div>
+    </div>
+
+    <div class="statement closing">
+      <span class="mono">[ A starting point, not a final answer ]</span>
+      <p>This document sets out our current understanding, selected research observations and an initial creative point of view. The final strategy and design decisions will follow through discussion, exploration and approval.</p>
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Brand Vision &amp; Creative Direction <span class="accent">/ 10</span></span>
+  </footer>
+</section>
+
+<!-- 11 — APPENDIX -->
+<section class="page">
+  <div class="pad">
+    <header class="head">
+      <span class="wordmark">Summit Studio<span class="dot">.</span></span>
+      <span class="mono muted">Brand Vision &amp; Creative Direction</span>
+    </header>
+
+    <div class="sec-head">
+      <span class="mono"><span class="accent">◆</span> [ A ]</span>
+      <span class="mono muted">Appendix / Selected references</span>
+    </div>
+
+    <h2 class="page-title">Sources informing the landscape review<span class="dot">.</span></h2>
+
+    <p class="lede">The following public references informed the selected examples and observations in this document. The review is intentionally selective and should be expanded during the detailed strategy phase if required.</p>
+
+    <div class="reflist">
+      <div class="row">
+        <div>
+          <div class="name">India AI Impact Summit 2026</div>
+          <div class="org">Government of India</div>
+        </div>
+        <div class="url">https://www.pib.gov.in/PressReleasePage.aspx?PRID=2228777&amp;lang=1&amp;reg=1</div>
+      </div>
+      <div class="row">
+        <div>
+          <div class="name">Global Technology Summit</div>
+          <div class="org">Carnegie India</div>
+        </div>
+        <div class="url">https://globaltechnologysummit.com/about</div>
+      </div>
+      <div class="row">
+        <div>
+          <div class="name">AI Impact Summit engagement</div>
+          <div class="org">Observer Research Foundation</div>
+        </div>
+        <div class="url">https://www.orfonline.org/research/countdown-to-the-india-ai-impact-summit-2026-insights-from-orf-s-pre-summit-engagements</div>
+      </div>
+      <div class="row">
+        <div>
+          <div class="name">Inc42 / ET Edge</div>
+          <div class="org">Industry events</div>
+        </div>
+        <div class="url">https://inc42.com/ · https://et-edge.com/</div>
+      </div>
+    </div>
+
+    <div class="note">
+      <span class="mono">[ Note ]</span>
+      This document distinguishes publicly observable reference points from Summit Studio’s strategic interpretation. All positioning statements, proposed brand attributes and institutional-role hypotheses remain subject to client discussion and approval.
+    </div>
+
+    <div class="note" style="margin-top: 10mm;">
+      <span class="mono">[ Summit Studio ]</span>
+      Brand, digital and creative.
+    </div>
+  </div>
+
+  <footer class="foot">
+    <span class="mono muted">Summit Studio</span>
+    <span class="mono muted">AIconomy · Brand Vision &amp; Creative Direction <span class="accent">/ 11</span></span>
+  </footer>
+</section>
+
+</body>
+</html>
